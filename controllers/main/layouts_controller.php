@@ -1,7 +1,6 @@
 <?php
-
-
 require_once('controllers/base_controller.php');
+require_once('models/product.php');
 
 class LayoutsController extends BaseController
 {
@@ -12,6 +11,8 @@ class LayoutsController extends BaseController
 
 	public function index()
 	{
-		$this->render('index');
+		$List_Product = Product::getAllProduct();
+		$this->render('index', $List_Product);
 	}
+
 }
