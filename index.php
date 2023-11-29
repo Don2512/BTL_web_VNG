@@ -1,6 +1,7 @@
 <?php
-//require_once('models/connection.php'); // connection database
-
+//* với $page là tên của folder trong lớp controller
+//* $controller là tên file cộng thêm _controller.php 
+//* $action là hàm trong file đó để truy cập đếm
 if (isset($_GET['page'])) {
 	$page = $_GET['page'];
 
@@ -18,9 +19,11 @@ if (isset($_GET['page'])) {
 		$action = 'index';
 	}
 } else {
+	//* khỏi tạo ban đầu 
 	$page = 'main';
 	$controller = 'layouts';
 	$action = 'index';
 }
 
+//* tiến hành gọi hàm
 require_once('routes.php');

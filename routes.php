@@ -1,12 +1,15 @@
 <?php
 
+//* các file trong folder controller
 $pages = array(
   'error' => ['errors'],
   'main' => ['layouts', 'about', 'services', 'blog', 'archive', 'contact', 'login', 'register', 'edit', 'product', 'human', 'society', 'job'],
   'admin' => ['layouts', 'members', 'products', 'news', 'comments']
 );
+
+
+//* các hàm trong file <name>_controller.php
 $controllers = array(
-  //Admin controller
   'errors' => ['index'],
   'layouts' => ['index'], // Bổ sung thêm các hàm trong controllers
   'members' => ['index'],
@@ -39,11 +42,13 @@ $controllers = array(
 
 
 
-if (!array_key_exists($page, $pages) || !array_key_exists($controller, $controllers) || !in_array($action, $controllers[$controller])) {
+//* kiểm tra file đó có tồn tại hay không để truy cập
+if ($page == 'error' || !array_key_exists($page, $pages) || !array_key_exists($controller, $controllers) || !in_array($action, $controllers[$controller])) {
   require_once('error/error_404.php');
-} else if ($page == 'error') {
-  require_once('error/error_404.php');
-} else {
+}
+//* yêu cầu file đó -> khởi tạo class -> truy cập hàm
+else {
+
   include_once('controllers/' . $page . "/" . $controller . '_controller.php');
 
   $klass = str_replace('_', '', ucwords($controller, '_')) . 'Controller';

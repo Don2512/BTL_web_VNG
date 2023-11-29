@@ -1,26 +1,37 @@
 <?php
-class DB
-{
-    public static $instance = NULL;
 
-    public static function getInstance(): Singleton
+
+class DB{
+    public static $connection = NULL;
+
+    public static function getInstance()
     {
-        if (!isset(self::$instance)) 
+        if(self::$connection == NULL)
         {
-            self::$instance = mysqli_connect("localhost", "root", "", "BTL_WEB_231");
-            if (mysqli_connect_errno())
-            {
-                die("Failed to connect to MySQL: " . mysqli_connect_error());
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            try{
+                self::$connection = new mysqli($servername, $username, $password, "VNG");
             }
+            catch(Exception $err){
+                die("Connection failed: " . $err);
+            }     
         }
-
-        return self::$instance;
+        return self::$connection;
     }
 
 
-    public static function Query($query)
+    public static function _Query($query)
     {
-        $db = DB::getInstance();
-        return $bd->query($query);
+        $conn = self::getInstance();
+        try
+        {
+            $result = $conn->query($query);
+            return $result;
+        }
+        catch(Exception $err){
+            die("failed: " . $err);
+        }             
     }
 }

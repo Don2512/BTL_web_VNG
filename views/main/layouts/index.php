@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <?php
 require_once("views/main/header.php") ?>
 
@@ -112,4 +109,5 @@ require_once("views/main/header.php") ?>
     </div>
 </div>
 
+?>
 <?php require_once("views/main/footer.php") ?>
