@@ -1,0 +1,27 @@
+.images-responsibility {
+  position: relative;
+  text-align: center;
+  color: white;
+  font-size: 50px;
+  overflow: hidden; /* Ẩn phần nằm ngoài phạm vi */
+}
+
+.images-responsibility img {
+  width: 100%;
+  height: 100%;
+  object-fit: none; /* Sử dụng none để không scale ảnh */
+  object-position: right; /* Đặt vị trí ảnh từ phải (có thể điều chỉnh theo nhu cầu) */
+}
+
+.bottom-center-images {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-80%);
+}
+
+
+.responsive-img {
+  width: 100%;
+  height: auto;
+}

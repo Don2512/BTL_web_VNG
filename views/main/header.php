@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link  rel="stylesheet" href="public/css/Bootstrap_css/bootstrap.min.css">
     <link type="text/html" rel="stylesheet" href="public/css/Bootstrap_css/style.css">
+    <link  rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.2/components/blogs/blog-4/assets/css/blog-4.css">
     <title>VNG</title>
 </head>
 <body>
