@@ -55,7 +55,7 @@ $page = basename($directory_path);
                                     </div>
                                     <!-- LOGIN -->
                                     <div class="col-auto px-1 py-1 dotUnder position-relative <?php if ($page == "login") echo 'active' ?>">
-                                        <a class="nav-link text-decoration-none text-black" href="index.php?page=main&controller=job&action=index">Đăng nhập</a>
+                                        <a class="nav-link text-decoration-none text-black" href="index.php?page=main&controller=login&action=index">Đăng nhập</a>
                                     </div>
 
                                 </div>
