@@ -9,9 +9,9 @@ $page = basename($directory_path);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="node_modules\bootstrap-icons\font\bootstrap-icons.min.css">
+    <link rel="stylesheet" href="node_modules\bootstrap\dist\css/bootstrap.min.css">
     <link rel="stylesheet" href="../../public/css/customize/datnguyen.css">
-    <link rel="stylesheet" href="public/css/Bootstrap_css/bootstrap.min.css">
-    <link type="text/html" rel="stylesheet" href="public/css/Bootstrap_css/style.css">
     <title>VNG</title>
 </head>
 
@@ -71,6 +71,7 @@ $page = basename($directory_path);
         </div>
     </nav>
 </body>
+<script src="public/js/bootstrap_js/bootstrap.min.js"></script>
 
 
 </html>
