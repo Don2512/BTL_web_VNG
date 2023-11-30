@@ -17,7 +17,7 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="./views/main/layouts/users.php" class="sidebar-link">
+                <a href="#" class="sidebar-link">
                 <i class="fa-solid fa-users" style="color: #ffffff;"></i>   
                 Quản lí thành viên
                 </a>
@@ -29,13 +29,13 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
+                <a href="index.php?page=admin&controller=blogs&action=index" class="sidebar-link">
                 <i class="fa-regular fa-newspaper" style="color: #ffffff;"></i>
-                Quản lí tin tức
+                Quản lí bài viết
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
+                <a href="views/admin/resources/index.php" class="sidebar-link">
                 <i class="fa-solid fa-lines-leaning" style="color: #ffffff;"></i>  
                 Quản lí tài nguyên
                 </a>

@@ -4,7 +4,7 @@
 $pages = array(
   'error' => ['errors'],
   'main' => ['layouts', 'about', 'services', 'blog', 'archive', 'contact', 'login', 'register', 'edit', 'product', 'human', 'society', 'job'],
-  'admin' => ['layouts', 'members', 'products', 'news', 'comments']
+  'admin' => ['layouts', 'members', 'products', 'blogs', 'comments']
 );
 
 
@@ -14,7 +14,7 @@ $controllers = array(
   'layouts' => ['index'], // Bổ sung thêm các hàm trong controllers
   'members' => ['index'],
   'products' => ['index', 'add', 'edit', 'delete'],
-  'news' => ['index', 'add', 'edit', 'delete', 'hide'],
+  'blogs' => ['index', 'add', 'edit', 'delete', 'hide'],
   'comments' => ['index', 'hide', 'add', 'edit', 'delete'],
   'admin' => ['index', 'add', 'edit', 'delete'],
   'user' => ['index', 'add', 'editInfo', 'editPass', 'delete'],
