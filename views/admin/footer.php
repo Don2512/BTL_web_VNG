@@ -32,5 +32,6 @@
 
 <script src="public/js/Bootstrap_js/bootstrap.bundle.min.js"></script>
 <script src="public/js/script.js"></script>
+<script src="public/fontawesome-6.5.1/js/all.min.js"></script>
 </body>
 </html>

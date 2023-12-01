@@ -20,9 +20,14 @@ class Blog
         $this->author_id = $author_id;
     }
 
-    static function getAllBlogAttribute() {
+    static function getAllBlogs() {
         $database = DB::getInstance();
-        $request = $database->query("SELECT * FROM Blog ORDER BY time_published DESC");
+        $request = $database->query(
+            "SELECT blog_id, title, content, time_published, category, visible, employee_name
+             FROM Employee, Blog
+             WHERE author_id = employee_id
+             ORDER BY time_published DESC;
+            ");
         $companyBlog = [];
         foreach ($request->fetch_all(MYSQLI_ASSOC) as $Blog) {
             $companyBlog[] = new Blog(
@@ -32,7 +37,7 @@ class Blog
                                 $Blog['category'],
                                 $Blog['time_published'], 
                                 $Blog['visible'],
-                                $Blog['author_id']);
+                                $Blog['employee_name']);
         }
 
         return $companyBlog;
@@ -40,7 +45,12 @@ class Blog
 
     static function getAllVisibleBlog() {
         $database = DB::getInstance();
-        $request = $database->query("SELECT * FROM Blog WHERE visible = 1 ORDER BY time_published DESC");
+        $request = $database->query(
+            "SELECT blog_id, title, content, time_published, category, visible, employee_name
+            FROM Employee, Blog
+            WHERE author_id = employee_id AND visible = 1
+            ORDER BY time_published DESC;
+        ");
         $companyBlog = [];
         foreach ($request->fetch_all(MYSQLI_ASSOC) as $Blog) {
             $companyBlog[] = new Blog(
@@ -58,7 +68,12 @@ class Blog
 
     static function getBlogById($id) {
         $database = DB::getInstance();
-        $request = $database->query("SELECT * FROM Blog WHERE blog_id = $id ORDER BY time_published DESC");
+        $request = $database->query(
+            "SELECT blog_id, title, content, time_published, category, visible, employee_name
+             FROM Blog, Employee 
+             WHERE blog_id = $id AND employee_id = author_id
+             ORDER BY time_published DESC;
+        ");
         $companyBlog = [];
         foreach ($request->fetch_all(MYSQLI_ASSOC) as $Blog) {
             $companyBlog[] = new Blog(
@@ -81,7 +96,7 @@ class Blog
         $request = $database->query
         (
             "INSERT INTO Blog (title, content, time_published, category, visible, author_id)
-                VALUES ('$title', '$content', '$time_published', '$category', '$visible', '$author_id');"
+                VALUE ('$title', '$content', '$time_published', '$category', '$visible', '$author_id');"
                         
         );
 
@@ -125,7 +140,7 @@ class Blog
         return $request;
     }
 
-    static function showBlog($id) {
+    static function showBlogById($id) {
         $database = DB::getInstance();
         $request = $database->query("UPDATE Blog SET visible = 1 WHERE id = $id;");
 
