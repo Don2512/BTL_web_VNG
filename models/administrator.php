@@ -15,19 +15,19 @@ class Administrator {
         $database = DB::getInstance();
 
         $request = $database->query("INSERT INTO administrator (username, password) VALUES ('$username', '$password');");  
-        return $request
+        return $request;
     }
 
     static function deleteAccount($username) {
         $database = DB::getInstance();
-        $request = $database->query("DELETE FROM administrator WHERE username = '$username';")
+        $request = $database->query("DELETE FROM administrator WHERE username = '$username';");
         
-        return $request
+        return $request;
     }
 
     static function adminValidation($username, $password) {
         $database = DB::getInstance();
-        $request = $database->query("SELECT password FROM administrator WHERE username = '$username';")
+        $request = $database->query("SELECT password FROM administrator WHERE username = '$username';");
         if (@password_verify($password, $request->fetch_assoc()['password'], PASSWORD_DEFAULT)) {
             return true;
         }

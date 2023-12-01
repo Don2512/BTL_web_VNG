@@ -25,13 +25,12 @@ class Article
 
     
 
-    public function __construct($id, $type, $date, $title, $contentTitle, $content) {
+    public function __construct($id, $type, $date, $title, $content) {
         $this->id = $id;
         $this->type = $type;
         $this->date = $date;
         $this->title = $title;
         $this->content = $content;
-        $this->contentTitle = $contentTitle;
     }
 
     public static function getByIDArticle($article_id)
@@ -89,6 +88,31 @@ class Article
         }   
         
         return $result;
+    }
+
+    public static function getAllContentsOfAnArticleById($article_id)
+    {
+        $database = DB::getInstance();
+        $request = $database->query(
+            "SELECT *
+            FROM Content
+            WHERE article_id = $article_id;
+        ");
+        $Contents = [];
+        foreach ($request->fetch_all(MYSQLI_ASSOC) as $content) {
+            $Contents[] = new Content(
+                                $content['title'], 
+                                $content['content'], 
+                                $content['link']
+            );
+        }
+
+        return $Contents;
+    }
+
+    public static function getArtibleById($article_id) 
+    {
+
     }
 
 }
