@@ -32,7 +32,6 @@ CREATE TABLE IF NOT EXISTS Article (
     title VARCHAR(255),
     time_published DATETIME,
     author_id INT,
-    content TEXT;
     FOREIGN KEY (author_id) REFERENCES Employee(employee_id)
 );
 
