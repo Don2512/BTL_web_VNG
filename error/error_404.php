@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="public/js/error/index.css">
+  <!-- <link rel="stylesheet" href="public/js/error/index.css"> -->
 </head>
 <body>
 <div class="moon"></div>
@@ -48,6 +48,6 @@
     <div class="astronaut__head-visor-flare2"></div>
   </div>
 </div>
-<script type="text/javascript" src="public/js/error/index.js"></script> >
+<!-- <script type="text/javascript" src="public/js/error/index.js"></script> > -->
 </body>
 </html>

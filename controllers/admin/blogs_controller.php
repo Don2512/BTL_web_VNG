@@ -11,7 +11,7 @@ class BlogsController extends BaseController
 
     public function index()
     {
-        $List_blogs = Blog::getAllBlogAttribute();
+        $List_blogs = Blog::getLastBlog();
         $this->render('index', $List_blogs);
     }
 }
