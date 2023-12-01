@@ -2,7 +2,7 @@
 require_once('controllers/base_controller.php');
 require_once('models/article.php');
 
-class ArticleController extends BaseController 
+class ArticlesController extends BaseController 
 {
     function __construct()
     {
@@ -11,10 +11,24 @@ class ArticleController extends BaseController
 
     public function index()
     {
-        $articles = Article::getNewArticle();
+        $articles = Article::getAllArticles();
         $articles = array("articles" => $articles);
-        $this->render('index', $articles);
+        $this->render('index', $articles);   
+    }
+
+    public function add()
+    {
         
+    }
+
+    public function edit()
+    {
+
+    }
+
+    public function delete()
+    {
+
     }
 
 

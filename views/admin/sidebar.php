@@ -29,7 +29,7 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
+                <a href="index.php?page=admin&controller=articles&action=index" class="sidebar-link">
                 <i class="fa-regular fa-newspaper" style="color: #ffffff;"></i>
                 Quản lí tin tức
                 </a>

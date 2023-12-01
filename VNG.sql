@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS Article (
     title VARCHAR(255),
     time_published DATETIME,
     author_id INT,
+    content TEXT,
     FOREIGN KEY (author_id) REFERENCES Employee(employee_id)
 );
 
@@ -126,7 +127,7 @@ INSERT INTO Article (type, title, time_published, author_id, content) VALUES
 ('Doanh nghiệp', 'VNG là công ty gì? Thông tin về VNG có thể bạn chưa biết', NOW(), 2, 'VNG (VNG Corporation) là công ty cổ phần công nghệ hàng đầu và cũng là kỳ lân công nghệ đầu tiên của Việt Nam, được thành lập từ năm 2004. VNG phát triển với sứ mệnh “Kiến tạo công nghệ và Phát triển con người. Từ Việt Nam vươn tầm thế giới.”. Các sản phẩm phong phú của VNG đã tạo ra những giá trị tích cực trong trải nghiệm và tương tác của người dùng tại Việt Nam cũng như trên toàn thế giới. Công ty cổ phần VNG hiện có gần 4000 nhân viên đang làm việc tại 10 thành phố trên toàn cầu.'),
 ('Con Người', 'UpRace 2022: Cùng nhau chạy 500 vòng quanh Trái đất vì những điều tử tế', NOW(), 3, 'VNG (VNG Corporation) là công ty cổ phần công nghệ hàng đầu và cũng là kỳ lân công nghệ đầu tiên của Việt Nam, được thành lập từ năm 2004. VNG phát triển với sứ mệnh “Kiến tạo công nghệ và Phát triển con người. Từ Việt Nam vươn tầm thế giới.”. Các sản phẩm phong phú của VNG đã tạo ra những giá trị tích cực trong trải nghiệm và tương tác của người dùng tại Việt Nam cũng như trên toàn thế giới. Công ty cổ phần VNG hiện có gần 4000 nhân viên đang làm việc tại 10 thành phố trên toàn cầu.'),
 ('Doanh nghiệp', 'VNGGames xuất sắc nhận 3 giải thưởng tại MMA SMARTIES Awards Vietnam 2023', NOW(), 4, 'VNG (VNG Corporation) là công ty cổ phần công nghệ hàng đầu và cũng là kỳ lân công nghệ đầu tiên của Việt Nam, được thành lập từ năm 2004. VNG phát triển với sứ mệnh “Kiến tạo công nghệ và Phát triển con người. Từ Việt Nam vươn tầm thế giới.”. Các sản phẩm phong phú của VNG đã tạo ra những giá trị tích cực trong trải nghiệm và tương tác của người dùng tại Việt Nam cũng như trên toàn thế giới. Công ty cổ phần VNG hiện có gần 4000 nhân viên đang làm việc tại 10 thành phố trên toàn cầu.'),
-('Loại 5', 'Tiêu đề 5', NOW(), 5);
+('Loại 5', 'Tiêu đề 5', NOW(), 5, 'VNG (VNG Corporation) là công ty cổ phần công nghệ hàng đầu và cũng là kỳ lân công nghệ đầu tiên của Việt Nam, được thành lập từ năm 2004. VNG phát triển với sứ mệnh “Kiến tạo công nghệ và Phát triển con người. Từ Việt Nam vươn tầm thế giới.”. Các sản phẩm phong phú của VNG đã tạo ra những giá trị tích cực trong trải nghiệm và tương tác của người dùng tại Việt Nam cũng như trên toàn thế giới. Công ty cổ phần VNG hiện có gần 4000 nhân viên đang làm việc tại 10 thành phố trên toàn cầu.');
 
 -- Thêm dữ liệu cho bảng Content
 INSERT INTO Content (article_id, title, content, link) VALUES

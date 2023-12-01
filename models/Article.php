@@ -20,17 +20,22 @@ class Article
     public $type;
     public $date;
     public $title;    
-    public $contentTitle;
+    public $subtitle;
+
+    // Content is a list of contents
     public $content;
+    public $author_id;
 
     
 
-    public function __construct($id, $type, $date, $title, $content) {
+    public function __construct($id, $type, $date, $title, $subtitle, $content, $author_id) {
         $this->id = $id;
         $this->type = $type;
         $this->date = $date;
         $this->title = $title;
+        $this->subtitle = $subtitle;
         $this->content = $content;
+        $this->author_id = $author_id;
     }
 
     public static function getByIDArticle($article_id)
@@ -42,7 +47,7 @@ class Article
         //* get
         $temp =$request->fetch_assoc();
         $result = new Article($temp["article_id"], $temp["type"], 
-                            $temp["time_published"], $temp["title"],$temp["content"], []);
+                            $temp["time_published"], $temp["title"],$temp["content"], [], $temp["author_id"]);
 
         //* query
         $query = "SELECT * FROM Content WHERE article_id = $article_id";
@@ -70,7 +75,7 @@ class Article
         $result = [];
         foreach ($request->fetch_all(MYSQLI_ASSOC) as $temp) {
             $result[] = new Article($temp["article_id"], $temp["type"], 
-            $temp["time_published"], $temp["title"],$temp["content"], []);
+            $temp["time_published"], $temp["title"],$temp["content"], [], $temp["author_id"]);
         }
         return $result;
     }
@@ -84,7 +89,7 @@ class Article
         $result = [];
         foreach ($request->fetch_all(MYSQLI_ASSOC) as $temp) {
             $result[] = new Article($temp["article_id"], $temp["type"], 
-            $temp["time_published"], $temp["title"],$temp["content"], []);
+            $temp["time_published"], $temp["title"],$temp["content"], [], $temp["author_id"]);
         }   
         
         return $result;
@@ -98,21 +103,73 @@ class Article
             FROM Content
             WHERE article_id = $article_id;
         ");
+
         $Contents = [];
+
         foreach ($request->fetch_all(MYSQLI_ASSOC) as $content) {
+            $link = (gettype($content['link']) == NULL) ? "\"\"" : "\"". $content['link'] . "\"";
             $Contents[] = new Content(
                                 $content['title'], 
                                 $content['content'], 
-                                $content['link']
+                                $link
             );
         }
 
         return $Contents;
     }
 
-    public static function getArtibleById($article_id) 
+    public static function getArticleById($article_id) 
     {
+        $database = DB::getInstance();
+        $contents = Article::getAllContentsOfAnArticleById($article_id);
 
+        $article_req = $database->query(
+            "SELECT *
+            FROM Article
+            WHERE article_id = $article_id;
+        ");
+        $Article = [];
+        foreach ($article_req->fetch_all(MYSQLI_ASSOC) as $art) {
+            $Article[] = new Article(
+                                $art['article_id'],
+                                $art['type'],
+                                $art['time_published'], 
+                                $art['title'], 
+                                $art['content'],
+                                $contents,
+                                $art['author_id'],
+            );
+        }
+
+        return $Article;
+    }
+
+    public static function getAllArticles()
+    {
+        $database = DB::getInstance();
+
+        $articles_req = $database->query(
+            "SELECT *
+            FROM Article
+            ORDER BY time_published;
+        ");
+
+        $Articles = [];
+        foreach ($articles_req->fetch_all(MYSQLI_ASSOC) as $art) {
+            $contents = Article::getAllContentsOfAnArticleById($art['article_id']);
+            $Articles[] = new Article(
+                        $art['article_id'],
+                        $art['type'],
+                        $art['time_published'], 
+                        $art['title'], 
+                        $art['content'],
+                        $contents,
+                        $art['author_id'],
+            );
+        }
+   
+
+        return $Articles;
     }
 
 }
