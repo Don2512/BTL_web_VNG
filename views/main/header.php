@@ -1,53 +1,79 @@
+<?php
+$file_name = basename($view_file);
+$directory_path = dirname($view_file);
+$page = basename($directory_path);
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link  rel="stylesheet" href="public/css/Bootstrap_css/bootstrap.min.css">
-    <link type="text/html" rel="stylesheet" href="public/css/Bootstrap_css/style.css">
-    <link  rel="stylesheet" href="public/css/style.css">
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.2/components/blogs/blog-4/assets/css/blog-4.css">
+    <link rel="stylesheet" href="node_modules\bootstrap-icons\font\bootstrap-icons.min.css">
+    <link rel="stylesheet" href="node_modules\bootstrap\dist\css/bootstrap.min.css">
+    <link rel="stylesheet" href="public\css\style.css">
+    <link  rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <title>VNG</title>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">VNG</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-        </ul>
-        <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-        </div>
-    </div>
-    </nav>
 
-    <script src="public/js/bootstrap_js/bootstrap.min.js"></script>
+<body>
+    <nav class="navbar navbar-expand-lg p-0 border-bottom border border-secondary">
+        <div class="container" style="height:82px; max-width:1200px;">
+            <div class="row w-100">
+                <div class="col-auto">
+                    <a class="navbar-brand" href="index.php?page=main&controller=layouts&action=index"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/VNG_Corp._logo.svg/1200px-VNG_Corp._logo.svg.png" style="max-width:60px" /></a>
+                </div>
+                <div class="col-auto">
+                    <button class=" navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                <div class="col">
+                    <div class="collapse navbar-collapse w-100" id="navbarNav">
+                        <div class="row w-100">
+                            <div class="col"></div>
+                            <div class="col-auto">
+                                <div class="row">
+                                    <div class="col-auto px-1 py-1 dotUnder position-relative <?php if ($page == "about") echo 'active' ?>">
+                                        <a class="nav-link text-decoration-none text-black" href="index.php?page=main&controller=about&action=index">
+                                            Về VNG
+                                        </a>
+                                    </div>
+                                    <div class="col-auto px-1 py-1 dotUnder position-relative <?php if ($page == "blog") echo 'active' ?>">
+                                        <a class="nav-link text-decoration-none text-black" href="index.php?page=main&controller=blog&action=index">Tin tức</a>
+                                    </div>
+                                    <div class="col-auto px-1 py-1 dotUnder position-relative <?php if ($page == "product") echo 'active' ?>">
+                                        <a class="nav-link text-decoration-none text-black" href="index.php?page=main&controller=product&action=index">Sản phẩm</a>
+                                    </div>
+                                    <div class="col-auto px-1 py-1 dotUnder position-relative <?php if ($page == "human") echo 'active' ?>">
+                                        <a class="nav-link text-decoration-none text-black" href="index.php?page=main&controller=human&action=index">Con người</a>
+                                    </div>
+                                    <div class="col-auto px-1 py-1 dotUnder position-relative <?php if ($page == "society") echo 'active' ?>">
+                                        <a class="nav-link text-decoration-none text-black" href="index.php?page=main&controller=society&action=index">Trách nhiệm cộng đồng</a>
+                                    </div>
+                                    <div class="col-auto px-1 py-1 dotUnder position-relative <?php if ($page == "job") echo 'active' ?>">
+                                        <a class="nav-link text-decoration-none text-black" href="index.php?page=main&controller=job&action=index">Cơ hội nghề nghiệp</a>
+                                    </div>
+                                    <!-- LOGIN -->
+                                    <div class="col-auto px-1 py-1 dotUnder position-relative <?php if ($page == "login") echo 'active' ?>">
+                                        <a class="nav-link text-decoration-none text-black" href="index.php?page=main&controller=login&action=index">Đăng nhập</a>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </nav>
 </body>
+<script src="public/js/bootstrap_js/bootstrap.min.js"></script>
+
+
 </html>
