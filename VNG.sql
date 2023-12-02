@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS Article (
     title VARCHAR(255),
     time_published DATETIME,
     author_id INT,
-    content TEXT;
+    content TEXT,
     FOREIGN KEY (author_id) REFERENCES Employee(employee_id)
 );
 
@@ -60,7 +60,9 @@ CREATE TABLE IF NOT EXISTS Product (
     product_id INT PRIMARY KEY AUTO_INCREMENT,
     category VARCHAR(255),
     date_added DATE,
-    price DECIMAL(10, 2)
+    price DECIMAL(10, 2),
+    name VARCHAR(255),
+    image VARCHAR(255)
 );
 
 -- Tạo bảng Comment
@@ -100,6 +102,7 @@ CREATE TABLE IF NOT EXISTS CustomerComment (
 CREATE TABLE IF NOT EXISTS Purchase (
     customer_id INT,
     product_id INT,
+    number INT,
     purchase_date DATE,
     PRIMARY KEY (customer_id, product_id, purchase_date),
     FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
@@ -127,7 +130,7 @@ INSERT INTO Article (type, title, time_published, author_id, content) VALUES
 ('Doanh nghiệp', 'VNG là công ty gì? Thông tin về VNG có thể bạn chưa biết', NOW(), 2, 'VNG (VNG Corporation) là công ty cổ phần công nghệ hàng đầu và cũng là kỳ lân công nghệ đầu tiên của Việt Nam, được thành lập từ năm 2004. VNG phát triển với sứ mệnh “Kiến tạo công nghệ và Phát triển con người. Từ Việt Nam vươn tầm thế giới.”. Các sản phẩm phong phú của VNG đã tạo ra những giá trị tích cực trong trải nghiệm và tương tác của người dùng tại Việt Nam cũng như trên toàn thế giới. Công ty cổ phần VNG hiện có gần 4000 nhân viên đang làm việc tại 10 thành phố trên toàn cầu.'),
 ('Con Người', 'UpRace 2022: Cùng nhau chạy 500 vòng quanh Trái đất vì những điều tử tế', NOW(), 3, 'VNG (VNG Corporation) là công ty cổ phần công nghệ hàng đầu và cũng là kỳ lân công nghệ đầu tiên của Việt Nam, được thành lập từ năm 2004. VNG phát triển với sứ mệnh “Kiến tạo công nghệ và Phát triển con người. Từ Việt Nam vươn tầm thế giới.”. Các sản phẩm phong phú của VNG đã tạo ra những giá trị tích cực trong trải nghiệm và tương tác của người dùng tại Việt Nam cũng như trên toàn thế giới. Công ty cổ phần VNG hiện có gần 4000 nhân viên đang làm việc tại 10 thành phố trên toàn cầu.'),
 ('Doanh nghiệp', 'VNGGames xuất sắc nhận 3 giải thưởng tại MMA SMARTIES Awards Vietnam 2023', NOW(), 4, 'VNG (VNG Corporation) là công ty cổ phần công nghệ hàng đầu và cũng là kỳ lân công nghệ đầu tiên của Việt Nam, được thành lập từ năm 2004. VNG phát triển với sứ mệnh “Kiến tạo công nghệ và Phát triển con người. Từ Việt Nam vươn tầm thế giới.”. Các sản phẩm phong phú của VNG đã tạo ra những giá trị tích cực trong trải nghiệm và tương tác của người dùng tại Việt Nam cũng như trên toàn thế giới. Công ty cổ phần VNG hiện có gần 4000 nhân viên đang làm việc tại 10 thành phố trên toàn cầu.'),
-('Loại 5', 'Tiêu đề 5', NOW(), 5);
+('Loại 5', 'Tiêu đề 5', NOW(), 5, "");
 
 -- Thêm dữ liệu cho bảng Content
 INSERT INTO Content (article_id, title, content, link) VALUES
@@ -150,12 +153,22 @@ INSERT INTO Customer (customer_name, age, email, gender) VALUES
 ('Khách hàng 5', 32, 'kh5@example.com', 'Nam');
 
 -- Thêm dữ liệu cho bảng Product
-INSERT INTO Product (category, date_added, price) VALUES
-('Danh mục 1', '2023-11-30', 100.50),
-('Danh mục 2', '2023-11-29', 75.25),
-('Danh mục 3', '2023-11-28', 120.75),
-('Danh mục 4', '2023-11-27', 90.99),
-('Danh mục 5', '2023-11-26', 150.00);
+INSERT INTO Product (category, date_added, price, name, image) VALUES
+('Nhập vai', '2023-11-30', 100.000, "Tây du VNG: Đại náo tam giới", "https://vnggames.com/_next/image?url=https%3A%2F%2Fcdn.omnirise.com%2Fcms%2Fbanner_3_1_7081f4ba66.png%3Fw%3D427%26h%3D240%26q%3D100%26lossless%3Dtrue&w=1920&q=100"),
+('Hàng động', '2023-12-1', 520.000, "Metal Slug: Awakening", "https://vnggames.com/_next/image?url=https%3A%2F%2Fcdn.omnirise.com%2Fcms%2Fmsvn_published_4b6823fde2.webp%3Fw%3D427%26h%3D240%26q%3D100%26lossless%3Dtrue&w=1920&q=100"),
+('Chiến lược', '2023-11-30', 400.000, "Chiên thần AFK", "https://vnggames.com/_next/image?url=https%3A%2F%2Fcdn.omnirise.com%2Fcms%2Fthumbnail_2_d43591c277.png%3Fw%3D427%26h%3D240%26q%3D100%26lossless%3Dtrue&w=1920&q=100"),
+('Nhập vai', '2023-12-1', 200.000, "Kiếm thê Origin", "https://vnggames.com/_next/image?url=https%3A%2F%2Fcdn.omnirise.com%2Fcms%2Fkto_banner_5bcf056a8f.png%3Fw%3D427%26h%3D240%26q%3D100%26lossless%3Dtrue&w=1920&q=100"),
+('Hàng động', '2023-11-30', 500.000, "Ravelation: thiên du", "https://vnggames.com/_next/image?url=https%3A%2F%2Fcdn.omnirise.com%2Fcms%2FHighlight_program_Banner_b59b31bd06.png%3Fw%3D427%26h%3D240%26q%3D100%26lossless%3Dtrue&w=1920&q=100"),
+('Nhập vai', '2023-11-30', 550.000, "Võ Lâm Nhàn Hiệp", "https://vnggames.com/_next/image?url=https%3A%2F%2Fcdn.omnirise.com%2Fcms%2FVL_950_340x192_992f06f797.jpg%3Fw%3D427%26h%3D240%26q%3D100%26lossless%3Dtrue&w=1920&q=100"),
+('Chiến lược', '2023-11-30', 650.000, "Liên Minh Huyền Thoại", "https://vnggames.com/_next/image?url=https%3A%2F%2Fcdn.omnirise.com%2Fcms%2FLOL_KA_22_BANNER_BAN_LOGO_1080x462_J_Diaz_v001_2_4f721d3ce2.png%3Fw%3D427%26h%3D240%26q%3D100%26lossless%3Dtrue&w=1920&q=100"),
+('Chiến lược', '2023-11-30', 500.000, "Thiên Long Bác Bộ 2", "https://vnggames.com/_next/image?url=https%3A%2F%2Fcdn.omnirise.com%2Fcms%2FTLBB_2_1360x768_1_8360203c77.png%3Fw%3D427%26h%3D240%26q%3D100%26lossless%3Dtrue&w=1920&q=100"),
+('Nhập vai', '2023-12-1', 540.000, "Võ Lâm Truyền Kì", "https://vnggames.com/_next/image?url=https%3A%2F%2Fcdn.omnirise.com%2Fcms%2Fjxm_banner_fb0eb1d5b5.png%3Fw%3D427%26h%3D240%26q%3D100%26lossless%3Dtrue&w=1920&q=100"),
+('Hàng động', '2023-12-1', 500.000, "Giất Mộng Giang Hồ", "https://vnggames.com/_next/image?url=https%3A%2F%2Fcdn.omnirise.com%2Fcms%2Fthumbnail_94ea6b46fa.jpeg%3Fw%3D427%26h%3D240%26q%3D100%26lossless%3Dtrue&w=1920&q=100"),
+('Nhập vai', '2023-11-30', 500.000, "Tân OMG3Q-VNG", "https://vnggames.com/_next/image?url=https%3A%2F%2Fcdn.omnirise.com%2Fcms%2F1360x768_512c736aad.jpg%3Fw%3D427%26h%3D240%26q%3D100%26lossless%3Dtrue&w=1920&q=100"),
+('Chiến lược', '2023-12-1', 520.000, "Võ Lâm Truyền Kì", "https://vnggames.com/_next/image?url=https%3A%2F%2Fcdn.omnirise.com%2Fcms%2Fjx1m_banner_830551a971.png%3Fw%3D427%26h%3D240%26q%3D100%26lossless%3Dtrue&w=1920&q=100"),
+('Nhập vai', '2023-11-30', 580.000, "Võ Lâm Nhàn Hiệp", "https://vnggames.com/_next/image?url=https%3A%2F%2Fcdn.omnirise.com%2Fcms%2FVL_950_340x192_992f06f797.jpg%3Fw%3D427%26h%3D240%26q%3D100%26lossless%3Dtrue&w=1920&q=100"),
+('Chiến lược', '2023-11-30', 500.000, "Liên Minh Huyền Thoại", "https://vnggames.com/_next/image?url=https%3A%2F%2Fcdn.omnirise.com%2Fcms%2FLOL_KA_22_BANNER_BAN_LOGO_1080x462_J_Diaz_v001_2_4f721d3ce2.png%3Fw%3D427%26h%3D240%26q%3D100%26lossless%3Dtrue&w=1920&q=100"),
+('Chiến lược', '2023-11-30', 500.000, "Thiên Long Bác Bộ 2", "https://vnggames.com/_next/image?url=https%3A%2F%2Fcdn.omnirise.com%2Fcms%2FTLBB_2_1360x768_1_8360203c77.png%3Fw%3D427%26h%3D240%26q%3D100%26lossless%3Dtrue&w=1920&q=100");
 
 -- Thêm dữ liệu cho bảng Comment
 INSERT INTO Comment (employee_id, article_id, content, time_commented) VALUES
@@ -182,9 +195,9 @@ INSERT INTO CustomerComment (customer_id, article_id, content, time_commented) V
 (5, 5, 'Bình luận khách hàng 5', NOW());
 
 -- Thêm dữ liệu cho bảng Purchase
-INSERT INTO Purchase (customer_id, product_id, purchase_date) VALUES
-(1, 1, '2023-11-30'),
-(2, 2, '2023-11-29'),
-(3, 3, '2023-11-28'),
-(4, 4, '2023-11-27'),
-(5, 5, '2023-11-26');
+INSERT INTO Purchase (customer_id, product_id, purchase_date, number) VALUES
+(1, 1, '2023-11-30', 5),
+(2, 2, '2023-11-29', 5),
+(3, 3, '2023-11-28', 5),
+(4, 4, '2023-11-27', 5),
+(5, 5, '2023-11-26', 5);
