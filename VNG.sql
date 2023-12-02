@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS Content (
     content TEXT,
     link VARCHAR(255),
     PRIMARY KEY (article_id, title),
-    FOREIGN KEY (article_id) REFERENCES Article(article_id)
+    FOREIGN KEY (article_id) REFERENCES Article(article_id) ON DELETE CASCADE
 );
 
 -- Tạo bảng Customer
@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS Comment (
     time_commented DATETIME,
     PRIMARY KEY(employee_id, article_id, time_commented),
     FOREIGN KEY (employee_id) REFERENCES Employee(employee_id),
-    FOREIGN KEY (article_id) REFERENCES Article(article_id)
+    FOREIGN KEY (article_id) REFERENCES Article(article_id) ON DELETE CASCADE
 );
 
 -- Tạo bảng Review
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS Review (
     time_reviewed DATETIME,
     PRIMARY KEY (customer_id, article_id),
     FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
-    FOREIGN KEY (article_id) REFERENCES Article(article_id)
+    FOREIGN KEY (article_id) REFERENCES Article(article_id) ON DELETE CASCADE
 );
 
 -- Tạo bảng CustomerComment
@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS CustomerComment (
     time_commented DATETIME,
     PRIMARY KEY (customer_id, article_id, time_commented),
     FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
-    FOREIGN KEY (article_id) REFERENCES Article(article_id)
+    FOREIGN KEY (article_id) REFERENCES Article(article_id) ON DELETE CASCADE
 );
 
 -- Tạo bảng Purchase
