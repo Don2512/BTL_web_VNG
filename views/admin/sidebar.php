@@ -11,19 +11,19 @@
                 Menu
             </li>
             <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
+                <a href="index.php?page=admin&controller=layouts&action=index" class="sidebar-link">
                     <i class="fa-solid fa-list"></i>
                     Trang chủ
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="./views/main/layouts/users.php" class="sidebar-link">
+                <a href="index.php?page=admin&controller=members&action=index" class="sidebar-link">
                 <i class="fa-solid fa-users" style="color: #ffffff;"></i>   
                 Quản lí thành viên
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
+                <a href="index.php?page=admin&controller=comments&action=index" class="sidebar-link">
                 <i class="fa-regular fa-comments" style="color: #e8e8e8;"></i>  
                 Quản lí bình luận đánh giá thành viên
                 </a>
