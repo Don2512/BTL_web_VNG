@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS Article (
     time_published DATETIME,
     author_id INT,
     content TEXT,
-    FOREIGN KEY (author_id) REFERENCES Employee(employee_id)
+    FOREIGN KEY (author_id) REFERENCES Employee(employee_id) ON DELETE CASCADE
 );
 
 -- Tạo bảng Content

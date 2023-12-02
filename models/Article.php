@@ -13,6 +13,7 @@ class Content
         $this->content = $content;
         $this->image = $image;
     }
+
 }
 class Article
 {
@@ -45,7 +46,7 @@ class Article
         $request = DB::_Query($query);
     
         //* get
-        $temp =$request->fetch_assoc();
+        $temp = $request->fetch_assoc();
         $result = new Article($temp["article_id"], $temp["type"], 
                             $temp["time_published"], $temp["title"],$temp["content"], [], $temp["author_id"]);
 
@@ -170,6 +171,54 @@ class Article
    
 
         return $Articles;
+    }
+
+    public static function addNewArticle($title, $subtitle, $type, $author_id) 
+    {
+        $database = DB::getInstance();
+        $time_published= date("Y-m-d-h-i-s");
+        $request = $database->query
+        (
+            "INSERT INTO Article (type, title, time_published, author_id, content)
+                VALUE ('$type', '$title', '$time_published', '$author_id', '$subtitle');"
+                        
+        );
+
+        return $request;
+    }
+
+    public static function editArticle($article_id, $title, $subtitle, $type, $author_id)
+    {
+        $database = DB::getInstance();
+        $time_published= date("Y-m-d-h-i-s");
+        
+        $query = "UPDATE Article SET time_published = '$time_published' ";
+        if ($title != '') {
+            $query .= ",title = '$title',";
+        } 
+        if ($subtitle != '') {
+            $query .= "content = '$subtitle',";
+        } 
+        if ($type != '') {
+            $query .= "type = '$type',";
+        } 
+        if ($author_id != '') {
+            $query .= "author_id = '$author_id'";
+        } 
+
+        $query .= "WHERE article_id = $article_id;";
+
+        echo $query;
+        $request = $database->query($query);
+
+        return $request;
+    }
+
+    public static function deleteArticleById($article_id)
+    {
+        $database = DB::getInstance();
+        $request = $database->query("DELETE FROM Article WHERE article_id = $article_id;");
+        return $request;
     }
 
 }
