@@ -62,7 +62,7 @@ class Product{
         
         $query = "UPDATE Product SET date_added = '$date_added', ";
         if ($category != '') {
-            $query .= ",category = '$category',";
+            $query .= "category = '$category',";
         } 
         if ($name != '') {
             $query .= "name = '$name',";

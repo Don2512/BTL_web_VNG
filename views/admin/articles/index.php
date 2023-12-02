@@ -68,11 +68,12 @@ require_once('views/admin/header.php'); ?>
                 </a>
             </div>
             <div class=\"hstack gap-2\">
-                <a href=\"index.php?page=admin&controller=articles&action=editContent\" class=\"btn btn-success btn-sm modalButton\" data-bs-toggle=\"modal\" 
-                data-bs-target=\"#editContent\" > 
+                <a href=\"index.php?page=admin&controller=articles&action=editContent\" class=\"btn btn-success btn-sm editContentButton\" data-bs-toggle=\"modal\" 
+                data-bs-target=\"#editContent\" data-articleid=". $article->id. "> 
                     <i class=\"fa-solid fa-file-pen\"></i>
                 </a>
-                <a href=\"index.php?page=admin&controller=articles&action=editContent\" class=\"btn btn-success btn-sm modalButton\"> 
+                <a href=\"index.php?page=admin&controller=articles&action=editContent\" class=\"btn btn-success btn-sm deleteContentButton\" data-bs-toggle=\"modal\" 
+                data-bs-target=\"#deleteContent\" data-articleid=". $article->id. "> 
                     <i class=\"fa-solid fa-file-circle-plus\"></i>
                 </a>
             </div>
@@ -88,11 +89,11 @@ require_once('views/admin/header.php'); ?>
 
             </table>
             <!-- Edit Content Modal -->
-            <div class="modal fade" id="editContent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="editContent" tabindex="-1" aria-labelledby="editContentModal" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Sửa nô</h5>
+                            <h5 class="modal-title" id="editContentModal">Sửa nội dung bài viết</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -298,23 +299,58 @@ require_once('views/admin/header.php'); ?>
     document.addEventListener('DOMContentLoaded', function() {
         // Get all the edit buttons with the class 'modalButton'
         var editButtons = document.querySelectorAll('.modalButton');
+        
+        // Get all buttons with class 'editContentButton'
+        var editContentButtons = document.querySelectorAll('.editContentButton');
+        
+        // Get all buttons with class 'deleteContentButton'
+        var deleteContentButtons = document.querySelectorAll('.deleteContentButton');
 
         // Add click event listeners to each modal button
         editButtons.forEach(function(button) {
             button.addEventListener('click', function() {
                 // Get the article data and articleId from the data attributes
                 var articleId = button.getAttribute('data-articleid');
-                console.log(articleId);
+    
                 // Populate the modal with the article data
-                populateEditModal(articleId);
+                populateArticleModal(articleId);
             });
         });
 
-        function populateEditModal(articleId) {
-            // Code to populate the modal fields with articleData
+        editContentButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                // Get the article data and articleId from the data attributes
+                var articleId = button.getAttribute('data-articleid');
+    
+                // Populate the editContent modal with the article data
+                populateEditContentModal(articleId);
+            });
+        });
+
+        deleteContentButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                // Get the article data and articleId from the data attributes
+                var articleId = button.getAttribute('data-articleid');
+    
+                // Populate the deleteContent modal with the article data
+                populateDeleteContentModal(articleId);
+            });
+        });
+
+
+        function populateArticleModal(articleId) {
+            // Populate the modal fields with articleData
             document.getElementById('editArticleId').value = articleId;
-            //document.getElementById('editContentId').value = articleId;
+          
             document.getElementById('deleteArticleId').value = articleId;
+        }
+
+        function populateEditContentModal(articleId) {
+            document.getElementById('editContentId').value = articleId;
+        }
+
+        function populateDeleteContentModal(articleId) {
+            document.getElementById('deleteContentId').value = articleId;
         }
     });
 </script>
