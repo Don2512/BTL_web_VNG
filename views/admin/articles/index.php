@@ -174,25 +174,25 @@ require_once('views/admin/header.php'); ?>
                                 <!-- Title Field -->
                                 <div class="mb-3">
                                     <label for="title" class="form-label">Tiêu đề</label>
-                                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter title">
+                                    <input type="text" class="form-control" id="addTitle" name="addTitle" placeholder="Enter title">
                                 </div>
 
                                 <!-- Subtitle Field -->
                                 <div class="mb-3">
                                     <label for="subtitle" class="form-label">Tiểu đề</label>
-                                    <input type="text" class="form-control" id="subtitle" name="subtitle" placeholder="Enter subtitle">
+                                    <input type="text" class="form-control" id="addSubtitle" name="addSubtitle" placeholder="Enter subtitle">
                                 </div>
 
                                 <!-- Type Field -->
                                 <div class="mb-3">
                                     <label for="type" class="form-label">Thể loại</label>
-                                    <input type="text" class="form-control" id="type" name="type" placeholder="Enter type">
+                                    <input type="text" class="form-control" id="addType" name="addType" placeholder="Enter type">
                                 </div>
 
                                 <!-- Author_id Field -->
                                 <div class="mb-3">
                                     <label for="authorId" class="form-label">Mã tác giả</label>
-                                    <input type="text" class="form-control" id="authorId" name="authorId" placeholder="Enter author ID">
+                                    <input type="text" class="form-control" id="addAuthorId" name="addAuthorId" placeholder="Enter author ID">
                                 </div>
 
                                 <!-- Submit Button -->
@@ -290,42 +290,33 @@ require_once('views/admin/header.php'); ?>
                     </div>
                 </div>
             </div>
-
-
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    // Get all the edit buttons with the class 'modalButton'
-                    var editButtons = document.querySelectorAll('.modalButton');
-
-                    // Add click event listeners to each modal button
-                    editButtons.forEach(function(button) {
-                        button.addEventListener('click', function() {
-                            // Get the article data and articleId from the data attributes
-                            var articleId = button.getAttribute('data-articleid');
-
-                            // Populate the modal with the article data
-                            populateEditModal(articleId);
-                        });
-                    });
-
-                    function populateEditModal(articleId) {
-                        // Your code to populate the modal fields with articleData
-                        document.getElementById('editArticleId').value = articleId;
-                        document.getElementById('editContentId').value = articleId;
-                        document.getElementById('deleteArticleId').value = articleId;
-
-                        // Add more lines for other fields...
-
-                        // Optionally, you can also update the form action URL if needed
-                        // document.getElementById('editForm').action = 'your_updated_action_url';
-                    }
-                });
-            </script>
         </div>
-
-
     </div>
-
+    
 </main>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get all the edit buttons with the class 'modalButton'
+        var editButtons = document.querySelectorAll('.modalButton');
+
+        // Add click event listeners to each modal button
+        editButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                // Get the article data and articleId from the data attributes
+                var articleId = button.getAttribute('data-articleid');
+                console.log(articleId);
+                // Populate the modal with the article data
+                populateEditModal(articleId);
+            });
+        });
+
+        function populateEditModal(articleId) {
+            // Code to populate the modal fields with articleData
+            document.getElementById('editArticleId').value = articleId;
+            document.getElementById('editContentId').value = articleId;
+            document.getElementById('deleteArticleId').value = articleId;
+        }
+    });
+</script>
 <?php
 require_once('views/admin/footer.php'); ?>

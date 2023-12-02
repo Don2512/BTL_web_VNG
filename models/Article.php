@@ -187,7 +187,7 @@ class Article
         return $request;
     }
 
-    public static function editArticle($article_id, $title, $subtitle, $type, $author_id)
+    public static function editArticleById($article_id, $title, $subtitle, $type, $author_id)
     {
         $database = DB::getInstance();
         $time_published= date("Y-m-d-h-i-s");
