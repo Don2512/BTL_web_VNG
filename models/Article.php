@@ -195,7 +195,7 @@ class Article
         $database = DB::getInstance();
         $time_published= date("Y-m-d-h-i-s");
         
-        $query = "UPDATE Article SET time_published = '$time_published' ";
+        $query = "UPDATE Article SET time_published = '$time_published,' ";
         if ($title != '') {
             $query .= ",title = '$title',";
         } 
@@ -209,6 +209,10 @@ class Article
             $query .= "author_id = '$author_id'";
         } 
 
+
+        if ($query[strlen($query)-1] == ',') {
+            $query[strlen($query)-1] = ' ';
+        }
         $query .= "WHERE article_id = $article_id;";
 
         echo $query;
@@ -224,6 +228,49 @@ class Article
         return $request;
     }
 
+    public static function addContentWithArticleId($article_id, $content_title, $content_content, $content_link)
+    {
+        $database = DB::getInstance();
+    
+        $request = $database->query
+        (
+            "INSERT INTO Content (article_id, title, content, link)
+                VALUE ('$article_id', '$content_title', '$content_content', '$content_link');"
+                        
+        );
+
+        return $request;
+    }
+
+    public static function editContentByArticleIdAndContentTitle($article_id, $content_title, $content_content, $content_link) 
+    {
+        $database = DB::getInstance();
+        
+        $query = "UPDATE Content SET ";
+        if ($content_content != '') {
+            $query .= "content = '$content_content',";
+        } 
+        if ($content_link != '') {
+            $query .= "link = '$content_link,'";
+        } 
+
+        if ($query[strlen($query)-1] == ',') {
+            $query[strlen($query)-1] = ' ';
+        }
+        $query .= "WHERE article_id = $article_id AND content_title = $content_title;";
+
+        echo $query;
+        $request = $database->query($query);
+
+        return $request;
+    }
+
+    public static function deleteContentByArticleIdAndContentTitle($article_id, $content_title)
+    {
+        $database = DB::getInstance();
+        $request = $database->query("DELETE FROM Content WHERE article_id = $article_id AND title = $content_title;");
+        return $request;
+    }
 }
 
 

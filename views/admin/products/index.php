@@ -50,11 +50,12 @@ require_once('views/admin/header.php'); ?>
                             <td><img src=" . $product->image . " class=\"img-fluid\"></td>
                             <td>
                                 <a href=\"index.php?page=admin&controller=products&action=edit\" class=\"btn btn-warning btn-sm modalButton\" data-bs-toggle=\"modal\" 
-                                data-bs-target=\"#editProduct\" data-productid=" . $product->id . ">
+                                data-bs-target=\"#editProduct\" data-productid='" . $product->id . "' data-name='" . $product->name . "' data-category='" . $product->category . 
+                                "' data-price='" . $product->price . "' data-date_added='" . $product->date_added . "' data-image='" . $product->image . "'>
                                     <i class=\"fa-solid fa-pen\"></i>
                                 </a>
                                 <a href=\"index.php?page=admin&controller=products&action=delete\" class=\"btn btn-danger btn-sm modalButton\" data-bs-toggle=\"modal\"
-                                data-bs-target=\"#deleteProduct\" data-productid=" . $product->id . ">
+                                data-bs-target=\"#deleteProduct\" data-productid='" . $product->id . "'>
                                     <i class=\"fa-solid fa-trash\"></i>
                                 </a>
                             </td>
@@ -158,8 +159,8 @@ require_once('views/admin/header.php'); ?>
 
                                 <!-- date -->
                                 <div class="mb-3">
-                                    <label for="editDate" class="form-label">Thời gian thêm vào</label>
-                                    <input type="text" class="form-control" id="editDate" name="editDateAdded" placeholder="Enter date">
+                                    <label for="editDateAdded" class="form-label">Thời gian thêm vào</label>
+                                    <input type="text" class="form-control" id="editDateAdded" name="editDateAdded" placeholder="Enter date" readonly>
                                 </div>
 
                                 <!-- Image -->
@@ -216,19 +217,32 @@ require_once('views/admin/header.php'); ?>
             button.addEventListener('click', function() {
                 // Get the product data and productId from the data attributes
                 var productId = button.getAttribute('data-productid');
-                console.log(productId);
+                var editName = button.getAttribute('data-name');
+                var category = button.getAttribute('data-category');
+                var price = button.getAttribute('data-price');
+                var date_added = button.getAttribute('data-date_added');
+                var image = button.getAttribute('data-image');
+                
+                console.log(date_added, " ", image);
+
                 // Populate the modal with the product data
-                populateEditModal(productId);
+                document.getElementById('editProductId').value = productId;
+                document.getElementById('editName').value = editName;
+                document.getElementById('editCategory').value = category;
+                document.getElementById('editPrice').value = price;
+                document.getElementById('editDateAdded').value = date_added;
+                document.getElementById('editImage').value = image;
+                
+                document.getElementById('deleteProductId').value = productId;
             });
 
         });
 
         function populateEditModal(productId) {
             // Code to populate the modal fields with productData
-            document.getElementById('editProductId').value = productId;
-            document.getElementById('deleteProductId').value = productId;
         }
     });
+    
 </script>
 <?php
 require_once('views/admin/footer.php'); ?>

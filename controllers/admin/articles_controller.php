@@ -46,6 +46,32 @@ class ArticlesController extends BaseController
         $article_id= $_POST['deleteArticleId'];
 
         Article::deleteArticleById($article_id);
+
+        header('Location: index.php?page=admin&controller=articles&action=index');
+    }
+
+    public function editContent()
+    {
+        print_r($_POST);
+        $article_id = $_POST['editContentArticleId'];
+        $title = $_POST['editContentTitle'];
+        $content = $_POST['editContentContent'];
+        $link = $_POST['editContentLink'];
+
+        Article::editContentByArticleIdAndContentTitle($article_id, $title, $content, $link);
+
+        header('Location: index.php?page=admin&controller=articles&action=index');
+    }
+
+    public function deleteContent()
+    {
+        print_r($_POST);
+
+        $article_id = $_POST['deleteContentArticleId'];
+        $title = $_POST['deleteContentTitle'];
+
+        Article::deleteContentByArticleIdAndContentTitle($article_id, $title);
+
         header('Location: index.php?page=admin&controller=articles&action=index');
     }
 
