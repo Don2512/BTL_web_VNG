@@ -102,7 +102,8 @@ class Article
         $request = $database->query(
             "SELECT *
             FROM Content
-            WHERE article_id = $article_id;
+            WHERE article_id = $article_id
+            ORDER BY article_id;
         ");
 
         $Contents = [];
@@ -152,7 +153,7 @@ class Article
         $articles_req = $database->query(
             "SELECT *
             FROM Article
-            ORDER BY time_published;
+            ORDER BY article_id;
         ");
 
         $Articles = [];

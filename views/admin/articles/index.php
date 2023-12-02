@@ -69,7 +69,7 @@ require_once('views/admin/header.php'); ?>
             </div>
             <div class=\"hstack gap-2\">
                 <a href=\"index.php?page=admin&controller=articles&action=editContent\" class=\"btn btn-success btn-sm modalButton\" data-bs-toggle=\"modal\" 
-                data-bs-target=\"#editContent\" data-articleid=" . $article->id . "> 
+                data-bs-target=\"#editContent\" > 
                     <i class=\"fa-solid fa-file-pen\"></i>
                 </a>
                 <a href=\"index.php?page=admin&controller=articles&action=editContent\" class=\"btn btn-success btn-sm modalButton\"> 
@@ -313,7 +313,7 @@ require_once('views/admin/header.php'); ?>
         function populateEditModal(articleId) {
             // Code to populate the modal fields with articleData
             document.getElementById('editArticleId').value = articleId;
-            document.getElementById('editContentId').value = articleId;
+            //document.getElementById('editContentId').value = articleId;
             document.getElementById('deleteArticleId').value = articleId;
         }
     });

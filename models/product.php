@@ -23,7 +23,7 @@ class Product{
     public static function getAllProduct()
     {
         //* query
-        $query = "SELECT * FROM Product";
+        $query = "SELECT * FROM Product ORDER BY product_id ";
         $request = DB::_Query($query);
     
         //* get
