@@ -18,7 +18,6 @@ class MembersController extends BaseController
 
     public function add()
     {
-        $employee_id=$_POST['id'];
         $employee_name=$_POST['name'];
         $age=$_POST['age'];
         $position=$_POST['pos'];
@@ -27,7 +26,7 @@ class MembersController extends BaseController
         $department=$_POST['department'];
         $gender=$_POST['gender'];
         $branch=$_POST['branch'];
-        $add_new=Member::insert($employee_id,$employee_name, $age, $position,$phone,$description,$department,$gender,$branch);
+        $add_new=Member::insert($employee_name, $age, $position,$phone,$description,$department,$gender,$branch);
         header('Location: index.php?page=admin&controller=members&action=index');
     }
 

@@ -13,34 +13,73 @@ require_once('views/admin/header.php'); ?>
                 <h3> <strong>Quản lý bình luận</strong> </h3>
             </div>
             <div class="card-body">
-                <a href="#" class="btn btn-primary">Thêm thành viên</a>
+                
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
                             <th scope="col">Nhân viên</th>
+                            <th scope="col">ID bài viết</th>
+                            <th scope="col">Bài viết</th>
                             <th scope="col">Nội dung</th>
                             <th scope="col">Thời gian bình luận</th>
                             <th scope="col">Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Dữ liệu thành viên sẽ được hiển thị ở đây -->
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Nguyễn Văn A</td>
-                            <td>van.a@example.com</td>
-                            <td>2020-05-12</td>
-                            <td>
-                                <button class="btn btn-warning btn-sm">Sửa</button>
-                                <button class="btn btn-danger btn-sm">Xóa</button>
-                            </td>
-                        </tr>
+                        <!-- Dữ liệu sẽ được hiển thị ở đây -->
+                        <?php 
+                            foreach ($comments as $comment) {
+                                $counter = 1;
+                                
+                                echo "<tr>";
+                                echo "<td>". $comment->employee_name."</td>";
+                                echo "<td>". $comment->article_id ."</td>";
+                                echo "<td>". $comment->article_title ."</th>";
+                                echo "<td>". $comment->content."</td>";
+                                echo "<td>". $comment->time_commented."</td>";
+                                echo "<td>
+                                <button type=\"button\" class=\"btn btn-warning editbtn\" data-bs-toggle=\"modal\" data-bs-target=\"#exampleModal\">Sửa</button>
+                                <button type=\"button\" class=\"btn btn-danger deletebtn\" data-bs-toggle=\"modal\" data-bs-target=\"#exampleModal\">
+                                    Xoá
+                                    </button>
 
+                                </td>";
+                                echo "</tr>";
+
+                                $counter = $counter + 1;
+                            }
+                        ?>
                     </tbody>
                 </table>
             </div>
         </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Bạn có muốn xoá bình luận này
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $('.deletebtn')on('click',function(){
+                    $('#deleteModal').modal('show');
+
+                });
+
+            });
+        </script>
+
 </main>
 <?php
 require_once('views/admin/footer.php'); ?>

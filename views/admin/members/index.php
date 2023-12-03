@@ -13,7 +13,7 @@ require_once('views/admin/header.php'); ?>
                 <h3> <strong>Quản lý thành viên</strong> </h3>
             </div>
             <div class="card-body">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#insertMemberModal">
                 Thêm thành viên
             </button>
                 <table class="table">
@@ -63,26 +63,22 @@ require_once('views/admin/header.php'); ?>
             </div>
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="insertMemberModal" tabindex="-1" aria-labelledby="insertMemberModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm thành viên</h1>
+                <h1 class="modal-title fs-5" id="insertMemberModalLabel">Thêm thành viên</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
             <form action="index.php?page=admin&controller=members&action=add" method="post">
-                <div class="mb-3">
-                    <label for="id" class="form-label">ID</label>
-                    <input type="text" class="form-control" name="id" id="id" required>
-                </div>
                 <div class="mb-3">
                     <label for="name" class="form-label">Họ và tên</label>
                     <input type="text" class="form-control" name="name" id="name" required>
                 </div>
                 <div class="mb-3">
                     <label for="age" class="form-label">Tuổi</label>
-                    <input type="number" class="form-control"name="age" id="age" required>
+                    <input type="number" class="form-control" name="age" id="age" required>
                 </div>
                 <div class="mb-3">
                     <label for="phone" class="form-label">Số điện thoại</label>
@@ -93,19 +89,19 @@ require_once('views/admin/header.php'); ?>
                     <input type="text" class="form-control" name="description" id="description" required>
                 </div>
                 <div class="mb-3">
-                    <label for="name" class="form-label">Phòng ban</label>
+                    <label for="department" class="form-label">Phòng ban</label>
                     <input type="text" class="form-control" name="department" id="department" required>
                 </div>
                 <div class="mb-3">
-                    <label for="name" class="form-label">Giới tính</label>
+                    <label for="gender" class="form-label">Giới tính</label>
                     <input type="text" class="form-control" name="gender" id="gender" required>
                 </div>
                 <div class="mb-3">
-                    <label for="name" class="form-label">Chi nhánh</label>
+                    <label for="branch" class="form-label">Chi nhánh</label>
                     <input type="number" class="form-control" name="branch" id="branch" required>
                 </div>
                 <button type="reset" class="btn btn-secondary">Xoá tất cả</button>
-                <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                <button type="submit" name="addMember" class="btn btn-primary">Lưu thay đổi</button>
                 
                 </div>
                 <!-- <div class="modal-footer">

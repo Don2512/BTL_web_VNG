@@ -24,10 +24,10 @@ class Member{
         $this->gender=$gender;
         $this->branch=$branch;
     }
-    static function insert($employee_id,$employee_name, $age, $position, $phone, $description, $department, $gender, $branch) {
+    static function insert($employee_name, $age, $position, $phone, $description, $department, $gender, $branch) {
         $database = DB::getInstance();
-        $request = $database->query("INSERT INTO employee (employee_id,employee_name, age, position, phone_number,description, department, gender, branch_id) 
-                                    VALUES ('$employee_id','$employee_name', '$age', '$position', '$phone', '$description', '$department', '$gender', '$branch');");
+        $request = $database->query("INSERT INTO employee (employee_name, age, position, phone_number,description, department, gender, branch_id) 
+                                    VALUES ('$employee_name', '$age', '$position', '$phone', '$description', '$department', '$gender', '$branch');");
         
         return $request;
     }
