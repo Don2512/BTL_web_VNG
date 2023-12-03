@@ -13,6 +13,7 @@ class Content
         $this->content = $content;
         $this->image = $image;
     }
+
 }
 class Article
 {
@@ -25,10 +26,11 @@ class Article
     // Content is a list of contents
     public $content;
     public $author_id;
+    public $contentTitle ;
 
     
 
-    public function __construct($id, $type, $date, $title, $subtitle, $content, $author_id) {
+    public function __construct($id, $type, $date, $title, $subtitle, $content, $author_id,  $contentTitle = "") {
         $this->id = $id;
         $this->type = $type;
         $this->date = $date;
@@ -36,6 +38,7 @@ class Article
         $this->subtitle = $subtitle;
         $this->content = $content;
         $this->author_id = $author_id;
+        $this->contentTitle = $contentTitle;
     }
 
     public static function getByIDArticle($article_id)
@@ -45,9 +48,9 @@ class Article
         $request = DB::_Query($query);
     
         //* get
-        $temp =$request->fetch_assoc();
+        $temp = $request->fetch_assoc();
         $result = new Article($temp["article_id"], $temp["type"], 
-                            $temp["time_published"], $temp["title"],$temp["content"], [], $temp["author_id"]);
+                            $temp["time_published"], $temp["title"],$temp["content"], [], $temp["author_id"],  $temp["content"]);
 
         //* query
         $query = "SELECT * FROM Content WHERE article_id = $article_id";
@@ -101,7 +104,8 @@ class Article
         $request = $database->query(
             "SELECT *
             FROM Content
-            WHERE article_id = $article_id;
+            WHERE article_id = $article_id
+            ORDER BY article_id;
         ");
 
         $Contents = [];
@@ -151,7 +155,7 @@ class Article
         $articles_req = $database->query(
             "SELECT *
             FROM Article
-            ORDER BY time_published;
+            ORDER BY article_id;
         ");
 
         $Articles = [];
@@ -172,6 +176,101 @@ class Article
         return $Articles;
     }
 
+    public static function addNewArticle($title, $subtitle, $type, $author_id) 
+    {
+        $database = DB::getInstance();
+        $time_published= date("Y-m-d-h-i-s");
+        $request = $database->query
+        (
+            "INSERT INTO Article (type, title, time_published, author_id, content)
+                VALUE ('$type', '$title', '$time_published', '$author_id', '$subtitle');"
+                        
+        );
+
+        return $request;
+    }
+
+    public static function editArticleById($article_id, $title, $subtitle, $type, $author_id)
+    {
+        $database = DB::getInstance();
+        $time_published= date("Y-m-d-h-i-s");
+        
+        $query = "UPDATE Article SET time_published = '$time_published',";
+        if ($title != '') {
+            $query .= "title = '$title',";
+        } 
+        if ($subtitle != '') {
+            $query .= "content = '$subtitle',";
+        } 
+        if ($type != '') {
+            $query .= "type = '$type',";
+        } 
+        if ($author_id != '') {
+            $query .= "author_id = '$author_id',";
+        } 
+
+
+        if ($query[strlen($query)-1] == ',') {
+            $query[strlen($query)-1] = ' ';
+        }
+        $query .= "WHERE article_id = $article_id;";
+
+        echo $query;
+        $request = $database->query($query);
+
+        return $request;
+    }
+
+    public static function deleteArticleById($article_id)
+    {
+        $database = DB::getInstance();
+        $request = $database->query("DELETE FROM Article WHERE article_id = $article_id;");
+        return $request;
+    }
+
+    public static function addContentWithArticleId($article_id, $content_title, $content_content, $content_link)
+    {
+        $database = DB::getInstance();
+    
+        $request = $database->query
+        (
+            "INSERT INTO Content (article_id, title, content, link)
+                VALUE ('$article_id', '$content_title', '$content_content', '$content_link');"
+                        
+        );
+
+        return $request;
+    }
+
+    public static function editContentByArticleIdAndContentTitle($article_id, $content_title, $content_content, $content_link) 
+    {
+        $database = DB::getInstance();
+        
+        $query = "UPDATE Content SET ";
+        if ($content_content != '') {
+            $query .= "content = '$content_content',";
+        } 
+        if ($content_link != '') {
+            $query .= "link = '$content_link',";
+        } 
+
+        if ($query[strlen($query)-1] == ',') {
+            $query[strlen($query)-1] = ' ';
+        }
+        $query .= "WHERE article_id = $article_id AND content_title = $content_title;";
+
+        echo $query;
+        $request = $database->query($query);
+
+        return $request;
+    }
+
+    public static function deleteContentByArticleIdAndContentTitle($article_id, $content_title)
+    {
+        $database = DB::getInstance();
+        $request = $database->query("DELETE FROM Content WHERE article_id = $article_id AND title = $content_title;");
+        return $request;
+    }
 }
 
 

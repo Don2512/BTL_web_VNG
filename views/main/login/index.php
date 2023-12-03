@@ -2,7 +2,6 @@
 <html lang="en">
 
 <?php
-session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_SESSION['role'])) unset($_SESSION);
     $role = $_POST['role'];

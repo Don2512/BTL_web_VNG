@@ -35,9 +35,9 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
+                <a href="index.php?page=admin&controller=products&action=index" class="sidebar-link">
                 <i class="fa-solid fa-lines-leaning" style="color: #ffffff;"></i>  
-                Quản lí tài nguyên
+                Quản lí sản phẩm
                 </a>
             </li>
         </ul>
