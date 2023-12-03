@@ -23,10 +23,7 @@ $controllers = array(
 
   //Main controller
   'about' => ['index'],
-  'edit' => ['index'],
   'blog' => ['index'],
-  'archive' => ['index'],
-  'contact' => ['index'],
   'blog' => ['index', 'comment', 'reply'],
   'services' => ['index'],
   'register' => ['index', 'submit', 'editInfo'],
@@ -34,7 +31,7 @@ $controllers = array(
   'product' => ['index', 'game', 'connection', 'digital', 'bill'],
   'human' => ['index'],
   'society' => ['index', 'article', 'addComment', "deleteComment", "getByType"],
-  'job' => ['index'],
+  'order' => ['index', 'myOrder', 'payment'],
 ); // Các controllers trong hệ thống và các action có thể gọi ra từ controller đó.
 
 // Nếu các tham số nhận được từ URL không hợp lệ (không thuộc list controller và action có thể gọi

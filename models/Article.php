@@ -26,10 +26,11 @@ class Article
     // Content is a list of contents
     public $content;
     public $author_id;
+    public $contentTitle ;
 
     
 
-    public function __construct($id, $type, $date, $title, $subtitle, $content, $author_id) {
+    public function __construct($id, $type, $date, $title, $subtitle, $content, $author_id,  $contentTitle = "") {
         $this->id = $id;
         $this->type = $type;
         $this->date = $date;
@@ -37,6 +38,7 @@ class Article
         $this->subtitle = $subtitle;
         $this->content = $content;
         $this->author_id = $author_id;
+        $this->contentTitle = $contentTitle;
     }
 
     public static function getByIDArticle($article_id)
@@ -48,7 +50,7 @@ class Article
         //* get
         $temp = $request->fetch_assoc();
         $result = new Article($temp["article_id"], $temp["type"], 
-                            $temp["time_published"], $temp["title"],$temp["content"], [], $temp["author_id"]);
+                            $temp["time_published"], $temp["title"],$temp["content"], [], $temp["author_id"],  $temp["content"]);
 
         //* query
         $query = "SELECT * FROM Content WHERE article_id = $article_id";

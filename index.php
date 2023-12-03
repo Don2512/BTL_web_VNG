@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 
 //* với $page là tên của folder trong lớp controller
 //* $controller là tên file cộng thêm _controller.php 

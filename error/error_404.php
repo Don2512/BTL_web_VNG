@@ -1,10 +1,13 @@
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="public/js/error/index.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VNG</title>
+    <link rel="stylesheet" href="public/js/error/index.css">
+    <link rel="stylesheet" href="node_modules\bootstrap-icons\font\bootstrap-icons.min.css">
+    <link rel="stylesheet" href="node_modules\bootstrap\dist\css/bootstrap.min.css">
+    <link rel="stylesheet" href="public\css\style.css">
 </head>
 <body>
 <div class="moon"></div>
@@ -17,9 +20,16 @@
 <div class="star star4"></div>
 <div class="star star5"></div>
 <div class="error">
-  <div class="error__title">404</div>
-  <div class="error__subtitle">Hmmm...</div>
-  <div class="error__description">It looks like one of the  developers fell asleep</div>
+  <div class="d-flex align-items-center justify-content-center vh-100">
+      <div class="text-center">
+          <h1 class="display-1 fw-bold">404</h1>
+          <p class="fs-3"> <span class="text-danger">Opps!</span> Page not found.</p>
+          <p class="lead">
+              The page youre looking for doesn't exist.
+            </p>
+          <a href="../" class="btn btn-primary">Go Home</a>
+      </div>
+  </div>
 </div>
 <div class="astronaut">
   <div class="astronaut__backpack"></div>

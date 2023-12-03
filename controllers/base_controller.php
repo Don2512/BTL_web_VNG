@@ -12,6 +12,7 @@ class BaseController
       extract($data);
       // ob_end_clean(); // Đảm bảo rằng bộ đệm đã được xóa trước mỗi lần sử dụ
       // ob_start();
+
       require_once($view_file);
       // $content = ob_get_clean();
       //require_once('views/admin/basic_layouts.php');
