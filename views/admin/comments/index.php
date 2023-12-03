@@ -4,7 +4,7 @@ require_once('views/admin/header.php'); ?>
     <div class="container-fluid">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="index.php?page=admin&controller=layouts&action=index">Trang chủ</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Quản lý bình luận đánh giá thành viên</li>
             </ol>
         </nav>
@@ -14,7 +14,7 @@ require_once('views/admin/header.php'); ?>
             </div>
             <div class="card-body">
                 
-                <table class="table">
+                <table class="table table-hover">
                     <thead>
                         <tr>
                             <th scope="col">Nhân viên</th>
@@ -38,9 +38,9 @@ require_once('views/admin/header.php'); ?>
                                 echo "<td>". $comment->content."</td>";
                                 echo "<td>". $comment->time_commented."</td>";
                                 echo "<td>
-                                <button type=\"button\" class=\"btn btn-warning editbtn\" data-bs-toggle=\"modal\" data-bs-target=\"#editModal\" data-article-id=\"{$comment->article_id}\" data-comment-content=\"{$comment->content}\">Sửa</button>
+                                <button type=\"button\" class=\"btn btn-warning editbtn\" data-bs-toggle=\"modal\" data-bs-target=\"#editModal\" data-article-id=\"{$comment->article_id}\" data-comment-content=\"{$comment->content}\"><i class=\"fa-solid fa-pen-to-square\"></i></button>
                                 <button type=\"button\" class=\"btn btn-danger deletebtn\" data-bs-toggle=\"modal\" data-bs-target=\"#deleteModal\" data-article-id=\"{$comment->article_id}\">
-                                    Xoá
+                                <i class=\"fa-solid fa-trash\"></i>
                                     </button>
 
                                 </td>";
@@ -73,8 +73,8 @@ require_once('views/admin/header.php'); ?>
                             <input type="hidden" name="article_id" id="commentIdToEdit">
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
                         </div>
                     </form>
                 </div>
@@ -84,21 +84,21 @@ require_once('views/admin/header.php'); ?>
         <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header bg-danger text-white">
                         <h1 class="modal-title fs-5" id="deleteModalLabel">Xác nhận</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form action="index.php?page=admin&controller=comments&action=delete" method="post">
                         <div class="modal-body">
-                            Bạn có muốn xoá bình luận có ID này?
-                            <br>
-                            <span id="articleIdToDelete"></span>
+                            Bạn có muốn xoá bình luận này?
+                            <!-- <br>
+                            <span id="articleIdToDelete"></span> -->
                             <!-- Thêm trường input ẩn để chứa comment_id -->
                             <input type="hidden" name="article_id" id="commentIdToDelete">
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            <button type="submit" class="btn btn-danger">Xoá</button>
                         </div>
                     </form>
                 </div>

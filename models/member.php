@@ -31,13 +31,20 @@ class Member{
         
         return $request;
     }
-    static function update($employee_id,$employee_name, $age, $position, $phone, $description, $department, $gender, $branch)
+    static function edit($employee_id,$employee_name,$age, $position,$phone, $description,$department,$gender,$branch_id)
     {
         $database = DB::getInstance();
         $request = $database->query(
             "
             UPDATE employee
-            SET employee_name = '$employee_name', age = '$age', position = '$position', phone = $phone, description = $description, department = '$department', gender = '$gender', branch = '$branch',  
+            SET employee_name = '$employee_name',
+            age = '$age',
+            position = '$position',
+            phone_number= '$phone',
+            description = '$description',
+            department = '$department',
+            gender = '$gender',
+            branch_id = '$branch_id'
             WHERE employee_id = '$employee_id'
             ;"
         );

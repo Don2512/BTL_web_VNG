@@ -32,16 +32,17 @@ class MembersController extends BaseController
 
     public function edit()
     {
-        $employee_id=$_POST['id'];
-        $employee_name=$_POST['name'];
-        $age=$_POST['age'];
-        $position=$_POST['pos'];
-        $phone=$_POST['phone'];
-        $description=$_POST['description'];
-        $department=$_POST['department'];
-        $gender=$_POST['gender'];
-        $branch=$_POST['branch'];
-        Member::update($employee_id,$employee_name, $age, $position,$phone,$description,$department,$gender,$branch);
+        $employee_id = $_POST['id'];
+        $employee_name = $_POST['name'];
+        $age = $_POST['age'];
+        $position = $_POST['pos'];
+        $phone = $_POST['phone'];
+        $description = $_POST['description'];
+        $department = $_POST['department'];
+        $gender = $_POST['gender'];
+        $branch_id = $_POST['branch'];
+
+        Member::edit($employee_id,$employee_name,$age,$position,$phone,$description,$department,$gender,$branch_id);
         header('Location: index.php?page=admin&controller=members&action=index');
     }
 
