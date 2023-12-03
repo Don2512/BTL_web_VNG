@@ -38,8 +38,8 @@ require_once('views/admin/header.php'); ?>
                                 echo "<td>". $comment->content."</td>";
                                 echo "<td>". $comment->time_commented."</td>";
                                 echo "<td>
-                                <button type=\"button\" class=\"btn btn-warning editbtn\" data-bs-toggle=\"modal\" data-bs-target=\"#exampleModal\">Sửa</button>
-                                <button type=\"button\" class=\"btn btn-danger deletebtn\" data-bs-toggle=\"modal\" data-bs-target=\"#exampleModal\">
+                                <button type=\"button\" class=\"btn btn-warning editbtn\" data-bs-toggle=\"modal\" data-bs-target=\"#editModal\" data-article-id=\"{$comment->article_id}\" data-comment-content=\"{$comment->content}\">Sửa</button>
+                                <button type=\"button\" class=\"btn btn-danger deletebtn\" data-bs-toggle=\"modal\" data-bs-target=\"#deleteModal\" data-article-id=\"{$comment->article_id}\">
                                     Xoá
                                     </button>
 
@@ -53,33 +53,73 @@ require_once('views/admin/header.php'); ?>
                 </table>
             </div>
         </div>
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+       
+        <!-- edit modal -->
+        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Bạn có muốn xoá bình luận này
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="editModalLabel">Chỉnh sửa bình luận</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="index.php?page=admin&controller=comments&action=edit" method="post">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="content" class="form-label">Bình luận:</label>
+                                <!-- Sử dụng textarea để hiển thị nội dung hiện tại và cho phép chỉnh sửa -->
+                                <textarea class="form-control" name="content" id="contentToEditTextarea" rows="4" required></textarea>
+                            </div>
+                            <!-- Thêm một trường ẩn để chứa comment_id -->
+                            <input type="hidden" name="article_id" id="commentIdToEdit">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        <script>
-            $(document).ready(function () {
-                $('.deletebtn')on('click',function(){
-                    $('#deleteModal').modal('show');
-
-                });
-
-            });
-        </script>
-
+    <!-- delete modal -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="deleteModalLabel">Xác nhận</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="index.php?page=admin&controller=comments&action=delete" method="post">
+                        <div class="modal-body">
+                            Bạn có muốn xoá bình luận có ID này?
+                            <br>
+                            <span id="articleIdToDelete"></span>
+                            <!-- Thêm trường input ẩn để chứa comment_id -->
+                            <input type="hidden" name="article_id" id="commentIdToDelete">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 </main>
 <?php
 require_once('views/admin/footer.php'); ?>
+<script>
+    // Thêm mã JavaScript để cập nhật giá trị article_id trong modal delete
+    $('.deletebtn').on('click', function() {
+        var articleId = $(this).data('article-id');
+        $('#articleIdToDelete').text(articleId);
+        $('#commentIdToDelete').val(articleId);
+    });
+    $('.editbtn').on('click', function() {
+        var content = $(this).data('comment-content');
+        var commentId = $(this).data('article-id');
+
+        // Cập nhật giá trị content và comment_id trong textarea và trường ẩn
+        $('#contentToEditTextarea').val(content);
+        $('#commentIdToEdit').val(commentId);
+    });
+</script>

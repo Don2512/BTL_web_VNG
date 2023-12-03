@@ -33,12 +33,26 @@ class Comment{
         }
         return $result;
     }
+    static function update($article_id,$content)
+    {
+        $db = DB::getInstance();
+        $req = $db->query(
+            "
+            UPDATE comment
+            SET content = '$content'
+            WHERE article_id = '$article_id'
+            ;"
+        );
+        return $req;
+    }
+    
     static function delete($article_id)
     {
         $db = DB::getInstance();
         $req = $db->query("DELETE FROM comment WHERE article_id = '$article_id';");
         return $req;
     }
+    
 
 
 }

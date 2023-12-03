@@ -26,19 +26,29 @@ class MembersController extends BaseController
         $department=$_POST['department'];
         $gender=$_POST['gender'];
         $branch=$_POST['branch'];
-        $add_new=Member::insert($employee_name, $age, $position,$phone,$description,$department,$gender,$branch);
+        Member::insert($employee_name, $age, $position,$phone,$description,$department,$gender,$branch);
         header('Location: index.php?page=admin&controller=members&action=index');
     }
 
     public function edit()
     {
+        $employee_id=$_POST['id'];
+        $employee_name=$_POST['name'];
+        $age=$_POST['age'];
+        $position=$_POST['pos'];
+        $phone=$_POST['phone'];
+        $description=$_POST['description'];
+        $department=$_POST['department'];
+        $gender=$_POST['gender'];
+        $branch=$_POST['branch'];
+        Member::update($employee_id,$employee_name, $age, $position,$phone,$description,$department,$gender,$branch);
         header('Location: index.php?page=admin&controller=members&action=index');
     }
 
     public function delete()
     {
-        $employee_id=$_POST['id'];
-        $delete_user = Member::delete($employee_id);
+        $employee_id=$_POST['employee_id'];
+        $delete_employee=Member::delete($employee_id);
         header('Location: index.php?page=admin&controller=members&action=index');
     }
 

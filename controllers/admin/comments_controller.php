@@ -23,16 +23,16 @@ class CommentsController extends BaseController
 
     public function edit()
     {
-        
+        $article_id = $_POST['article_id'];
+        $content=$_POST['content'];
+        Comment::update($article_id,$content);
+        header('Location: index.php?page=admin&controller=comments&action=index');
     }
 
     public function delete()
     {
-        $article_id = $_POST['article-id'];
+        $article_id = $_POST['article_id'];
         $delete_comment = Comment::delete($article_id);
         header('Location: index.php?page=admin&controller=comments&action=index');
     }
-
-
-
 }

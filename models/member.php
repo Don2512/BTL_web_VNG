@@ -31,6 +31,18 @@ class Member{
         
         return $request;
     }
+    static function update($employee_id,$employee_name, $age, $position, $phone, $description, $department, $gender, $branch)
+    {
+        $database = DB::getInstance();
+        $request = $database->query(
+            "
+            UPDATE employee
+            SET employee_name = '$employee_name', age = '$age', position = '$position', phone = $phone, description = $description, department = '$department', gender = '$gender', branch = '$branch',  
+            WHERE employee_id = '$employee_id'
+            ;"
+        );
+        return $request;
+    }
     static function delete($employee_id)
     {
         $db = DB::getInstance();
