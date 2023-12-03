@@ -71,7 +71,7 @@ class Product{
             $query .= "price = '$price',";
         } 
         if ($image != '') {
-            $query .= "image = '$image'";
+            $query .= "image = '$image',";
         } 
 
         if ($query[strlen($query)-1] == ',') {

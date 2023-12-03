@@ -50,6 +50,15 @@ class ArticlesController extends BaseController
         header('Location: index.php?page=admin&controller=articles&action=index');
     }
 
+    public function getContent() {
+        print_r($_POST);
+        $content_id = $_POST['getContentId'];
+
+        Article::getAllContentsOfAnArticleById($content_id);
+
+        header('Location: index.php?page=admin&controller=articles&action=index');
+    }
+
     public function editContent()
     {
         print_r($_POST);

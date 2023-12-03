@@ -193,9 +193,9 @@ class Article
         $database = DB::getInstance();
         $time_published= date("Y-m-d-h-i-s");
         
-        $query = "UPDATE Article SET time_published = '$time_published,' ";
+        $query = "UPDATE Article SET time_published = '$time_published',";
         if ($title != '') {
-            $query .= ",title = '$title',";
+            $query .= "title = '$title',";
         } 
         if ($subtitle != '') {
             $query .= "content = '$subtitle',";
@@ -204,7 +204,7 @@ class Article
             $query .= "type = '$type',";
         } 
         if ($author_id != '') {
-            $query .= "author_id = '$author_id'";
+            $query .= "author_id = '$author_id',";
         } 
 
 
@@ -249,7 +249,7 @@ class Article
             $query .= "content = '$content_content',";
         } 
         if ($content_link != '') {
-            $query .= "link = '$content_link,'";
+            $query .= "link = '$content_link',";
         } 
 
         if ($query[strlen($query)-1] == ',') {
