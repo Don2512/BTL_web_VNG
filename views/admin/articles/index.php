@@ -48,8 +48,9 @@ require_once('views/admin/header.php'); ?>
                         "
 <tr>
     <th scope=\"row\">" . $article->id . "</th>
-    <td><span class=\"d-inline-block text-truncate\" style=\"max-width: 150px;\">" . $article->title . "</span></td>
-    <td><span class=\"d-inline-block text-truncate\" style=\"max-width: 150px;\">" . $article->subtitle . "</span></td>
+    <td>" . $article->title . "</td>
+    <!-- Can use bootstrap text truncate if you want to reduce space that text occupied-->
+    <td>" . $article->subtitle . "</td>
     <td>" . $article->type . "</td>
     <td>" . $article->author_id . "</td>
     <td>" . date('h:i - d/m/Y', strtotime($article->date))  . "</td>
@@ -71,14 +72,18 @@ require_once('views/admin/header.php'); ?>
                 <i class=\"fa-solid fa-trash\"></i>
             </a>
 
-                <a href=\"index.php?page=admin&controller=articles&action=getContent\" class=\"btn btn-warning btn-sm mx-1 my-1 getContentButton\" data-bs-toggle=\"modal\" 
+                <a href=\"index.php?page=admin&controller=articles&action=editContent\" class=\"btn btn-warning btn-sm mx-1 my-1 getContentButton\" data-bs-toggle=\"modal\" 
                 data-bs-target=\"#editContentModal\" data-article-id=" . $article->id . "> 
                 <i class=\"fa-solid fa-file-pen\"></i>
             </a>
 
             <a href=\"index.php?page=admin&controller=articles&action=addContent\" class=\"btn btn-primary btn-sm mx-1 my-1 addContentButton\" data-bs-toggle=\"modal\" 
-            data-bs-target=\"#addContent\" data-article-id=" . $article->id . "> 
+            data-bs-target=\"#addContentModal\" data-article-id=" . $article->id . "> 
                 <i class=\"fa-solid fa-file-circle-plus\"></i>
+            </a>
+            <a href=\"index.php?page=admin&controller=articles&action=deleteContent\" class=\"btn btn-danger btn-sm mx-1 my-1 deleteContentButton\" data-bs-toggle=\"modal\" 
+            data-bs-target=\"#deleteContentModal\" data-article-id=" . $article->id . "> 
+                <i class=\"fa-solid fa-file-circle-minus\"></i>
             </a>
         </div>
     </td>
@@ -223,54 +228,135 @@ require_once('views/admin/header.php'); ?>
 
     <!-- Edit Content Modal -->
     <div class="modal fade" id="editContentModal" tabindex="-1" role="dialog" aria-labelledby="editContentModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editContentModalLabel">Edit Content</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                <div class="modal-header bg-warning">
+                    <h5 class="modal-title fw-bold" id="editContentModalLabel">Chỉnh sửa nội dung bài viết</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="editContentForm">
+                    <form id="editContentForm" action="index.php?page=admin&controller=articles&action=editContent" method="post">
                         <!-- Article ID Field (hidden) -->
-                        <input type="hidden" id="articleIdField">
+                        <input type="hidden" id="articleIdField" name="editContentArticleId">
 
                         <!-- Dropdown List of Content Titles -->
-                        <div class="form-group">
-                            <label for="contentTitleSelect">Select Content Title</label>
+                        <div class="form-group mb-3">
+                            <label for="contentTitleSelect">Chọn tiêu đề nội dung bài viết</label>
                             <select class="form-control" id="contentTitleSelect"></select>
                         </div>
 
                         <!-- Content Title Field (readonly) -->
-                        <div class="form-group">
-                            <label for="contentTitle">Content Title</label>
-                            <input type="text" class="form-control" id="contentTitle" readonly>
+                        <div class="form-group mb-3">
+                            <label for="contentTitle">Tiêu đề nội dung</label>
+                            <input type="text" class="form-control" id="contentTitle" name="editContentTitle" readonly>
                         </div>
 
                         <!-- Content Text Field -->
-                        <div class="form-group">
-                            <label for="contentText">Content Text</label>
-                            <textarea class="form-control" id="contentText" rows="3"></textarea>
+                        <div class="form-group mb-3">
+                            <label for="contentText">Văn bản nội dung</label>
+                            <textarea class="form-control" id="contentText" name="editContentText" rows="10"></textarea>
                         </div>
 
                         <!-- Content Image Link Field -->
-                        <div class="form-group">
-                            <label for="contentImage">Content Image Link</label>
-                            <input type="text" class="form-control" id="contentImage">
+                        <div class="form-group mb-3">
+                            <label for="contentImage">Link hình ảnh nội dung</label>
+                            <input type="text" class="form-control" id="contentImage" name="editContentImage">
                         </div>
+
+                        <button type="submit" class="btn btn-primary" id="saveContentChanges">Lưu thay đổi</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="saveContentChanges">Save changes</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Edit Content Modal--deleting content -->
+    <!-- Add Content Modal -->
+    <div class="modal fade" id="addContentModal" tabindex="-1" role="dialog" aria-labelledby="addContentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h5 class="modal-title fw-bold text-white" id="addContentModalLabel">Thêm nội dung bài viết</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addContentForm" action="index.php?page=admin&controller=articles&action=addContent" method="post">
+                        <!-- Article ID Field (hidden) -->
+                        <input type="hidden" id="addContentArticleId" name="addContentArticleId">
 
+                        <!-- Content Title Field -->
+                        <div class="form-group mb-3">
+                            <label for="contentTitle">Tiêu đề nội dung</label>
+                            <input type="text" class="form-control" id="contentTitle" name="addContentTitle">
+                        </div>
+
+                        <!-- Content Text Field -->
+                        <div class="form-group mb-3">
+                            <label for="contentText">Văn bản nội dung</label>
+                            <textarea class="form-control" id="contentText" name="addContentText" rows="10"></textarea>
+                        </div>
+
+                        <!-- Content Image Link Field -->
+                        <div class="form-group mb-3">
+                            <label for="contentImage">Link hình ảnh nội dung</label>
+                            <input type="text" class="form-control" id="contentImage" name="addContentImage">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Thêm</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Content Modal -->
+    <div class="modal fade" id="deleteContentModal" tabindex="-1" role="dialog" aria-labelledby="deleteContentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <h5 class="modal-title fw-bold text-white" id="deleteContentModalLabel">Xóa nội dung bài viết</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="deleteContentForm" action="index.php?page=admin&controller=articles&action=deleteContent" method="post">
+                        <!-- Article ID Field (hidden) -->
+                        <input type="hidden" id="deleteContentArticleIdField" name="deleteContentArticleIdField">
+
+                        <!-- Dropdown List of Content Titles -->
+                        <div class="form-group mb-3">
+                            <label for="deleteContentTitleSelect">Chọn tiêu đề nội dung bài viết</label>
+                            <select class="form-control" id="deleteContentTitleSelect"></select>
+                        </div>
+
+                        <!-- Content Title Field (readonly) -->
+                        <div class="form-group mb-3">
+                            <label for="deleteContentTitle">Tiêu đề nội dung</label>
+                            <input type="text" class="form-control" id="deleteContentTitle" name="deleteContentTitle" readonly>
+                        </div>
+
+                        <!-- Content Text Field -->
+                        <div class="form-group mb-3">
+                            <label for="deleteContentText">Văn bản nội dung</label>
+                            <textarea class="form-control" id="deleteContentText" name="deleteContentText" rows="10" readonly></textarea>
+                        </div>
+
+                        <!-- Content Image Link Field -->
+                        <div class="form-group mb-3">
+                            <label for="deleteContentImage">Link hình ảnh nội dung</label>
+                            <input type="text" class="form-control" id="deleteContentImage" name="deleteContentImage" readonly>
+                        </div>
+
+                        <button type="submit" class="btn btn-danger">Xóa</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </main>
 
@@ -286,6 +372,7 @@ require_once('views/admin/footer.php'); ?>
 
     // Add event to get article ID in add, edit, delete article and content
     document.addEventListener('DOMContentLoaded', function() {
+
         // Get all the edit buttons with the class 'editArticleButton'
         var editArticleButtons = document.querySelectorAll('.editArticleButton');
 
@@ -297,6 +384,9 @@ require_once('views/admin/footer.php'); ?>
 
         // Get all buttons with class 'addContentButton'
         var addContentButtons = document.querySelectorAll('.addContentButton');
+
+        // Get all buttons with class 'deleteContentButton'
+        var deleteContentButtons = document.querySelectorAll('.deleteContentButton');
 
         // Add click event listeners to editArticleButton
         editArticleButtons.forEach(function(button) {
@@ -343,6 +433,15 @@ require_once('views/admin/footer.php'); ?>
             });
         });
 
+        deleteContentButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                // Get the article data and articleId from the data attributes
+                var articleId = button.getAttribute('data-article-id');
+                
+                // Populate the DeleteContent modal with the article data
+                populateDeleteContentModal(articleId);
+            });
+        });
 
         function populateEditArticleModal(articleId, title, subtitle, category, authorId) {
             // Populate the modal fields with articleData
@@ -362,27 +461,27 @@ require_once('views/admin/footer.php'); ?>
         }
 
         function populateAddContentModal(articleId) {
-            document.getElementById('addContentId').value = articleId;
+            document.getElementById('addContentArticleId').value = articleId;
+        }
+
+        function populateDeleteContentModal(articleId) {
+            document.getElementById('deleteContentArticleIdField').value = articleId;
         }
 
 
         // Function to fetch content data based on article ID and selected content ID
         function fetchContentData(articleId, selectedContentId) {
-            // Assume you have an API endpoint to get content data
-            var apiUrl = 'index.php?page=admin&controller=articles&action=getContentByTitle';
             // Make an AJAX request to fetch content data
-            console.log(articleId, selectedContentId);
             $.ajax({
                 type: 'POST',
-                url: apiUrl,
+                url: 'index.php?page=admin&controller=articles&action=getContentByTitle',
                 data: {
                     getContentId: articleId,
                     selectedContentId: selectedContentId
                 },
                 dataType: 'json',
                 success: function(response) {
-                    // Assuming response is a single content object
-                    populateEditContentForm(response);
+                    populateEditContentForm(response[0]);
                 },
                 error: function(error) {
                     console.error('Error fetching content data:', error);
@@ -390,12 +489,36 @@ require_once('views/admin/footer.php'); ?>
             });
         }
 
-        // Function to populate the form fields with content data
+        function fetchDeleteContentData(articleId, selectedContentId) {
+            $.ajax({
+                type: 'POST',
+                url: 'index.php?page=admin&controller=articles&action=getContentByTitle',
+                data: {
+                    getContentId: articleId,
+                    selectedContentId: selectedContentId
+                },
+                dataType: 'json',
+                success: function(response) {
+                    populateDeleteContentForm(response[0]);
+                },
+                error: function(error) {
+                    console.error('Error fetching content data:', error);
+                }
+            });
+        }
+
+        // Function to populate the edit content form fields with content data
         function populateEditContentForm(content) {
-            console.log(content);   
-            $('#contentTitle').val(contentElement.title);
-            $('#contentText').val(contentElement.content);
-            $('#contentImage').val(contentElement.image);
+            $('#contentTitle').val(content.title);
+            $('#contentText').val(content.content);
+            $('#contentImage').val(content.image);
+        }
+
+        // Function to populate the DELETE content form fields with content data
+        function populateDeleteContentForm(content) {
+            $('#deleteContentTitle').val(content.title);
+            $('#deleteContentText').val(content.content);
+            $('#deleteContentImage').val(content.image);
         }
 
         // Event listener for change in content title selection
@@ -406,7 +529,15 @@ require_once('views/admin/footer.php'); ?>
             fetchContentData(articleId, selectedContentTitle);
         });
 
-        // Event listener for opening the modal
+        // Same above event listener, but for detele content modal
+        $('#deleteContentTitleSelect').change(function() {
+            var selectedContentTitle = $(this).find(':selected').val();
+            var articleId = $('#deleteContentArticleIdField').val();
+            // Fetch and populate content data based on the selected content ID
+            fetchDeleteContentData(articleId, selectedContentTitle);
+        });
+
+        // Event listener for opening the edit content modal
         $('#editContentModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget); // Button that triggered the modal
             var articleId = button.data('article-id');
@@ -426,7 +557,6 @@ require_once('views/admin/footer.php'); ?>
                 },
                 dataType: 'json',
                 success: function(response) {
-                    // Assuming response is an array of content objects
                     contentTitleSelect.empty(); // Clear existing options
 
                     // Populate dropdown with content titles
@@ -443,14 +573,66 @@ require_once('views/admin/footer.php'); ?>
             });
         });
 
-        // Event listener for saving content changes
-        $('#saveContentChanges').click(function() {
-            // Add logic to save the changes, e.g., another AJAX request
-            // ...
+         // Event listener for opening the DELETE content modal
+         $('#deleteContentModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var articleId = button.data('article-id');
 
-            // Close the modal
-            $('#editContentModal').modal('hide');
+            // Populate the hidden article ID field
+            $('#deleteContentArticleIdField').val(articleId);
+
+            // Assume you have an API endpoint to get content titles based on articleId
+            var contentTitleSelect = $('#deleteContentTitleSelect');
+
+            // Make an AJAX request to fetch content titles
+            $.ajax({
+                type: 'POST',
+                url: 'index.php?page=admin&controller=articles&action=getContent',
+                data: {
+                    getContentId: articleId
+                },
+                dataType: 'json',
+                success: function(response) {
+                    contentTitleSelect.empty(); // Clear existing options
+
+                    // Populate dropdown with content titles
+                    response.forEach(function(content) {
+                        contentTitleSelect.append('<option value="' + content.title + '">' + content.title + '</option>');
+                    });
+
+                    // Trigger change event to load the first selected content
+                    contentTitleSelect.trigger('change');
+                },
+                error: function(error) {
+                    console.error('Error fetching content titles:', error);
+                }
+            });
         });
+
+        // // Event listener for saving content changes
+        // $('#saveContentChanges').click(function() {
+        //     // Make an AJAX request to save content changes
+        //     $.ajax({
+        //         type: 'POST',
+        //         url: 'index.php?page=admin&controller=articles&action=editContent',
+        //         data: {
+        //             editContentArticleId: $('#articleIdField'),
+        //             editContentTitle: $('#contentTitle').val(),
+        //             editContentContent: $('#contentText').val(),
+        //             editContentLink: $('#contentImage').val()
+        //         },
+        //         dataType: 'json',
+        //         success: function(response) {
+        //             console.log('Content change is saved');
+        //         },
+        //         error: function(error) {
+        //             console.error('Error when saving content changes:', error);
+        //         }
+        //     });
+
+        //     // Close the modal
+        //     $('#editContentModal').modal('hide');
+        // });
 
 
     });
