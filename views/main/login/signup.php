@@ -2,16 +2,6 @@
 <html lang="en">
 
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_SESSION['role'])) unset($_SESSION);
-    $role = $_POST['role'];
-    $_SESSION['role'] = $role;
-    session_write_close();
-    $headerTo = "Location: ?page=" . $role . "&controller=layouts&action=index";
-    header($headerTo);
-    exit;
-}
-
 require_once("views/main/header.php") ?>
 
 
@@ -120,6 +110,8 @@ require_once("views/main/header.php") ?>
                             notiText.innerText = "Tên đăng nhập đã tồn tại!"
                         notiBox.classList.toggle("d-none");
 
+                    } else {
+                        window.location.href = "?page=main&controller=login&action=index"
                     }
                     // window.location.reload();
                 },

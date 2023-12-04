@@ -2,16 +2,16 @@
     <h4 class="c-orange fs-30px mb-4">Tin tức</h4>
     <div class="container">
         <div class="row">
-            <div class="col-auto fst-italic border-c-gray c-gray mx-2 rounded-4 hover-bg-gray hover-c-white active" onClick="getType('all')">Tất cả</div>
-            <div class="col-auto fst-italic border-c-gray c-gray mx-2 rounded-4 hover-bg-gray hover-c-white" onClick="getType('Công nghệ')">Công nghệ</div>
-            <div class="col-auto fst-italic border-c-gray c-gray mx-2 rounded-4 hover-bg-gray hover-c-white" onClick="getType('Sản phẩm ')">Sản phẩm</div>
-            <div class="col-auto fst-italic border-c-gray c-gray mx-2 rounded-4 hover-bg-gray hover-c-white" onClick="getType('Con người')">Con người</div>
-            <div class="col-auto fst-italic border-c-gray c-gray mx-2 rounded-4 hover-bg-gray hover-c-white" onClick="getType('Doanh nghiệp')">Doanh nghiệp</div>
+            <div class="col-auto fst-italic border-c-gray c-gray mx-2 rounded-4 hover-bg-gray hover-c-white hover-mouse active" onClick="getType('all')" id="btn_all">Tất cả</div>
+            <div class="col-auto fst-italic border-c-gray c-gray mx-2 rounded-4 hover-bg-gray hover-c-white hover-mouse" onClick="getType('Công nghệ')" id="btn_congNghe">Công nghệ</div>
+            <div class="col-auto fst-italic border-c-gray c-gray mx-2 rounded-4 hover-bg-gray hover-c-white hover-mouse" onClick="getType('Sản phẩm ')" id="btn_sanPham">Sản phẩm</div>
+            <div class="col-auto fst-italic border-c-gray c-gray mx-2 rounded-4 hover-bg-gray hover-c-white hover-mouse" onClick="getType('Con người')" id="btn_conNguoi">Con người</div>
+            <div class="col-auto fst-italic border-c-gray c-gray mx-2 rounded-4 hover-bg-gray hover-c-white hover-mouse" onClick="getType('Doanh nghiệp')" id="btn_doanhNghiep">Doanh nghiệp</div>
         </div>
     </div>
     <div class="container mt-5">
-        <div class="row">
-            <div class="col-4">
+        <div class="row" id="jsonDataContainer">
+            <!-- <div class="col-4">
                 <div class="card hover-shadow rounded-5 h-100">
                     <img src="https://corp.vcdn.vn/products/upload/vng/source/News/cong-ty-vng-la-gi.png" class="card-img-top h-200px rounded-top-5" alt="...">
                     <div class="card-body h-100 p-4">
@@ -41,24 +41,30 @@
                         <p class="c-gray">ZaloPay và Gojek công bố hợp tác, cung cấp thêm lựa chọn thanh toán không dùng tiền mặt cho người dùng Gojek tại Việt Na ...</p>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="row mt-4">
             <div class="col"></div>
             <div class="col-auto">
-                <div class="container c-gray hover-bg-gray hover-c-white border-c-gray rounded-5 fst-italic">Xem thêm</div>
+                <a class="container c-gray hover-bg-gray hover-c-white border-c-gray rounded-5 fst-italic text-decoration-none py-1" href="?page=main&controller=blog&action=index">
+                    Xem thêm
+                </a>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    function getType(type, lengthMAX = 2) {
+    $(document).ready(function() {
+        getType('all');
+    })
+
+    function getType(type, lengthMAX = 3) {
         // Gỡ bỏ lớp "active" từ tất cả các nút
         $('.row div').removeClass('active');
 
         // Thêm lớp "active" cho nút được nhấn
-        $(event.target).addClass('active');
+        // $(event.target).addClass('active');
 
         // Gửi AJAX request khi nút được nhấn
         $.ajax({
@@ -68,13 +74,14 @@
                 type: type
             },
             success: function(jsonDataArray) {
-
+                console.log(jsonDataArray)
 
                 // Xử lý phản hồi từ API ở đây
                 var jsonDataContainer = document.getElementById("jsonDataContainer");
                 jsonDataContainer.innerHTML = "";
                 var yourObject = JSON.parse(jsonDataArray);
                 var message = yourObject.message;
+                if (jsonDataArray.length < lengthMAX) lengthMAX = sizeof(jsonDataArray);
                 for (var i = 0; i < lengthMAX; i++) {
                     var jsonData = message[i];
 
@@ -120,24 +127,6 @@
                     // Thêm phần tử colDiv vào container
                     jsonDataContainer.appendChild(colDiv);
                 }
-
-                var rowDiv = document.createElement("div");
-                rowDiv.className = "row mt-4";
-
-                var colDiv = document.createElement("div");
-                colDiv.className = "col-auto";
-
-                var containerDiv = document.createElement("div");
-                containerDiv.className = "container c-gray hover-bg-gray hover-c-white border-c-gray rounded-5 fst-italic";
-                containerDiv.textContent = "Xem thêm";
-                containerDiv.onclick = function() {
-                    getType('all', message.length);
-                };
-
-                colDiv.appendChild(containerDiv);
-                rowDiv.appendChild(colDiv);
-                jsonDataContainer.appendChild(rowDiv);
-
             },
             error: function(error) {
                 // Xử lý lỗi nếu có

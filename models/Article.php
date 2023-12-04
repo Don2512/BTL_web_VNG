@@ -111,9 +111,9 @@ class Article
                 $temp["type"],
                 $temp["time_published"],
                 $temp["title"],
-                $temp["content"],
                 [],
-                $temp["author_id"]
+                $temp["content"],
+                $temp["author_id"],
             );
         }
 
@@ -230,10 +230,10 @@ class Article
         $database = DB::getInstance();
         $time_published = date("Y-m-d-h-i-s");
         $request = $database->query(
-                "INSERT INTO Article (type, title, time_published, author_id, content)
+            "INSERT INTO Article (type, title, time_published, author_id, content)
                 VALUE ('$type', '$title', '$time_published', '$author_id', '$subtitle');"
 
-            );
+        );
 
         return $request;
     }
@@ -280,11 +280,11 @@ class Article
         $database = DB::getInstance();
 
         $request = $database->query(
-                "INSERT INTO Content (article_id, title, content, link)
+            "INSERT INTO Content (article_id, title, content, link)
                 VALUE ('$article_id', '$content_title', '$content_content', '$content_link');
             "
 
-            );
+        );
 
         return $request;
     }
