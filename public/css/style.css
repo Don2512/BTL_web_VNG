@@ -4,6 +4,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Robotot&display=swap');
 /* basic element */
 .bullet-none{list-style-type: none;}
+/* transform-translate middle */
+.translate-middle{transform: translate(-50%,-50%);}
 /* color */
 .c-orange{color:  #ff6a1f;}
 .c-gray{color: gray;}
@@ -79,6 +81,7 @@
 .bg-white-25{background-color: rgba(255, 255, 255, 0.25);}
 .bg-white-50{background-color: rgba(255, 255, 255, 0.5);}
 .bg-white-75{background-color: rgba(255, 255, 255, 0.75);}
+.bg-white-100{background-color: white}
 .bg-none{background-color: transparent;}
 
 /* after */
@@ -102,6 +105,8 @@
 /* hover */
 .hover-c-white.active{color: white;}
 .hover-c-white:hover{color: white;}
+.hover-c-orange.active{color: #ff6a1f;}
+.hover-c-orange:hover{color: #ff6a1f;}
 .hover-bg-gray.active{background-color: gray;}
 .hover-bg-gray:hover{background-color: gray;}
 .hover-bg-orange.active{background-color: #ff6a1f;}
@@ -119,11 +124,11 @@
     border: 0;
 }
 ::-webkit-scrollbar-track {
-    background: #ffffff; 
+    background: #c7c7c7; 
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #555; 
+    background: rgb(88, 88, 88); 
 }
 ::-webkit-scrollbar-thumb:hover {
     background: #ff6a1f; 

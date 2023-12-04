@@ -2,7 +2,7 @@
 require_once('controllers/base_controller.php');
 require_once('models/article.php');
 
-class ArticlesController extends BaseController 
+class ArticlesController extends BaseController
 {
     function __construct()
     {
@@ -13,7 +13,7 @@ class ArticlesController extends BaseController
     {
         $articles = Article::getAllArticles();
         $articles = array("articles" => $articles);
-        $this->render('index', $articles);   
+        $this->render('index', $articles);
     }
 
     public function add()
@@ -29,8 +29,7 @@ class ArticlesController extends BaseController
 
     public function edit()
     {
-        print_r($_POST);
-        $article_id= $_POST['editArticleId'];
+        $article_id = $_POST['editArticleId'];
         $title = $_POST['editTitle'];
         $subtitle = $_POST['editSubtitle'];
         $type = $_POST['editType'];
@@ -42,38 +41,67 @@ class ArticlesController extends BaseController
 
     public function delete()
     {
-        print_r($_POST);
-        $article_id= $_POST['deleteArticleId'];
+        $article_id = $_POST['deleteArticleId'];
 
         Article::deleteArticleById($article_id);
 
         header('Location: index.php?page=admin&controller=articles&action=index');
     }
 
+    public function getContent()
+    {
+        $article_id = $_POST['getContentId'];
+        $contents = Article::getAllContentsOfAnArticleById($article_id);
+
+        // Send JSON response to frontend
+        header('Content-Type: application/json');
+        echo json_encode($contents);
+        exit;
+    }
+
+    public function getContentByTitle()
+    {
+        $article_id = $_POST['getContentId'];
+        $content_title = $_POST['selectedContentId'];
+
+        $content = Article::getAllContentOfAnArticleByIdAndTitle($article_id, $content_title);
+
+        // Send JSON response to frontend
+        header('Content-Type: application/json');
+        echo json_encode($content);
+        exit;
+    }
+
+    public function addContent()
+    {
+        $article_id = $_POST['addContentArticleId'];
+        $title = $_POST['addContentTitle'];
+        $content = $_POST['addContentText'];
+        $link = $_POST['addContentImage'];
+
+        Article::addContentWithArticleId($article_id, $title, $content, $link);
+        header('Location: index.php?page=admin&controller=articles&action=index');
+    }
+
     public function editContent()
     {
-        print_r($_POST);
+
         $article_id = $_POST['editContentArticleId'];
         $title = $_POST['editContentTitle'];
-        $content = $_POST['editContentContent'];
-        $link = $_POST['editContentLink'];
+        $content = $_POST['editContentText'];
+        $link = $_POST['editContentImage'];
 
         Article::editContentByArticleIdAndContentTitle($article_id, $title, $content, $link);
-
         header('Location: index.php?page=admin&controller=articles&action=index');
     }
 
     public function deleteContent()
     {
-        print_r($_POST);
 
-        $article_id = $_POST['deleteContentArticleId'];
+        $article_id = $_POST['deleteContentArticleIdField'];
         $title = $_POST['deleteContentTitle'];
 
         Article::deleteContentByArticleIdAndContentTitle($article_id, $title);
-
         header('Location: index.php?page=admin&controller=articles&action=index');
     }
-
-
 }
