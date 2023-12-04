@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS Purchase (
     customer_id INT,
     product_id INT,
     number INT,
-    purchase_date DATE,
+    purchase_date DATETIME,
     PRIMARY KEY (customer_id, product_id, purchase_date),
     FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
     FOREIGN KEY (product_id) REFERENCES Product(product_id)
@@ -146,7 +146,7 @@ INSERT INTO Content (article_id, title, content, link) VALUES
 
 -- Thêm dữ liệu cho bảng Customer
 INSERT INTO Customer (customer_name, age, email, gender) VALUES
-('Khách hàng 1', 30, 'kh1@example.com', 'Nam'),
+('Đào Duy Long', 30, 'kh1@example.com', 'Nam'),
 ('Khách hàng 2', 25, 'kh2@example.com', 'Nữ'),
 ('Khách hàng 3', 28, 'kh3@example.com', 'Nam'),
 ('Khách hàng 4', 35, 'kh4@example.com', 'Nữ'),
@@ -196,8 +196,21 @@ INSERT INTO CustomerComment (customer_id, article_id, content, time_commented) V
 
 -- Thêm dữ liệu cho bảng Purchase
 INSERT INTO Purchase (customer_id, product_id, purchase_date, number) VALUES
-(1, 1, '2023-11-30', 5),
-(2, 2, '2023-11-29', 5),
-(3, 3, '2023-11-28', 5),
-(4, 4, '2023-11-27', 5),
-(5, 5, '2023-11-26', 5);
+(1, 1, '2023-11-30 12:00:00', 5),
+(1, 2, '2023-11-29 15:30:00', 5),
+(1, 3, '2023-11-28 09:45:00', 5),
+(1, 4, '2023-11-27 18:20:00', 5),
+(1, 5, '2023-11-26 10:00:00', 5),
+(1, 1, '2023-11-30 12:10:00', 5), 
+(1, 2, '2023-11-29 15:40:00', 5), 
+(1, 3, '2023-11-28 10:00:00', 5), 
+(1, 4, '2023-11-27 18:30:00', 5), 
+(1, 1, '2023-11-30 12:20:00', 5), 
+(1, 2, '2023-11-29 16:00:00', 5), 
+(1, 3, '2023-11-28 10:30:00', 5), 
+(1, 4, '2023-11-27 19:00:00', 5)
+(1, 6, '2023-11-30 12:00:00', 5),
+(1, 7, '2023-11-29 15:30:00', 5),
+(1, 8, '2023-11-28 09:45:00', 5),
+(1, 9, '2023-11-27 18:20:00', 5),
+(1, 10, '2023-11-26 10:00:00', 5); 

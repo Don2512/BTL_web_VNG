@@ -14,6 +14,7 @@ $page = basename($directory_path);
     <link rel="stylesheet" href="public\css\style.css">
     <link  rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
     <title>VNG</title>
 </head>
 
@@ -53,7 +54,10 @@ $page = basename($directory_path);
                                         <a class="nav-link text-decoration-none text-black" href="index.php?page=main&controller=society&action=index">Trách nhiệm cộng đồng</a>
                                     </div>
                                     <div class="col-auto px-1 py-1 dotUnder position-relative <?php if ($page == "job") echo 'active' ?>">
-                                        <a class="nav-link text-decoration-none text-black" href="index.php?page=main&controller=order&action=index">Cơ hội nghề nghiệp</a>
+                                        <a class="nav-link text-decoration-none text-black" href="index.php?page=main&controller=order&action=index">Mua hàng</a>
+                                    </div>
+                                    <div class="col-auto px-1 py-1 dotUnder position-relative <?php if ($page == "job") echo 'active' ?>">
+                                        <a class="nav-link text-decoration-none text-black" href="index.php?page=main&controller=information&action=index">Thông tin cá nhân</a>
                                     </div>
                                     <!-- LOGIN -->
                                     <div class="col-auto px-1 py-1 dotUnder position-relative <?php if ($page == "login") echo 'active' ?>">

@@ -80,6 +80,7 @@
 .bg-white-50{background-color: rgba(255, 255, 255, 0.5);}
 .bg-white-75{background-color: rgba(255, 255, 255, 0.75);}
 .bg-none{background-color: transparent;}
+
 /* after */
 .dotUnder::after {
     content: "";
@@ -419,6 +420,18 @@ html[data-bs-theme="light"] .theme-toggle .fa-sun {
 .form-group textarea.form-input {
     height: 150px;
 }
+
+
+
+.Category {
+    color: #9aa7af;
+    display: block;
+    font-size: 16px
+}
+
+
+
+
 
 
 

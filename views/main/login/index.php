@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $role = $_POST['role'];
     $_SESSION['role'] = $role;
     session_write_close();
-    $headerTo = "Location: ?page=" . $role . "&controller=layouts&action=index";
+    $headerTo = "Location: index.php?page=main&controller=about&action=index";
     header($headerTo);
     exit;
 }
