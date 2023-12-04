@@ -249,8 +249,9 @@ require_once('views/admin/footer.php'); ?>
 <script >
     // Use datatables to implement simple sort, search
     $(document).ready(function() {
-        $('#product-table').DataTable(
-            
+        $('#product-table').DataTable( {
+                "scrollX": true
+            }            
         );
     });
 </script>
