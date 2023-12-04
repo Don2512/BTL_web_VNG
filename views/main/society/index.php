@@ -28,7 +28,7 @@ require_once("views/main/header.php") ?>
         <div class="row">
             <div class="col-auto fst-italic border-c-gray c-gray mx-2 rounded-4 hover-bg-gray hover-c-white" onclick="getType('all')">Tất cả</div>
             <div class="col-auto fst-italic border-c-gray c-gray mx-2 rounded-4 hover-bg-gray hover-c-white" onclick="getType('Trách nhiệm xã hội')">Trách nhiệm xã hội</div>
-            <div class="col-auto fst-italic border-c-gray c-gray mx-2 rounded-4 hover-bg-gray hover-c-white" onclick="getType('Cộng đồng công nghệ')">Cộng đồng công nghệ</div>
+            <div class="col-auto fst-italic border-c-gray c-gray mx-2 rounded-4 hover-bg-gray hover-c-white" onclick="getType('Công nghệ')">Cộng đồng công nghệ</div>
             <div class="col-auto fst-italic border-c-gray c-gray mx-2 rounded-4 hover-bg-gray hover-c-white" onclick="getType('phát triển đối tác')">Phát triển đối tác</div>
         </div>
     </div>
@@ -50,7 +50,9 @@ require_once("views/main/header.php") ?>
         $.ajax({
             url: 'http://localhost/index.php?page=main&controller=society&action=getByType',
             method: 'GET',
-            data: { type: type },
+            data: {
+                type: type
+            },
             success: function(jsonDataArray) {
 
 

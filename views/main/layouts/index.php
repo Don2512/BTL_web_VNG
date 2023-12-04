@@ -55,59 +55,8 @@ require_once("views/main/header.php") ?>
         </div>
     </div>
 </div>
-<div class="container mwidth-1200 my-5">
-    <h4 class="c-orange fs-30px mb-4">Tin tức</h4>
-    <div class="container">
-        <div class="row">
-            <div class="col-auto fst-italic border-c-gray c-gray mx-2 rounded-4 hover-bg-gray hover-c-white active">Tất cả</div>
-            <div class="col-auto fst-italic border-c-gray c-gray mx-2 rounded-4 hover-bg-gray hover-c-white">Công nghệ</div>
-            <div class="col-auto fst-italic border-c-gray c-gray mx-2 rounded-4 hover-bg-gray hover-c-white">Sản phẩm</div>
-            <div class="col-auto fst-italic border-c-gray c-gray mx-2 rounded-4 hover-bg-gray hover-c-white">Con người</div>
-            <div class="col-auto fst-italic border-c-gray c-gray mx-2 rounded-4 hover-bg-gray hover-c-white">Doanh nghiệp</div>
-        </div>
-    </div>
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-4">
-                <div class="card hover-shadow rounded-5 h-100">
-                    <img src="https://corp.vcdn.vn/products/upload/vng/source/News/cong-ty-vng-la-gi.png" class="card-img-top h-200px rounded-top-5" alt="...">
-                    <div class="card-body h-100 p-4">
-                        <h5 class="fw-bold">VNG là công ty gì? Thông tin về VNG có thể bạn chưa biết </h5>
-                        <p class="c-gray">08:00 AM | 22/11/2023</p>
-                        <p class="c-gray">VNG là công ty công nghệ sở hữu hệ sinh thái kỹ thuật số hàng đầu Việt Nam được thành lập năm 2004. Công ty cổ phần VNG ...</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card hover-shadow rounded-5 h-100">
-                    <img src="https://corp.vcdn.vn/products/upload/vng/source/News/VNG%20signed.jpg" class="card-img-top h-200px rounded-top-5" alt="...">
-                    <div class="card-body h-100 p-4">
-                        <h5 class="fw-bold">VNG Solutions Inked MSA With INFINITE PL To Mark Presence in Saud ...</h5>
-                        <p class="c-gray">07:00 PM | 15/11/2023</p>
-                        <p class="c-grayy">VNG Solutions, a subsidiary of VNG, recently signed an Agreement with Infinite pl, a prominent logistics-led tech compan ...</p>
 
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card hover-shadow rounded-5 h-100">
-                    <img src="https://corp.vcdn.vn/products/upload/vng/source/News/VNG%20daily%20news/ZLPxGojek-1.jpg" class="card-img-top h-200px rounded-top-5" alt="...">
-                    <div class="card-body h-100 p-4">
-                        <h5 class="fw-bold">ZaloPay và Gojek công bố hợp tác, cung cấp thêm lựa chọn thanh to ...</h5>
-                        <p class="c-gray">09:00 AM | 14/11/2023</p>
-                        <p class="c-gray">ZaloPay và Gojek công bố hợp tác, cung cấp thêm lựa chọn thanh toán không dùng tiền mặt cho người dùng Gojek tại Việt Na ...</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mt-4">
-            <div class="col"></div>
-            <div class="col-auto">
-                <div class="container c-gray hover-bg-gray hover-c-white border-c-gray rounded-5 fst-italic">Xem thêm</div>
-            </div>
-        </div>
-    </div>
-</div>
-
+<?php
+require_once("views/main/blog/news.php");
+require_once("views/main/footer.php");
 ?>
-<?php require_once("views/main/footer.php") ?>
