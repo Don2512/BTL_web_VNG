@@ -109,9 +109,8 @@ require_once("views/main/header.php") ?>
                         else if (response == "usedUsername")
                             notiText.innerText = "Tên đăng nhập đã tồn tại!"
                         notiBox.classList.toggle("d-none");
-
                     } else {
-                        window.location.href = "?page=main&controller=login&action=index"
+                        window.location.href = "?page=main&controller=login&action=signin"
                     }
                     // window.location.reload();
                 },
