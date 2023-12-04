@@ -365,7 +365,7 @@ require_once('views/admin/footer.php'); ?>
 <script>
     // Use datatables to implement simple sort, search
     $(document).ready(function() {
-        $('#article-table').DataTable( {
+        $('#article-table').DataTable( {  
                 "scrollX": true
             }
         );

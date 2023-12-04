@@ -18,7 +18,9 @@ require_once('views/admin/header.php'); ?>
                     Thêm sản phẩm
                 </button>
             </div>
-            <table id="product-table" class="table table-hover">
+            <div class="row dt-row">
+            <div class="col-lg-12">
+                <table id="product-table" class="table table-hover nowrap" style="width:100%">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -43,7 +45,7 @@ require_once('views/admin/header.php'); ?>
                         "
                         <tr>
                             <td>" . $product->id . "</td>
-                            <td><span class=\"d-inline-block text-truncate\" style=\"max-width: 150px;\">" . $product->name . "</span></td>
+                            <td>" . $product->name . "</td>
                             <td>" . $product->category . "</td>
                             <td>" . $product->price . "</td>
                             <td>" . $product->date_added . "</td>
@@ -64,7 +66,8 @@ require_once('views/admin/header.php'); ?>
                     }
                     ?>
                 </tbody>
-            </table>
+                </table>
+            </div></div>
             <!-- Add Product -->
             <div class="modal fade" id="addProduct" tabindex="-1" aria-labelledby="addProductModal" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
