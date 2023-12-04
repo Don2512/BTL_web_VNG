@@ -18,7 +18,7 @@ require_once('views/admin/header.php'); ?>
                     Thêm sản phẩm
                 </button>
             </div>
-            <table class="table table-hover">
+            <table id="product-table" class="table table-hover">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -41,7 +41,7 @@ require_once('views/admin/header.php'); ?>
                     foreach ($products as $product) {
                         echo
                         "
-                        <tr></tr>
+                        <tr>
                             <td>" . $product->id . "</td>
                             <td><span class=\"d-inline-block text-truncate\" style=\"max-width: 150px;\">" . $product->name . "</span></td>
                             <td>" . $product->category . "</td>
@@ -246,3 +246,11 @@ require_once('views/admin/header.php'); ?>
 </script>
 <?php
 require_once('views/admin/footer.php'); ?>
+<script >
+    // Use datatables to implement simple sort, search
+    $(document).ready(function() {
+        $('#product-table').DataTable(
+            
+        );
+    });
+</script>
