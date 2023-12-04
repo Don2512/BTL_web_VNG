@@ -15,7 +15,7 @@ require_once("views/main/header.php") ?>
             <thead class="table-dark" style="color:#FFFFFF; background-color: #ff6a1f;">
                 <tr>
                     <th>Tên sản phẩm</th>
-                    <th>Ảnh</th>
+                    <th>Ảnh</th>string_Processing.cpp
                     <th>Thể loại</th>
                     <th>Giá</th>
                     <th>Số Lượng</th>
