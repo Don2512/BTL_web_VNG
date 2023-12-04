@@ -153,17 +153,17 @@ require_once("views/main/header.php") ?>
     <h4 class="c-orange fs-30px">Thư viện hình ảnh</h4>
     <div class="container">
         <div class="row">
-            <div class="col-6 mt-4">
-                <div class="container border-c-orange rounded-5 hover-bg-orange hover-c-white text-center fs-1 fw-bold h-200px lh-200px">LOGO</div>
+            <div class="col-lg-6 mt-4 hover-c-white">
+                <div class="container text-center fs-1 fw-bold py-5 border-c-orange rounded-5 hover-bg-orange h-100">LOGO</div>
             </div>
-            <div class="col-6 mt-4">
-                <div class="container border-c-orange rounded-5 hover-bg-orange hover-c-white text-center fs-1 fw-bold h-200px lh-200px">VĂN PHÒNG</div>
+            <div class="col-lg-6 mt-4 hover-c-white">
+                <div class="container text-center fs-1 fw-bold py-5 border-c-orange rounded-5 hover-bg-orange">VĂN PHÒNG</div>
             </div>
-            <div class="col-6 mt-4">
-                <div class="container border-c-orange rounded-5 hover-bg-orange hover-c-white text-center fs-1 fw-bold h-200px lh-200px">GIẢI THƯỞNG</div>
+            <div class="col-lg-6 mt-4 hover-c-white">
+                <div class="container text-center fs-1 fw-bold py-5 border-c-orange rounded-5 hover-bg-orange">GIẢI THƯỞNG</div>
             </div>
-            <div class="col-6 mt-4">
-                <div class="container border-c-orange rounded-5 hover-bg-orange hover-c-white text-center fs-1 fw-bold h-200px lh-200px">HOẠT ĐỘNG</div>
+            <div class="col-lg-6 mt-4 hover-c-white">
+                <div class="container text-center fs-1 fw-bold py-5 border-c-orange rounded-5 hover-bg-orange">HOẠT ĐỘNG</div>
             </div>
         </div>
     </div>

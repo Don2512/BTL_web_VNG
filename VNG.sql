@@ -108,6 +108,24 @@ CREATE TABLE IF NOT EXISTS Purchase (
     FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
     FOREIGN KEY (product_id) REFERENCES Product(product_id)
 );
+
+-- Tạo bảng CustomerAccount
+CREATE TABLE IF NOT EXISTS CustomerAccount (
+	customer_id INT,
+    username varchar(20),
+    password varchar(20),
+    PRIMARY KEY (username),
+    FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
+);
+
+-- Tạo bảng EmployeeAccount
+CREATE TABLE IF NOT EXISTS EmployeeAccount (
+	employee_id INT,
+    username varchar(20),
+    password varchar(20),
+    PRIMARY KEY (username),
+    FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
+);
 -- Thêm dữ liệu cho bảng Branch
 INSERT INTO Branch (branch_name, location, employee_count) VALUES
 ('Chi nhánh 1', 'Địa điểm 1', 50),
@@ -201,3 +219,17 @@ INSERT INTO Purchase (customer_id, product_id, purchase_date, number) VALUES
 (3, 3, '2023-11-28', 5),
 (4, 4, '2023-11-27', 5),
 (5, 5, '2023-11-26', 5);
+
+-- Thêm 4 employee_account cơ bản
+INSERT INTO EmployeeAccount (employee_id, username, password) VALUES
+(1, 'long','1'),
+(2, 'dat','1'),
+(3, 'bang','1'),
+(4, 'van','1');
+
+-- Thêm 4 customer_account cơ bản
+INSERT INTO CustomerAccount (customer_id, username, password) VALUES
+(1, 'long','1'),
+(2, 'dat','1'),
+(3, 'bang','1'),
+(4, 'van','1');

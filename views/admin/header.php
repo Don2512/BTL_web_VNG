@@ -1,5 +1,12 @@
+<?php
+if (!isset($_SESSION['role']) || $_SESSION['role'] != 'employee') {
+    header("Location: ?page=main&controller=login&action=signin");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +16,9 @@
     <link rel="stylesheet" href="public/css/Bootstrap_css/bootstrap.min.css">
     <link rel="stylesheet" href="public/css/style.css">
 </head>
+
 <body>
     <div class="wrapper">
-        <?php include ('sidebar.php')?>
+        <?php include('sidebar.php') ?>
         <div class="main">
-            <?php include ('navbar.php')?>
+            <?php include('navbar.php') ?>
