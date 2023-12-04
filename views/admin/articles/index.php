@@ -71,8 +71,8 @@ require_once('views/admin/header.php'); ?>
                 <i class=\"fa-solid fa-trash\"></i>
             </a>
 
-            <a href=\"index.php?page=admin&controller=articles&action=getContent\" class=\"btn btn-warning btn-sm mx-1 my-1 getContentButton\" data-bs-toggle=\"modal\" 
-            data-bs-target=\"#getContent\" data-article-id=" . $article->id . "> 
+                <a href=\"index.php?page=admin&controller=articles&action=getContent\" class=\"btn btn-warning btn-sm mx-1 my-1 getContentButton\" data-bs-toggle=\"modal\" 
+                data-bs-target=\"#editContentModal\" data-article-id=" . $article->id . "> 
                 <i class=\"fa-solid fa-file-pen\"></i>
             </a>
 
@@ -221,66 +221,69 @@ require_once('views/admin/header.php'); ?>
         </div>
     </div>
 
-    <!-- Edit Content Modal--get content -->
-    <div class="modal fade" id="getContent" tabindex="-1" aria-labelledby="getContentModal" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+    <!-- Edit Content Modal -->
+    <div class="modal fade" id="editContentModal" tabindex="-1" role="dialog" aria-labelledby="editContentModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header bg-warning">
-                    <h5 class="modal-title fw-bold" id="getContentModal">Chọn nội dung bài viết</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editContentModalLabel">Edit Content</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
-                    <!-- Form -->
-                    <form action="index.php?page=admin&controller=articles&action=getContent" method="post">
-                        <!-- Use article id to get all relevant contents -->
-                        <div class="mb-3">
-                            <label for="title" class="form-label">Article ID</label>
-                            <input type="text" class="form-control" id="getContentId" name="getContentId" placeholder="Article ID" readonly>
-                        </div>
-                        <!-- Submit Button -->
-                        <button type="submit" class="btn btn-primary" data-bs-target="#editContent" data-bs-toggle="modal">Chỉnh sửa</button>
-                        <!-- Close button -->
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    </form>
+                    <form id="editContentForm">
+                        <!-- Article ID Field (hidden) -->
+                        <input type="hidden" id="articleIdField">
 
+                        <!-- Dropdown List of Content Titles -->
+                        <div class="form-group">
+                            <label for="contentTitleSelect">Select Content Title</label>
+                            <select class="form-control" id="contentTitleSelect"></select>
+                        </div>
+
+                        <!-- Content Title Field (readonly) -->
+                        <div class="form-group">
+                            <label for="contentTitle">Content Title</label>
+                            <input type="text" class="form-control" id="contentTitle" readonly>
+                        </div>
+
+                        <!-- Content Text Field -->
+                        <div class="form-group">
+                            <label for="contentText">Content Text</label>
+                            <textarea class="form-control" id="contentText" rows="3"></textarea>
+                        </div>
+
+                        <!-- Content Image Link Field -->
+                        <div class="form-group">
+                            <label for="contentImage">Content Image Link</label>
+                            <input type="text" class="form-control" id="contentImage">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="saveContentChanges">Save changes</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Edit Content Modal--editing content -->
-    <div class="modal fade" id="editContent" tabindex="-1" aria-labelledby="editContentModal" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header bg-warning">
-                    <h5 class="modal-title fw-bold" id="editContentModal">Sửa nội dung bài viết</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Form -->
-                    <form action="index.php?page=admin&controller=articles&action=editContent" method="post">
-                        <!-- Use article id to get all relevant contents -->
-                        <div class="mb-3">
-                            <label for="title" class="form-label">Article ID</label>
-                            <input type="text" class="form-control" id="getContentId" name="getContentId" placeholder="Article ID" readonly>
-                        </div>
-                        <!-- Submit Button -->
-                        <button type="submit" class="btn btn-primary" data-bs-target="#editContent" data-bs-toggle="modal">Chỉnh sửa</button>
-                        <!-- Close button -->
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    </form>
-
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Edit Content Modal--deleting content -->
 
 
 </main>
 
-<!-- JS Code -->
+<?php
+require_once('views/admin/footer.php'); ?>
 <script>
+    // Use datatables to implement simple sort, search
+    $(document).ready(function() {
+        $('#article-table').DataTable(
+
+        );
+    });
+
     // Add event to get article ID in add, edit, delete article and content
     document.addEventListener('DOMContentLoaded', function() {
         // Get all the edit buttons with the class 'editArticleButton'
@@ -361,16 +364,94 @@ require_once('views/admin/header.php'); ?>
         function populateAddContentModal(articleId) {
             document.getElementById('addContentId').value = articleId;
         }
-    });
-</script>
 
-<?php
-require_once('views/admin/footer.php'); ?>
-<script >
-    // Use datatables to implement simple sort, search
-    $(document).ready(function() {
-        $('#article-table').DataTable(
-            
-        );
+
+        // Function to fetch content data based on article ID and selected content ID
+        function fetchContentData(articleId, selectedContentId) {
+            // Assume you have an API endpoint to get content data
+            var apiUrl = 'index.php?page=admin&controller=articles&action=getContentByTitle';
+            // Make an AJAX request to fetch content data
+            console.log(articleId, selectedContentId);
+            $.ajax({
+                type: 'POST',
+                url: apiUrl,
+                data: {
+                    getContentId: articleId,
+                    selectedContentId: selectedContentId
+                },
+                dataType: 'json',
+                success: function(response) {
+                    // Assuming response is a single content object
+                    populateEditContentForm(response);
+                },
+                error: function(error) {
+                    console.error('Error fetching content data:', error);
+                }
+            });
+        }
+
+        // Function to populate the form fields with content data
+        function populateEditContentForm(content) {
+            console.log(content);   
+            $('#contentTitle').val(contentElement.title);
+            $('#contentText').val(contentElement.content);
+            $('#contentImage').val(contentElement.image);
+        }
+
+        // Event listener for change in content title selection
+        $('#contentTitleSelect').change(function() {
+            var selectedContentTitle = $(this).find(':selected').val();
+            var articleId = $('#articleIdField').val();
+            // Fetch and populate content data based on the selected content ID
+            fetchContentData(articleId, selectedContentTitle);
+        });
+
+        // Event listener for opening the modal
+        $('#editContentModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var articleId = button.data('article-id');
+
+            // Populate the hidden article ID field
+            $('#articleIdField').val(articleId);
+
+            // Assume you have an API endpoint to get content titles based on articleId
+            var contentTitleSelect = $('#contentTitleSelect');
+
+            // Make an AJAX request to fetch content titles
+            $.ajax({
+                type: 'POST',
+                url: 'index.php?page=admin&controller=articles&action=getContent',
+                data: {
+                    getContentId: articleId
+                },
+                dataType: 'json',
+                success: function(response) {
+                    // Assuming response is an array of content objects
+                    contentTitleSelect.empty(); // Clear existing options
+
+                    // Populate dropdown with content titles
+                    response.forEach(function(content) {
+                        contentTitleSelect.append('<option value="' + content.title + '">' + content.title + '</option>');
+                    });
+
+                    // Trigger change event to load the first selected content
+                    contentTitleSelect.trigger('change');
+                },
+                error: function(error) {
+                    console.error('Error fetching content titles:', error);
+                }
+            });
+        });
+
+        // Event listener for saving content changes
+        $('#saveContentChanges').click(function() {
+            // Add logic to save the changes, e.g., another AJAX request
+            // ...
+
+            // Close the modal
+            $('#editContentModal').modal('hide');
+        });
+
+
     });
 </script>

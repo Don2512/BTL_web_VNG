@@ -104,7 +104,7 @@ class Article
         $request = $database->query(
             "SELECT *
             FROM Content
-            WHERE article_id = $article_id
+            WHERE article_id = '$article_id'
             ORDER BY article_id;
         ");
 
@@ -120,6 +120,29 @@ class Article
         }
 
         return $Contents;
+    }
+
+    public static function getAllContentOfAnArticleByIdAndTitle($article_id, $title)
+    {
+        $database = DB::getInstance();
+        $request = $database->query(
+            "SELECT *
+            FROM Content
+            WHERE article_id = '$article_id' AND title = '$title'
+            ORDER BY article_id;
+        ");
+
+        $Content = [];
+
+        foreach ($request->fetch_all(MYSQLI_ASSOC) as $content) {
+            $link = (gettype($content['link']) == NULL) ? "\"\"" : "\"". $content['link'] . "\"";
+            $Content[] = new Content(
+                                $content['title'], 
+                                $content['content'], 
+                                $link
+            );
+        }
+        return $Content;
     }
 
     public static function getArticleById($article_id) 

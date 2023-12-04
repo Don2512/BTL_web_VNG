@@ -50,13 +50,28 @@ class ArticlesController extends BaseController
         header('Location: index.php?page=admin&controller=articles&action=index');
     }
 
-    public function getContent() {
-        print_r($_POST);
-        $content_id = $_POST['getContentId'];
+    public function getContent()
+    {
+        $article_id = $_POST['getContentId'];
+        $contents = Article::getAllContentsOfAnArticleById($article_id);
+    
+        // Send JSON response to frontend
+        header('Content-Type: application/json');
+        echo json_encode($contents);
+        exit;
+    }
 
-        Article::getAllContentsOfAnArticleById($content_id);
+    public function getContentByTitle()
+    {
+        $article_id = $_POST['getContentId'];
+        $content_title = $_POST['selectedContentId'];
+        echo $content_title;
+        $content = Article::getAllContentOfAnArticleByIdAndTitle($article_id, $content_title);
 
-        header('Location: index.php?page=admin&controller=articles&action=index');
+        // Send JSON response to frontend
+        header('Content-Type: application/json');
+        echo json_encode($content);
+        exit;
     }
 
     public function editContent()
