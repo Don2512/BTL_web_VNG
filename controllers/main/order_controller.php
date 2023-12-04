@@ -1,7 +1,7 @@
 <?php
 require_once('controllers/base_controller.php');
 require_once('models/product.php');
-
+require_once('models/Purchase.php');
 class OrderController extends BaseController
 {
     function __construct()
@@ -79,7 +79,12 @@ class OrderController extends BaseController
 
     public function payment()
     {
-        $sessionData = $_SESSION['cart'];
+        $purchaseList = array();
+
+        foreach ($_SESSION['cart'] as $id => $item) {
+            $purchaseList[] = new Purchase($_SESSION['customer_id'], $id, $item['number'], "");
+        }
+        Purchase::insertAllPurchase($purchaseList);
         $_SESSION['cart'] = array();
     }
 }

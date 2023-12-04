@@ -11,16 +11,15 @@ require_once("views/main/header.php") ?>
     <div class="col-lg-1"></div>
     <div class="col-lg-10 col-md-10 col-12">
         <h1 class="c-orange fs-30px fw-bold mt-4 mb-4">Sản Phẩm đã đặt vào kho hàng</h1>
-        <table class="table">
-            <thead>
+        <table class="table table-striped">
+            <thead class="table-dark" style="color:#FFFFFF; background-color: #ff6a1f;">
                 <tr>
                     <th>Tên sản phẩm</th>
-                    <th>Ảnh</th>
+                    <th>Ảnh</th>string_Processing.cpp
                     <th>Thể loại</th>
                     <th>Giá</th>
                     <th>Số Lượng</th>
                     <th>Hành động</th>
-
                 </tr>
             </thead>
             <tbody>
@@ -29,9 +28,9 @@ require_once("views/main/header.php") ?>
                         <td><?php echo $item['name']; ?></td>
                         <td><img src="<?php echo $item['image'] ?>" class="img-thumbnail" style="max-width: 100px;"></td>
                         <td><?php echo $item['category']; ?></td>
-                        <td><?php echo $item['price']; ?></td>
+                        <td>$<?php echo $item['price']; ?></td>
                         <td><?php echo $item['number']; ?></td>
-                        <td><a href="index.php?page=main&controller=order&action=myOrder&&remove_id=<?php echo $id; ?>" class="btn btn-danger">Xóa</a></td>
+                        <td><a href="index.php?page=main&controller=order&action=myOrder&&remove_id=<?php echo $id; ?>" class="btn btn-danger" >Xóa</a></td>
                     </tr>
                 <?php } ?>
                 <tr>
@@ -42,11 +41,9 @@ require_once("views/main/header.php") ?>
             </tbody>
         </table>
 
-        <a href="index.php?page=main&controller=order&action=index" class="btn btn-primary">Quay lại</a>
-        <button class="btn btn-primary" onclick="makePayment()">Thanh Toán</button>
-    </div>
-
-    
+        <a href="index.php?page=main&controller=order&action=index" class="btn btn-primary" style="color:#FFFFFF; background-color: #ff6a1f; border: 1px solid gray;">Quay lại</a>
+        <a class="btn btn-outline-success"  onclick="makePayment()">Thanh Toán</a>
+    </div>    
 </div>
 
 
@@ -65,7 +62,7 @@ require_once("views/main/header.php") ?>
                 var response = xhr.responseText;
                 console.log(response);
                 // Hiển thị thông báo "Thanh toán thành công"
-                alert("Thanh toán thành công");
+                alert("thanh toán thàng công");
 
 
             } else {
@@ -80,7 +77,7 @@ require_once("views/main/header.php") ?>
 
         // Gửi yêu cầu AJAX
         xhr.send();
-        window.location.href = "index.php?page=main&controller=order&action=index";
+        window.location.href = "index.php?page=main&controller=information&action=purchaseHistory";
     }
 </script>
 
