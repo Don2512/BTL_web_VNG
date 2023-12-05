@@ -10,7 +10,31 @@ class informationController extends BaseController
 
 	public function index()
 	{
-		$this->render('index');
+        $customer_id = $_SESSION['customer_id'];
+        $purchase = Purchase::getnumberPurchaseWeek($_SESSION['customer_id']);
+        $dataPoints = array( 
+            array("y" => 0, "label" => "Thứ 2" ),
+            array("y" => 0, "label" => "Thứ 3" ),
+            array("y" => 0, "label" => "Thứ 4" ),
+            array("y" => 0, "label" => "Thứ 5" ),
+            array("y" => 0, "label" => "Thứ 6" ),
+            array("y" => 0, "label" => "Thứ 7" ),
+            array("y" => 0, "label" => "Chủ nhật" )
+        );
+
+        for($i = 0; $i < count($purchase); $i++)
+        {
+            $dataPoints[$i]['y'] = $purchase[$i];
+        }
+
+
+
+
+        $data = array(
+            "dataPoints" => $dataPoints,
+        );
+
+		$this->render('index', $data);
 	}
 
     public function purchaseHistory()
