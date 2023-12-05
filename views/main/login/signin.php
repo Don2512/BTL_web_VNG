@@ -4,7 +4,6 @@
 <?php
 $_SESSION['role'] = 'guest';
 
-
 require_once("views/main/header.php") ?>
 
 <div>

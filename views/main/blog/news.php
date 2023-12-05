@@ -13,19 +13,34 @@
         <div class="row" id="jsonDataContainer">
         </div>
         <div class="row">
-            <div class="col"></div>
-            <div class="col-auto"><a href="?page=main&controller=blog&action=index" class="text-decoration-none border-c-gray c-gray hover-bg-gray hover-c-white rounded-4 py-1 px-2 fst-italic">Xem thêm</a></div>
+            <?php if (!isset($mainPage)) echo '
+                <div class="col"></div>
+                <div class="col-auto"><a href="?page=main&controller=blog&action=index" class="text-decoration-none border-c-gray c-gray hover-bg-gray hover-c-white rounded-4 py-1 px-2 fst-italic">Xem thêm</a></div>
+            ';
+            else echo '
+                <div class="col-auto"><a class="text-decoration-none border-c-gray c-gray hover-bg-gray hover-c-white rounded-4 py-1 px-2 fst-italic" onclick=getMoreNews()>Xem thêm</a></div>
+            ';
+            ?>
         </div>
     </div>
 </div>
 <script>
+    var numOfNews = <?php if (isset($numOfNews)) echo $numOfNews;
+                    else echo 3; ?>;
+    var typeNow = "all";
+
+    function getMoreNews() {
+        numOfNews += 3;
+        getType(typeNow, numOfNews)
+    }
+
     $(document).ready(function() {
-        // getType('all');
         document.getElementById('btn_all').addEventListener('click', getType('all'
             <?php if (isset($numOfNews)) echo ',' . $numOfNews; ?>));
     });
 
     function getType(type, lengthMAX = 3) {
+        typeNow = type;
         if (event) {
             $('.row div').removeClass('active');
             $(event.target).addClass('active');

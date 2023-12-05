@@ -38,7 +38,7 @@
                                 echo $item->name; ?></h5>
                         </div>
                         <div class="col-auto">
-                            <?php if ($item->name_id == (isset($_SESSION['customer_id'])) ? $_SESSION['customer_id'] : 0) { ?>
+                            <?php if ($item->name_id == (isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : 0)) { ?>
                                 <div class="hover-bg-red c-black hover-c-white border-c-red px-2 py-1 hover-mouse" onclick="deleteComment(<?php echo $item->name_id; ?>, <?php echo $item->article_id; ?>, '<?php echo $item->time_commented; ?>')">Xóa</div>
 
                             <?php } ?>

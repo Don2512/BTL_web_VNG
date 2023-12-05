@@ -33,7 +33,8 @@ require_once("views/main/header.php") ?>
 </div>
 
 <?php
-$numOfNews = 9;
+// $numOfNews = 9;
+$mainPage = true;
 require_once("views/main/blog/news.php")
 ?>
 

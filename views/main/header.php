@@ -96,46 +96,38 @@ $page = basename($directory_path);
                                     <!-- LOGIN -->
                                     <div class="col-lg-auto">
                                         <div class="row">
-                                            <div class="col-auto px-1 py-1 dotUnder position-relative <?php if ($page == "login") echo 'active' ?>">
-                                                <a class="text-decoration-none c-black px-2 hover-c-black pb-1" <?php if (isset($_SESSION['role']) && $_SESSION['role'] != 'customer') echo 'href="index.php?page=main&controller=login&action=signin"'; ?>>
-                                                    <!-- <div class='' onclick=account() id='account'>
-                                                        Tài khoản
-                                                        
-                                                    </div> -->
-
+                                            <div <?php if (isset($_SESSION['role']) && $_SESSION['role'] == "customer") echo 'onclick=account()' ?> id="accCtn" class="col-auto px-1 py-1 dotUnder position-relative <?php if ($page == "login") echo 'active' ?>">
+                                                <a class="text-decoration-none c-black px-2 hover-c-black pb-1" <?php if (!(isset($_SESSION['role']) && $_SESSION['role'] == "customer")) echo 'href="index.php?page=main&controller=login&action=signin"'; ?>>
                                                     <?php
-                                                    if (isset($_SESSION['role']) && $_SESSION['role'] != 'guest') echo "
-                                                        Tài khoản
-                                                        
-                                                    ";
+                                                    if (isset($_SESSION['role']) && $_SESSION['role'] == "customer") echo "Tài khoản";
                                                     else echo "Đăng nhập";
                                                     ?>
-                                                    <div class='mt-4 position-absolute top-100 border-c-orange px-2 bg-white' style="width:150px;">
-                                                        <div class="row">
-                                                            <div class="col-12 hover-bg-orange hover-c-white">
-                                                                <a class="text-decoration-none" href="index.php?page=main&controller=login&action=signin">
-                                                                    <div class="hover-bg-orange hover-c-white">
-                                                                        Thông tin cá nhân
-                                                                    </div>
-                                                                </a>
-                                                            </div>
-                                                            <div class="col-12 hover-bg-orange hover-c-white">
-                                                                <a class="text-decoration-none" href="index.php?page=main&controller=login&action=signin">
-                                                                    <div class="hover-bg-orange hover-c-white">
-                                                                        Giỏ hàng
-                                                                    </div>
-                                                                </a>
-                                                            </div>
-                                                            <div class="col-12 hover-bg-orange hover-c-white">
-                                                                <a class="text-decoration-none" href="index.php?page=main&controller=login&action=signin">
-                                                                    <div class="hover-bg-orange hover-c-white">
-                                                                        Đăng xuất
-                                                                    </div>
-                                                                </a>
-                                                            </div>
+                                                </a>
+                                                <div class='d-none position-absolute top-100 border-c-orange px-2 bg-white border-2' style="width:150px;" id="acc">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <a class="text-decoration-none" href="index.php?page=main&controller=information&action=index">
+                                                                <div class="hover-c-orange c-black">
+                                                                    Thông tin cá nhân
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <a class="text-decoration-none" href="index.php?page=main&controller=order&action=myOrder">
+                                                                <div class="hover-c-orange c-black">
+                                                                    Giỏ hàng
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <a class="text-decoration-none" href="index.php?page=main&controller=login&action=signin">
+                                                                <div class="hover-c-orange c-black">
+                                                                    Đăng xuất
+                                                                </div>
+                                                            </a>
                                                         </div>
                                                     </div>
-                                                </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -162,7 +154,10 @@ $page = basename($directory_path);
 <script src="public/js/bootstrap_js/bootstrap.min.js"></script>
 <script>
     function account() {
-
+        var acc = $("#acc")
+        var accCtn = $("#accCtn")
+        acc.toggleClass("d-none")
+        accCtn.removeClass("dotUnder")
     }
 
     $(document).ready((e) => {
