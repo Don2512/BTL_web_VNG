@@ -33,7 +33,7 @@ $controllers = array(
   'human' => ['index'],
   'society' => ['index', 'article', 'addComment', "deleteComment", "getByType"],
   'order' => ['index', 'myOrder', 'payment'],
-  'information' =>['index', 'purchaseHistory'],
+  'information' =>['index', 'purchaseHistory', 'updateCustomer'],
 ); // Các controllers trong hệ thống và các action có thể gọi ra từ controller đó.
 
 // Nếu các tham số nhận được từ URL không hợp lệ (không thuộc list controller và action có thể gọi

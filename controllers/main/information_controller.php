@@ -1,6 +1,8 @@
 <?php
 require_once('controllers/base_controller.php');
 require_once('models/Purchase.php');
+require_once('models/customer.php');
+
 class informationController extends BaseController
 {
 	function __construct()
@@ -11,7 +13,7 @@ class informationController extends BaseController
 	public function index()
 	{
         $customer_id = $_SESSION['customer_id'];
-        $purchase = Purchase::getnumberPurchaseWeek($_SESSION['customer_id']);
+        $purchase = Purchase::getnumberPurchaseWeek($customer_id);
         $dataPoints = array( 
             array("y" => 0, "label" => "Thứ 2" ),
             array("y" => 0, "label" => "Thứ 3" ),
@@ -21,7 +23,6 @@ class informationController extends BaseController
             array("y" => 0, "label" => "Thứ 7" ),
             array("y" => 0, "label" => "Chủ nhật" )
         );
-
         for($i = 0; $i < count($purchase); $i++)
         {
             $dataPoints[$i]['y'] = $purchase[$i];
@@ -29,9 +30,11 @@ class informationController extends BaseController
 
 
 
+        $customer = Customer::getByIdCustomer($customer_id);
 
         $data = array(
             "dataPoints" => $dataPoints,
+            "customer" => $customer,
         );
 
 		$this->render('index', $data);
@@ -51,5 +54,18 @@ class informationController extends BaseController
 
         $this->render('purchaseHistory', $data);
     }
+
+    public function updateCustomer()
+    {
+        if(! isset($_POST['customer_id'])) return;
+        $customer_id = isset($_POST['customer_id']) ? $_POST['customer_id'] : '';
+        $customer_name = isset($_POST['customer_name']) ? $_POST['customer_name'] : '';
+        $age = isset($_POST['age']) ? $_POST['age'] : '';
+        $email = isset($_POST['email']) ? $_POST['email'] : '';
+        $gender = isset($_POST['gender']) ? $_POST['gender'] : '';
+    
+        Customer::edit($customer_id, $customer_name, $age, $email, $gender);
+    }
+    
 
 }

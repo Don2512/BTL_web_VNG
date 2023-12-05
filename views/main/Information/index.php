@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-    $check = false;
+    $check = true;
     $array = array();
+
+    $customer_id = $customer->customer_id;
+    $name = $customer->customer_name;
+    $gender = $customer->gender;
+    $age = $customer->age;
+    $email = $customer->email;
+
     if(isset($_POST["edit"]))
     {
         $customer_id = $_POST["customer_id"];
@@ -10,10 +17,26 @@
         $gender = $_POST["gender"];
         $age = $_POST["age"];
         $email = $_POST["email"];
-    }
-    $array [] = "Tên sai";
-    $array [] = "Tuổi";
-    $array [] = "Email sai";     
+
+        if(strlen($name) < 2 || strlen($name) > 100)
+        {
+            $array [] = "Tên không hợp lệ";
+            $check = false;
+        }
+
+        if($age < 0 || $age > 120)
+        {
+            $array [] = "Tuổi không hợp lệ.";
+            $check = false;
+
+        }
+
+        if (! filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $array [] = "Địa chỉ email không hợp lệ.";
+            $check = false;
+
+        }
+    } 
 ?>
 
 <?php
@@ -24,31 +47,33 @@ require_once("views/main/header.php") ?>
         <div class="col-lg-7 col-md-9 col-12">
             <h1 class="c-orange fs-30px fw-bold mt-4 mb-4">Chỉnh sửa thông tin cá nhân</h1>
             <div class="row">
-                <input type="hidden" class="form-control" name="customer_id" id="customer_idEdit" required>
-                <div class="col-lg-10">
-                    <label for="nameEdit" class="form-label">Họ và tên</label>
-                    <input type="text" class="form-control" name="name" id="nameEdit" required>
-                </div>
-                <div class="col-lg-2">
-                    <label for="genderEdit" class="form-label">Giới tính</label>
-                    <select class="form-select" name="gender" id="genderEdit" required>
-                        <option value="Nam">Nam</option>
-                        <option value="Nữ">Nữ</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="nameEdit" class="form-label">Tuổi</label>
-                    <input type="text" class="form-control" name="age" id="ageEdit" required>
-                </div>
-                <div >
-                    <label for="nameEdit" class="form-label">Email</label>
-                    <input type="text" class="form-control" name="email" id="emailEdit" required>
-                </div>
+                <form action="index.php?page=main&controller=information&action=index" method="post">
+                    <input type="hidden" class="form-control" name="customer_id" id="customer_idEdit" value="<?php echo $customer_id ?>" required>
+                    <div class="col-lg-10">
+                        <label for="nameEdit" class="form-label" ></label>Họ và tên</label>
+                        <input type="text" class="form-control" name="name" id="nameEdit" value="<?php echo $name ?>" required>
+                    </div>
+                    <div class="col-lg-2">
+                        <label for="genderEdit" class="form-label">Giới tính</label>
+                        <select class="form-select" name="gender" id="genderEdit" required>
+                            <option value="Nam" <?php echo ($gender == 'Nam') ? 'selected' : ''; ?>>Nam</option>
+                            <option value="Nữ" <?php echo ($gender == 'Nữ') ? 'selected' : ''; ?>>Nữ</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="nameEdit" class="form-label">Tuổi</label>
+                        <input type="text" class="form-control" name="age" id="ageEdit" value="<?php echo $age ?>" required>
+                    </div>
+                    <div >
+                        <label for="nameEdit" class="form-label">Email</label>
+                        <input type="text" class="form-control" name="email" id="emailEdit" value="<?php echo $email ?>" required>
+                    </div>
 
 
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary Paymentbtn" data-bs-toggle="modal" data-bs-target="#PaymentModal">Lưu thay đổi</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="submit" name="edit" class="btn btn-primary">Lưu thay đổi</button>
+                    </div>
+                </form>
             </div>
 
            
@@ -57,13 +82,13 @@ require_once("views/main/header.php") ?>
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header <?php echo( $check ? "bg-success" : "bg-danger") ?>  text-white">
-                        <h1 class="modal-title fs-5" id="PaymentModalLabel"><?php echo($check ? "Cập nhật thành công!" : "Cập nhật thất bại") ?></h1>
+                        <h1 class="modal-title fs-5" id="PaymentModalLabel"><?php echo($check ? "Dữ liệu chính xác!" : "Dữ liệu thất bại") ?></h1>
 
 
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body"> 
-                        <p><?php echo($check ? "Dữ liệu đã cập nhật!" : "Chỉnh lại thông tin cho phù hợp !") ?></p>
+                        <p><?php echo($check ? "Bạn muốn thay đổi!" : "Chỉnh lại thông tin cho phù hợp !") ?></p>
                         <?php if(!$check){
                             foreach($array as $er){
                                 echo "<p> $er</p>";
@@ -72,6 +97,7 @@ require_once("views/main/header.php") ?>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <?php if($check){?> <button type="submit" class="btn btn-success" data-bs-dismiss="modal"  onclick="makePayment();">Cập nhật</button>  <?php } ?>
                     </div>
                 </div>
             </div>
@@ -101,15 +127,49 @@ require_once("views/main/header.php") ?>
     chart.render();
     
     }
+    <?php if(isset($_POST["edit"])){?> $(document).ready(function(){ $("#PaymentModal").modal("show"); }) <?php }?>
 
 
-    $('.Paymentbtn').on('click', function () {
-        var removeId = $(this).data('remove_id');
-    });
+    // $customer_id = $customer->customer_id;
+    // $name = $customer->customer_name;
+    // $gender = $customer->gender;
+    // $age = $customer->age;
+    // $email = $customer->email;
 
-    $('#PaymentModal').on('show.bs.modal', function () {
-        $('#PaymentModal form').attr('action');
-    });
+    function makePayment(){
+            event.preventDefault();
+
+        var customer_id = '<?php echo $customer_id; ?>';
+        var customer_name = '<?php echo $name; ?>';
+        var gender = '<?php echo $gender; ?>';
+        var age = '<?php echo $age; ?>';
+        var email = '<?php echo $email; ?>';
+        var formData = {
+            customer_id: customer_id,
+            customer_name: customer_name,
+            gender: gender,
+            age: age,
+            email: email
+        };
+        var serializedData = $.param(formData);
+        console.log("!232");
+        $.ajax({
+            type: 'POST',
+            url: 'index.php?page=main&controller=information&action=updateCustomer',
+            data: formData,
+            success: function(response) {
+                // Xử lý phản hồi từ server ở đây (nếu cần)
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    }
+
+
+
+
 </script>
 <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
 <?php require_once("views/main/footer.php") ?>

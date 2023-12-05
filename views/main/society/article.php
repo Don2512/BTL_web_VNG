@@ -74,7 +74,6 @@
     $(document).ready(function() {
         $('#commentForm').submit(function(event) {
             event.preventDefault();
-            console.log(312213321);
             var formData = $(this).serialize();
 
             $.ajax({

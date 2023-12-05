@@ -59,9 +59,22 @@ class Customer{
             $result[] = new Customer($customer["customer_id"], $customer["customer_name"], $customer["age"],  $customer["email"],$customer["gender"]);
         }
         return $result;
-
-        
     }
+
+    public static function getByIdCustomer($customer_id)
+    {
+        //* query
+        $query = "SELECT * FROM customer WHERE customer_id = $customer_id";
+        $request = DB::_Query($query);
+    
+        //* get
+        $result = [];
+        foreach ($request->fetch_all(MYSQLI_ASSOC) as $customer) {
+            $result[] = new Customer($customer["customer_id"], $customer["customer_name"], $customer["age"],  $customer["email"],$customer["gender"]);
+        }
+        return $result[0];
+    }
+
 
 
 }
