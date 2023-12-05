@@ -126,4 +126,14 @@ class Account
             return true;
         else return false;
     }
+    public static function getCustomerNameById($id)
+    {
+        $query = "
+            SELECT name FROM Customer
+            WHERE id = $id;
+        ";
+        $request = DB::_Query($query);
+        $result = $request->fetch_all(MYSQLI_ASSOC);
+        return $result[0];
+    }
 }

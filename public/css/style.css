@@ -84,6 +84,7 @@
 .lh-300px{line-height: 300px;}
 .lh-400px{line-height: 400px;}
 /* border */
+.border-c-red{border: 1px solid rgb(207, 0, 0);}
 .border-c-orange{border: 1px solid #ff6a1f;}
 .border-c-gray{border: 1px solid gray;}
 /* bg color */
@@ -114,6 +115,8 @@
     opacity: 1;
 }
 /* hover */
+.hover-c-black:hover{color:black;}
+.hover-bg-red:hover{background-color: rgb(207, 0, 0);}
 .hover-pb-50px.active{padding-bottom: 50px;}
 .hover-pb-50px:hover{padding-bottom: 50px;}
 .hover-pb-0.active{padding-bottom: 0;}
@@ -450,7 +453,14 @@ html[data-bs-theme="light"] .theme-toggle .fa-sun {
     font-size: 16px
 }
 
-
+.textareaElement {
+    width: 300px;
+    min-height: 17px;
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
 
 
 

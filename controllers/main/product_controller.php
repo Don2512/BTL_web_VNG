@@ -7,7 +7,7 @@ class ProductController extends BaseController
 {
     function __construct()
     {
-        $this->folder = 'views/main/Product';
+        $this->folder = 'views/main/product';
     }
 
     public function index()

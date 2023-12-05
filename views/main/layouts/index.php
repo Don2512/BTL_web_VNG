@@ -6,11 +6,11 @@ require_once("views/main/header.php") ?>
         <div class="carousel-item active position-relative">
             <img src="https://corp.vcdn.vn/upload/vng/source/Banner/BANNER-01.png" class="d-block w-100" alt="...">
 
-            <div class="position-absolute bg-white-50 t-20 l-20 p-5 rounded-4">
-                <h5 class="text-black fs-46px">VNG CORPORATION</h5>
+            <div class="position-absolute bg-white-50 t-20 l-20 p-5 rounded-4" id="ctn">
+                <h5 class="text-black fs-46px" id="text_0">VNG CORPORATION</h5>
                 <div class="row">
                     <div class="col-auto">
-                        <p class="text-black fs-30px d-inline">Technology champion of Vietnam</p>
+                        <p class="text-black fs-30px d-inline" id="text_1">Technology champion of Vietnam</p>
                     </div>
                     <div class="col-auto"><a href="?page=main&controller=about&action=index" class="text-decoration-none" target="_blank"><i class="bi bi-arrow-right-circle-fill c-orange fs-46px"></i></a></div>
                 </div>
@@ -61,6 +61,37 @@ require_once("views/main/header.php") ?>
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        fixUIBaseOnWidth1();
+    });
+
+    window.onresize = fixUIBaseOnWidth1;
+
+    function fixUIBaseOnWidth1() {
+        fixUIBaseOnWidth();
+        width = window.innerWidth;
+        var text_0 = $("#text_0")
+        var text_1 = $("#text_1")
+        var ctn = $("#ctn")
+        if (width < 1200) {
+            text_0.removeClass("fs-46px")
+            text_0.addClass("fs-4")
+            text_1.removeClass("fs-30px")
+            text_1.addClass("fs-6")
+            ctn.removeClass("t-20 l-20 p-5")
+            ctn.addClass("t-10 l-10 p-1")
+        } else {
+            text_0.removeClass("fs-4")
+            text_0.addClass("fs-46px")
+            text_1.removeClass("fs-6")
+            text_1.addClass("fs-30px")
+            ctn.addClass("t-20 l-20 p-5")
+            ctn.removeClass("t-10 l-10 p-1")
+        }
+    }
+</script>
 
 <?php
 require_once("views/main/blog/news.php");

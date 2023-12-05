@@ -2,18 +2,18 @@
 <html lang="en">
 
 
-<?php require_once("views/main/header.php");?>
+<?php require_once("views/main/header.php"); ?>
 <?php
-    $current_page = isset($_GET['numberpage']) ? $_GET['numberpage'] : 1;
-    $pre_page = ($current_page > 1) ? ($current_page - 1) : 1;
-    $next_page = ($current_page < $total_pages) ? ($current_page + 1) : $total_pages;
-    $total = 0;
+$current_page = isset($_GET['numberpage']) ? $_GET['numberpage'] : 1;
+$pre_page = ($current_page > 1) ? ($current_page - 1) : 1;
+$next_page = ($current_page < $total_pages) ? ($current_page + 1) : $total_pages;
+$total = 0;
 ?>
 
 <div class="row">
     <div class="col-lg-1"></div>
     <div class="col-lg-10 col-md-10 col-12">
-        <h1 class="c-orange fs-30px fw-bold mt-4 mb-4">Lịch sử hàng của <?php echo $_SESSION['customer_name'] ?></h1>
+        <h1 class="c-orange fs-30px fw-bold mt-4 mb-4">Lịch sử đơn hàng của bạn</h1>
         <table class="table table-striped">
             <thead class="table-dark" style="color:#FFFFFF; background-color: #ff6a1f;">
                 <tr>
@@ -52,7 +52,7 @@
 
         <nav>
             <ul class="pagination justify-content-end ">
-                <?php if ($current_page > 1): ?>
+                <?php if ($current_page > 1) : ?>
                     <li class="page-item mr-1">
                         <a class="page-link" href="index.php?page=main&controller=information&action=purchaseHistory&numberpage=<?php echo $pre_page; ?>" aria-label="Previous">
                             <span class="c-orange" aria-hidden="true">&laquo;</span>
@@ -61,7 +61,7 @@
                     </li>
                 <?php endif; ?>
 
-                <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
                     <li class="page-item <?php echo ($i == $current_page) ? 'active' : ''; ?>">
                         <a class="page-link" href="index.php?page=main&controller=information&action=purchaseHistory&numberpage=<?php echo $i; ?>">
                             <span class="<?php echo ($i == $current_page) ? ' text-white' : 'c-orange'; ?>"><?php echo $i; ?></span>
@@ -69,7 +69,7 @@
                     </li>
                 <?php endfor; ?>
 
-                <?php if ($current_page < $total_pages): ?>
+                <?php if ($current_page < $total_pages) : ?>
                     <li class="page-item mr-5">
                         <a class="page-link c-orange" href="index.php?page=main&controller=information&action=purchaseHistory&numberpage=<?php echo $next_page; ?>" aria-label="Next">
                             <span class="c-orange" aria-hidden="true">&raquo;</span>
@@ -79,7 +79,7 @@
                 <?php endif; ?>
             </ul>
         </nav>
-    </div>    
+    </div>
 </div>
 
 <?php require_once("views/main/footer.php") ?>

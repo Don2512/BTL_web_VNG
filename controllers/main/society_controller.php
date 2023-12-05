@@ -21,18 +21,18 @@ class SocietyController extends BaseController
         $article = Article::getByIDArticle($_GET['article_id']);
         $newAarticle = Article::getNewArticle($_GET['article_id']);
         $comment = CustomerComment::getByIDCustomerComment($_GET['article_id']);
-        $data =[
+        $data = [
             "article"       => $article,
             "newAarticle"   => $newAarticle,
             "comment"       => $comment
         ];
-        
-        $this->render('article', $data);        
+
+        $this->render('article', $data);
     }
 
     public function addComment()
     {
-        $comment = new CustomerComment(1, "", $_POST['content'], "", $_POST['article_id']);
+        $comment = new CustomerComment(1, $_POST['customer_id'], $_POST['content'], "", $_POST['article_id']);
         CustomerComment::addCustomerComment($comment);
     }
 
@@ -49,10 +49,10 @@ class SocietyController extends BaseController
         );
 
         echo json_encode(['message' => "ok"]);
-    
     }
-    
-    public function getByType(){
+
+    public function getByType()
+    {
         $result = Article::getByTypeArticle($_GET['type']);
 
         echo json_encode(['message' => $result]);
