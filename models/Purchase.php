@@ -76,5 +76,32 @@ class Purchase{
         DB::_Query($query);
     }
     
+
+
+    public static function getnumberPurchaseWeek($customer_id)
+    {
+        //* query
+        $query = "
+                SELECT
+                SUM(number) AS total_items,
+                DAYOFWEEK(purchase_date) AS day_of_week
+            FROM
+                Purchase
+            WHERE
+                customer_id = $customer_id
+                AND purchase_date >= CURDATE() - INTERVAL (DAYOFWEEK(CURDATE()) - 2) DAY
+                AND purchase_date < CURDATE() + INTERVAL (8 - DAYOFWEEK(CURDATE())) DAY
+            GROUP BY
+                day_of_week;        
+        ";
+        $request = DB::_Query($query);
     
+        //* get
+        $result = [];
+        foreach ($request->fetch_all(MYSQLI_ASSOC) as $temp) {
+            $result[] = $temp['total_items'];
+        }
+        return $result;
+    }
+
 }

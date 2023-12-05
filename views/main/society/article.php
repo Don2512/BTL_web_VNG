@@ -113,7 +113,6 @@
                 .appendTo("#commentForm");
 
             event.preventDefault();
-            console.log(312213321);
             var formData = $(this).serialize();
             $.ajax({
                 type: 'POST',

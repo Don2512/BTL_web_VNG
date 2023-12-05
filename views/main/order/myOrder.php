@@ -7,7 +7,6 @@ $controller = "job";
 require_once("views/main/header.php") ?>
 
 <div>
-
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-10 col-md-10 col-12">

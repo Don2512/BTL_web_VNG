@@ -18,10 +18,10 @@ class ArticlesController extends BaseController
 
     public function add()
     {
-        $title = $_POST['title'];
-        $subtitle = $_POST['subtitle'];
-        $type = $_POST['type'];
-        $author_id = $_POST['authorId'];
+        $title = $_POST['addTitle'];
+        $subtitle = $_POST['addSubtitle'];
+        $type = $_POST['addType'];
+        $author_id = $_POST['addAuthorId'];
         Article::addNewArticle($title, $subtitle, $type, $author_id);
 
         header('Location: index.php?page=admin&controller=articles&action=index');

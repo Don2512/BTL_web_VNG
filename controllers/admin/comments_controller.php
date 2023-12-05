@@ -32,7 +32,8 @@ class CommentsController extends BaseController
     public function delete()
     {
         $article_id = $_POST['article_id'];
-        $delete_comment = Comment::delete($article_id);
+        $employee_id= $_POST['employee_id'];
+        $delete_comment = Comment::delete($article_id, $employee_id);
         header('Location: index.php?page=admin&controller=comments&action=index');
     }
 }

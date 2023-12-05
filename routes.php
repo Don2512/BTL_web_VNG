@@ -13,6 +13,7 @@ $controllers = array(
   'errors' => ['index'],
   'layouts' => ['index'], // Bổ sung thêm các hàm trong controllers
   'members' => ['index', 'add', 'edit', 'delete'],
+  'customers' => ['index', 'add', 'edit', 'delete'],
   'products' => ['index', 'add', 'edit', 'delete'],
   'articles' => ['index', 'add', 'edit', 'delete', 'getContent', 'getContentByTitle', 'addContent', 'editContent', 'deleteContent'],
   'comments' => ['index', 'hide', 'add', 'edit', 'delete'],
@@ -32,7 +33,7 @@ $controllers = array(
   'human' => ['index'],
   'society' => ['index', 'article', 'addComment', "deleteComment", "getByType"],
   'order' => ['index', 'myOrder', 'payment'],
-  'information' =>['index', 'purchaseHistory'],
+  'information' =>['index', 'purchaseHistory', 'updateCustomer'],
 ); // Các controllers trong hệ thống và các action có thể gọi ra từ controller đó.
 
 // Nếu các tham số nhận được từ URL không hợp lệ (không thuộc list controller và action có thể gọi

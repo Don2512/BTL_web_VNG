@@ -28,6 +28,16 @@ require_once('views/admin/header.php'); ?>
     </div>
     <div class="col">
         <div class="card">
+            <a href="index.php?page=admin&controller=customers&action=index">
+            <div class="card-body text-center">
+                <h4 class="card-title">Quản lý khách hàng</h4>
+                <p> <i class="fa-solid fa-user-group" style="font-size:48px;"></i></p>
+            </div>
+            </a> 
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
             <a href="index.php?page=admin&controller=articles&action=index">
             <div class="card-body text-center">
                 <h4 class="card-title">Quản lý tin tức</h4>
@@ -37,6 +47,7 @@ require_once('views/admin/header.php'); ?>
             </a>
             
         </div>
+    </div>
     </div>
     <div class="col">
         <div class="card">
@@ -49,7 +60,6 @@ require_once('views/admin/header.php'); ?>
             </a>
             
         </div>
-    </div>
     </div>
 </main>
 <?php
