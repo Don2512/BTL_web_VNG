@@ -18,13 +18,13 @@ class ProductsController extends BaseController
 
     public function add()
     {
+        print_r($_POST);
         $category = $_POST['addCategory'];
-        $date_added = $_POST['addDateAdded'];
         $name = $_POST['addName'];
         $price = $_POST['addPrice'];
         $image = $_POST['addImage'];
 
-        Product::addNewProduct($category, $date_added, $name, $price, $image);
+        Product::addNewProduct($category, $name, $price, $image);
 
         header('Location: index.php?page=admin&controller=products&action=index');
     }
@@ -45,7 +45,6 @@ class ProductsController extends BaseController
 
     public function delete()
     {
-        print_r($_POST);
         $product_id= $_POST['deleteProductId'];
 
         Product::deleteProductById($product_id);

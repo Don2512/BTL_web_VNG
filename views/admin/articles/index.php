@@ -50,7 +50,7 @@ require_once('views/admin/header.php'); ?>
     <th scope=\"row\">" . $article->id . "</th>
     <td>" . $article->title . "</td>
     <!-- Can use bootstrap text truncate if you want to reduce space that text occupied-->
-    <td>" . $article->subtitle . "</td>
+    <td class=\"h-10\">" . $article->subtitle . "</td>
     <td>" . $article->type . "</td>
     <td>" . $article->author_id . "</td>
     <td>" . date('h:i - d/m/Y', strtotime($article->date))  . "</td>
@@ -365,8 +365,9 @@ require_once('views/admin/footer.php'); ?>
 <script>
     // Use datatables to implement simple sort, search
     $(document).ready(function() {
-        $('#article-table').DataTable(
-
+        $('#article-table').DataTable( {  
+                "scrollX": true
+            }
         );
     });
 

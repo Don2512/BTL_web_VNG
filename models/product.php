@@ -22,11 +22,10 @@ class Product{
 
     public static function getAllProduct()
     {
-        //* query
+        $database = DB::getInstance();
         $query = "SELECT * FROM Product ORDER BY product_id ";
-        $request = DB::_Query($query);
+        $request = $database->query($query);
     
-        //* get
         $result = [];
         foreach ($request->fetch_all(MYSQLI_ASSOC) as $product) {
             $result[] = new Product(
@@ -41,14 +40,15 @@ class Product{
         return $result;
     }
 
-    public static function addNewProduct($category, $date_added, $name, $price, $image) 
+    public static function addNewProduct($category, $name, $price, $image) 
     {
         $database = DB::getInstance();
         $time_published= date("Y-m-d-h-i-s");
+
         $request = $database->query
         (
-            "INSERT INTO Product (category ,date_added, price, name, image)
-                VALUE ('$category', '$date_added', '$name', '$price', '$image');"
+            "INSERT INTO Product (category, date_added, price, name, image)
+                VALUE ('$category', '$time_published', '$price', '$name', '$image');"
                         
         );
 
@@ -79,7 +79,6 @@ class Product{
         }
         $query .= "WHERE product_id = $product_id;";
 
-        echo $query;
         $request = $database->query($query);
 
         return $request;

@@ -3,39 +3,9 @@
 
 <?php
 $_SESSION['role'] = 'guest';
-// if (isset($_COOKIE['customer_id'])) setcookie("hello", "", time() - 3600);
-// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//     if (isset($_POST['username']) && isset($_POST['password'])) {
-//         $username = $_POST['username'];
-//         $password = $_POST['password'];
-//         if (strlen($username) > 20 || strlen($username) < 1) $error = 'Tên đăng nhập: 1-20 ký tự';
-//         else if (strlen($password) > 20 || strlen($password) < 1) $error = 'Mật khẩu: 1-20 ký tự';
-//     }
 
-//     // if (isset($_SESSION['role'])) unset($_SESSION);
-//     // $role = $_POST['role'];
-//     // $_SESSION['role'] = $role;
-//     // session_write_close();
-//     // $headerTo = "Location: ?page=" . $role . "&controller=layouts&action=index";
-//     // header($headerTo);
-//     // exit;
-// }
 
 require_once("views/main/header.php") ?>
-
-
-<!-- <div class="row my-5">
-        <div class="col-3 offset-3">
-            <form action="" method="POST">
-                <select name="role" class="form-select" aria-label="Default select example">
-                    <option value="main" selected>Guest</option>
-                    <option value="user">User</option>
-                    <option value="admin">Admin</option>
-                </select>
-                <button type="submit" class="btn hover-bg-orange hover-c-white border-c-orange c-orange mt-3">Login</button>
-            </form>
-        </div>
-</div> -->
 
 <div>
     <div class="position-relative w-100 py-5 mt-5">
