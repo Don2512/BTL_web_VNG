@@ -29,6 +29,8 @@ class LoginController extends BaseController
             $_POST['password'],
             $role
         );
+        if ($result == "customer") $_SESSION['customer_id'] = Account::getCustomerIdByUsername($username);
+
         if (isset($_POST['remember']) && $result != "guest") {
             setcookie("username", $username, time() + (7 * 24 * 60 * 60));
             setcookie("password", $password, time() + (7 * 24 * 60 * 60));
@@ -64,6 +66,7 @@ class LoginController extends BaseController
     }
     public function signout_action()
     {
+        if (isset($_SESSION['cart'])) unset($_SESSION['cart']);
         if (isset($_SESSION['customer_id'])) unset($_SESSION['customer_id']);
         if (isset($_SESSION['employee_id'])) unset($_SESSION['employee_id']);
         if (isset($_COOKIE['username'])) setcookie('username', '', time() - 3600);

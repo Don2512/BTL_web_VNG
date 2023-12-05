@@ -1,7 +1,5 @@
 <?php
 session_start();
-$_SESSION['customer_id'] = 1;
-$_SESSION['customer_name'] = 'Duy Long';
 //* với $page là tên của folder trong lớp controller
 //* $controller là tên file cộng thêm _controller.php 
 //* $action là hàm trong file đó để truy cập đếm
