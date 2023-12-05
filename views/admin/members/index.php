@@ -115,7 +115,14 @@
                             </div>
                             <div class="mb-3">
                                 <label for="branch" class="form-label">Chi nhánh</label>
-                                <input type="number" class="form-control" name="branch" id="branch" required>
+                                <!-- <input type="number" class="form-control" name="branch" id="branch" required> -->
+                                <select class="form-select" name="branch" id="branch" required>
+                                    <option value="1">Chi nhánh 1</option>
+                                    <option value="2">Chi nhánh 2</option>
+                                    <option value="3">Chi nhánh 3</option>
+                                    <option value="4">Chi nhánh 4</option>
+                                    <option value="5">Chi nhánh 5</option>
+                                </select>
                             </div>
                             <button type="reset" class="btn btn-secondary">Xoá tất cả</button>
                             <button type="submit" name="addMember" class="btn btn-success">Thêm</button>
