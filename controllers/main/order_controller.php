@@ -11,12 +11,16 @@ class OrderController extends BaseController
 
     public function index()
     {
+        // if (!isset($_SESSION['role']) || $_SESSION['role'] == "guest") {
+        //     header("Location: ?page=main&controller=login&action=signin");
+        //     exit();
+        // }
         $Product = Product::getAllProduct();
         $current_page = isset($_GET['numberpage']) ? $_GET['numberpage'] : 1;
         $total_pages =  ceil(count($Product) / 6);
 
         $data  = array(
-            "Product" => array_slice($Product, ($current_page - 1)*6, 6),
+            "Product" => array_slice($Product, ($current_page - 1) * 6, 6),
             "total_pages" => $total_pages
         );
 
@@ -25,14 +29,17 @@ class OrderController extends BaseController
 
     public function myOrder()
     {
+        if (!isset($_SESSION['role']) || $_SESSION['role'] == "guest") {
+            header("Location: ?page=main&controller=login&action=signin");
+            exit();
+        }
         //! tạo session
         if (!isset($_SESSION['cart'])) {
             $_SESSION['cart'] = array();
         }
 
         //! thêm
-        if(isset($_POST["mua"]))
-        {
+        if (isset($_POST["mua"])) {
             $id = $_POST["id"];
             $name = $_POST["name"];
             $price = $_POST["price"];
@@ -40,15 +47,15 @@ class OrderController extends BaseController
             $image = $_POST["image"];
             $category = $_POST["category"];
 
-            if (isset($_SESSION['cart'][$id]) ) {
+            if (isset($_SESSION['cart'][$id])) {
                 $_SESSION['cart'][$id]['number'] += $number;
             } else {
                 $_SESSION['cart'][$id] = array(
                     'name' => $name,
                     'price' => $price,
                     'number' => $number,
-                    'image'=> $image,
-                    'category'=> $category  
+                    'image' => $image,
+                    'category' => $category
                 );
             }
         }

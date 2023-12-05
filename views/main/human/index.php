@@ -28,7 +28,7 @@
 <div class="row">
   <div class="col-lg-1"></div>
 
-  <div class="col-12 col-md-12 col-lg-10">
+  <div class="col-12 col-md-12 col-lg-10 ps-4">
     <div class="row">
       <div class="col-12 col-lg-8">
         <h2 class="c-orange fs-30px mb-4 mt-4">Con người VNG</h2>

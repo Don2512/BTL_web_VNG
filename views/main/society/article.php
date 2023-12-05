@@ -5,7 +5,7 @@
 <div class="mwidth-200px mb-3">
     <div class="row w-100">
         <div class="col-lg-1"></div>
-        <div class="col-lg-7 col-md-9 col-12">
+        <div class="col-lg-7 col-md-9 col-12 ps-4">
 
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb mt-5 fs-12px">
@@ -52,10 +52,11 @@
 
                 </div>
             <?php } ?>
+            <?php if (isset($_SESSION['role']) && $_SESSION['role'] == "customer") echo '
             <div class="border-c-gray border-3">
                 <form id="commentForm" method="post" action="">
-                    <input type="hidden" name="article_id" value="<?php echo $_GET['article_id'] ?>">
-                    <input type="hidden" name="customer_id" value="<?php echo isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : "" ?>">
+                    <input type="hidden" name="article_id" value="<?php echo $_GET["article_id"] ?>">
+                    <input type="hidden" name="customer_id" value="<?php echo isset($_SESSION["customer_id"]) ? $_SESSION["customer_id"] : "" ?>">
                     <div class="mb-3">
                         <label for="exampleFormControlTextarea1" class="form-label p-2 fw-bold mx-3 rounded-0 c-gray" onclick=test()>Bình luận</label>
                         <!-- <textarea class="form-control" name="content" rows="3"></textarea> -->
@@ -72,6 +73,7 @@
                 </form>
 
             </div>
+            '; ?>
         </div>
         <div class="col-lg-4" style="margin-top: 12% ;">
             <div>

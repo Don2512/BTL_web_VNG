@@ -35,7 +35,7 @@ require_once("views/main/header.php") ?>
                 <a class="text-decoration-none c-orange hover-c-white" href="?page=main&controller=product&action=index">
                     <div class="container border-c-orange border-2 rounded-4 text-center py-5 hover-bg-orange h-100">
                         <div class="fs-24px fw-bold">Sản phẩm</div>
-                        <div class="fs-50px"><i class="bi bi-box2"></i></div>
+                        <div class="fs-50px"><i class="bi bi-box-seam"></i></div>
                         <div class="fs-16px">Tìm hiểu các sản phẩm<br>chính của VNG</div>
                     </div>
                 </a>

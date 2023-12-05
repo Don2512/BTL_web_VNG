@@ -2,7 +2,12 @@
 <html lang="en">
 
 
-<?php require_once("views/main/header.php"); ?>
+<?php
+if (!isset($_SESSION['role']) || $_SESSION['role'] == "guest") {
+    header("Location: ?page=main&controller=login&action=signin");
+    exit();
+}
+require_once("views/main/header.php"); ?>
 <?php
 $current_page = isset($_GET['numberpage']) ? $_GET['numberpage'] : 1;
 $pre_page = ($current_page > 1) ? ($current_page - 1) : 1;
