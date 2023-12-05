@@ -172,7 +172,7 @@ INSERT INTO Customer (customer_name, age, email, gender) VALUES
 
 -- Thêm dữ liệu cho bảng Product
 INSERT INTO Product (category, date_added, price, name, image) VALUES
-('Nhập vai', '2023-11-30', 100.000, "Tây du VNG: Đại náo tam giới", "https://vnggames.com/_next/image?url=https%3A%2F%2Fcdn.omnirise.com%2Fcms%2Fbanner_3_1_7081f4ba66.png%3Fw%3D427%26h%3D240%26q%3D100%26lossless%3Dtrue&w=1920&q=100"),
+('Nhập vai', '2023-11-30', 100.000, "Tây Du Đại náo tam giới", "https://vnggames.com/_next/image?url=https%3A%2F%2Fcdn.omnirise.com%2Fcms%2Fbanner_3_1_7081f4ba66.png%3Fw%3D427%26h%3D240%26q%3D100%26lossless%3Dtrue&w=1920&q=100"),
 ('Hàng động', '2023-12-1', 520.000, "Metal Slug: Awakening", "https://vnggames.com/_next/image?url=https%3A%2F%2Fcdn.omnirise.com%2Fcms%2Fmsvn_published_4b6823fde2.webp%3Fw%3D427%26h%3D240%26q%3D100%26lossless%3Dtrue&w=1920&q=100"),
 ('Chiến lược', '2023-11-30', 400.000, "Chiên thần AFK", "https://vnggames.com/_next/image?url=https%3A%2F%2Fcdn.omnirise.com%2Fcms%2Fthumbnail_2_d43591c277.png%3Fw%3D427%26h%3D240%26q%3D100%26lossless%3Dtrue&w=1920&q=100"),
 ('Nhập vai', '2023-12-1', 200.000, "Kiếm thê Origin", "https://vnggames.com/_next/image?url=https%3A%2F%2Fcdn.omnirise.com%2Fcms%2Fkto_banner_5bcf056a8f.png%3Fw%3D427%26h%3D240%26q%3D100%26lossless%3Dtrue&w=1920&q=100"),

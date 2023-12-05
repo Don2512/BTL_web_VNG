@@ -19,8 +19,8 @@
                 <tr>
                     <th>Tên sản phẩm</th>
                     <th>Ảnh</th>
-                    <th>Giá</th>
-                    <th>Số Lượng</th>
+                    <th class="d-none d-sm-table-cell">Giá</th>
+                    <th class="d-none d-sm-table-cell">Số Lượng</th>
                     <th>Tổng tiền</th>
                     <th>Thời gian</th>
                 </tr>
@@ -29,9 +29,12 @@
                 <?php foreach ($cart as $id => $item) { ?>
                     <tr>
                         <td><?php echo $item->product_name; ?></td>
-                        <td><img src="<?php echo $item->image ?>" class="img-thumbnail" style="max-width: 100px;"></td>
-                        <td>$<?php echo $item->price; ?>0</td>
-                        <td><?php echo $item->number; ?></td>
+                        <td>
+                            <img src="<?php echo $item->image ?>" class="img-thumbnail d-block mx-auto d-sm-none" style="max-width: 70px;">
+                            <img src="<?php echo $item->image ?>" class="img-thumbnail d-none d-sm-block" style="max-width: 100px;">
+                        </td>
+                        <td class="d-none d-sm-table-cell">$<?php echo $item->price; ?>0</td>
+                        <td class="d-none d-sm-table-cell"><?php echo $item->number; ?></td>
                         <td>$<?php echo $item->price * $item->number; ?>.000</td>
                         <?php $total += $item->price * $item->number;  ?>
                         <?php $dateTime = new DateTime($item->purchase_date);  ?>
@@ -39,7 +42,8 @@
                     </tr>
                 <?php } ?>
                 <tr>
-                    <td colspan="3"></td>
+                    <td colspan="3" class="d-none d-md-table-cell"></td>
+                    <td colspan="2" class="d-md-none"></td>
                     <td><strong>Tổng tiền:</strong></td>
                     <td><strong><?php echo $total; ?>.000</strong></td>
                 </tr>

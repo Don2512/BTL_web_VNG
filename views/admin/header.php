@@ -1,7 +1,7 @@
 <?php
-if (!isset($_SESSION['role']) || $_SESSION['role'] != 'employee') {
-    header("Location: ?page=main&controller=login&action=signin");
-}
+// if (!isset($_SESSION['role']) || $_SESSION['role'] != 'employee') {
+    // header("Location: ?page=main&controller=login&action=signin");
+// }
 ?>
 
 <!DOCTYPE html>

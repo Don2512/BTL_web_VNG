@@ -18,7 +18,9 @@ require_once('views/admin/header.php'); ?>
                     Thêm sản phẩm
                 </button>
             </div>
-            <table id="product-table" class="table table-hover">
+            <div class="row dt-row">
+            <div class="col-lg-12">
+                <table id="product-table" class="table table-hover nowrap" style="width:100%">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -39,11 +41,12 @@ require_once('views/admin/header.php'); ?>
                     // date_added DATE,
                     // image VARCHAR(255)
                     foreach ($products as $product) {
+
                         echo
                         "
                         <tr>
                             <td>" . $product->id . "</td>
-                            <td><span class=\"d-inline-block text-truncate\" style=\"max-width: 150px;\">" . $product->name . "</span></td>
+                            <td>" . $product->name . "</td>
                             <td>" . $product->category . "</td>
                             <td>" . $product->price . "</td>
                             <td>" . $product->date_added . "</td>
@@ -64,56 +67,45 @@ require_once('views/admin/header.php'); ?>
                     }
                     ?>
                 </tbody>
-            </table>
+                </table>
+            </div></div>
             <!-- Add Product -->
             <div class="modal fade" id="addProduct" tabindex="-1" aria-labelledby="addProductModal" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="addProductModal">Thêm bài viết</h5>
+                        <div class="modal-header bg-primary">
+                            <h5 class="modal-title fw-bold text-white" id="addProductModal">Thêm sản phẩm</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <!-- Form -->
                             <form action="index.php?page=admin&controller=products&action=add" method="post">
-                                <!-- Article ID Field-->
-                                <div class="mb-3">
-                                    <label for="title" class="form-label">ID</label>
-                                    <input type="text" class="form-control" id="addArticleId" name="addArticleId" placeholder="Article ID" readonly>
-                                </div>
-
                                 <!-- Title Field -->
                                 <div class="mb-3">
                                     <label for="title" class="form-label">Tên</label>
-                                    <input type="text" class="form-control" id="addTitle" name="addName" placeholder="Title">
+                                    <input type="text" class="form-control" id="addTitle" name="addName" placeholder="Tên sản phẩm">
                                 </div>
 
                                 <!-- Category -->
                                 <div class="mb-3">
                                     <label for="type" class="form-label">Thể loại</label>
-                                    <input type="text" class="form-control" id="addCategory" name="addCategory" placeholder="Enter category">
+                                    <input type="text" class="form-control" id="addCategory" name="addCategory" placeholder="Thể loại">
                                 </div>
 
                                 <!-- Price -->
                                 <div class="mb-3">
                                     <label for="authorId" class="form-label">Giá</label>
-                                    <input type="text" class="form-control" id="addPrice" name="addPrice" placeholder="Enter price">
-                                </div>
-
-                                <!-- date -->
-                                <div class="mb-3">
-                                    <label for="authorId" class="form-label">Thời gian thêm vào</label>
-                                    <input type="text" class="form-control" id="addDate" name="addDateAdded" placeholder="Enter date">
+                                    <input type="text" class="form-control" id="addPrice" name="addPrice" placeholder="Giá cả">
                                 </div>
 
                                 <!-- Image -->
                                 <div class="mb-3">
                                     <label for="authorId" class="form-label">Hình ảnh</label>
-                                    <input type="text" class="form-control" id="addImage" name="addImage" placeholder="Enter image link">
+                                    <input type="text" class="form-control" id="addImage" name="addImage" placeholder="Link hình ảnh">
                                 </div>
 
                                 <!-- Submit Button -->
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Thêm</button>
                                 <!-- CLose button -->
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                             </form>
@@ -126,8 +118,8 @@ require_once('views/admin/header.php'); ?>
             <div class="modal fade" id="editProduct" tabindex="-1" aria-labelledby="editProductModal" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="editProductModal">Chỉnh sửa sản phẩm</h5>
+                        <div class="modal-header bg-warning">
+                            <h5 class="modal-title fw-bold" id="editProductModal">Chỉnh sửa sản phẩm</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -170,7 +162,7 @@ require_once('views/admin/header.php'); ?>
                                 </div>
 
                                 <!-- Submit Button -->
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-warning">Xác nhận</button>
                                 <!-- CLose button -->
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                             </form>
@@ -183,8 +175,8 @@ require_once('views/admin/header.php'); ?>
             <div class="modal fade" id="deleteProduct" tabindex="-1" aria-labelledby="deleteProductModal" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="deleteProductModal">Xóa sản phẩm</h5>
+                        <div class="modal-header bg-danger">
+                            <h5 class="modal-title fw-bold text-white" id="deleteProductModal">Xóa sản phẩm</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -222,9 +214,8 @@ require_once('views/admin/header.php'); ?>
                 var price = button.getAttribute('data-price');
                 var date_added = button.getAttribute('data-date_added');
                 var image = button.getAttribute('data-image');
-                
-                console.log(date_added, " ", image);
 
+                console.log(productId, editName, category, price, date_added,image);
                 // Populate the modal with the product data
                 document.getElementById('editProductId').value = productId;
                 document.getElementById('editName').value = editName;
@@ -237,10 +228,6 @@ require_once('views/admin/header.php'); ?>
             });
 
         });
-
-        function populateEditModal(productId) {
-            // Code to populate the modal fields with productData
-        }
     });
     
 </script>
@@ -249,8 +236,9 @@ require_once('views/admin/footer.php'); ?>
 <script >
     // Use datatables to implement simple sort, search
     $(document).ready(function() {
-        $('#product-table').DataTable(
-            
+        $('#product-table').DataTable( {
+                "scrollX": true
+            }            
         );
     });
 </script>

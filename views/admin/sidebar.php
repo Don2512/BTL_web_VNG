@@ -1,7 +1,7 @@
 <aside id="sidebar" class="js-sidebar">
     <div class="h-100">
         <div class="sidebar-logo">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.php?page=admin&controller=layouts&action=index">
             <img src="https://corp.vcdn.vn/products/upload/vng/source/Gallery/LOGO%20VNG/MasterArtwork-OrangeVNG%20Master.png" alt="Logo" width="60" height="24" class="d-inline-block align-text-top">
             Corporation
             </a>
