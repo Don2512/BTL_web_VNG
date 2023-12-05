@@ -22,7 +22,7 @@ $page = basename($directory_path);
     <div class="bg-white w-100 position-fixed z-3">
         <nav class="navbar navbar-expand-lg p-0 border-bottom border-secondary">
             <div class="container" style="min-height:82px; max-width:1200px;">
-                <div class="row w-100">
+                <div class="row w-100" id="navRow">
                     <div class="col-auto">
                         <a class="navbar-brand position-relative t-50 l-50 m-0 p-0" href="index.php?page=main&controller=layouts&action=index">
                             <img class="translate-middle" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/VNG_Corp._logo.svg/1200px-VNG_Corp._logo.svg.png" style="max-width:60px; max-height:24px" />
@@ -119,6 +119,14 @@ $page = basename($directory_path);
     <div style="min-height:82px"></div>
 </body>
 <script src="public/js/bootstrap_js/bootstrap.min.js"></script>
+<script>
+    window.addEventListener("resize", (e) => {
+        console.log(e);
+    })
 
+    function navBarIcon(e) {
+        var navRow = document.getElementById("navRow");
+    }
+</script>
 
 </html>

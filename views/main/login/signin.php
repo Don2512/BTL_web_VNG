@@ -8,11 +8,11 @@ $_SESSION['role'] = 'guest';
 require_once("views/main/header.php") ?>
 
 <div>
-    <div class="position-relative w-100 py-5 mt-5">
+    <div class="position-relative w-100 py-5" style="background-image: url('https://corp.vcdn.vn/products/upload/vng/source/Gallery/Văn%20phòng/21.jpg'); background-size: cover;">
 
-        <div class="container">
+        <div class=" container">
             <div class="row">
-                <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 border-c-orange">
+                <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 border-c-orange bg-white border-3">
                     <div class="fs-2 text-center my-3">Đăng nhập</div>
                     <div id="notiBox" class="bg-orange py-2 w-75 mx-auto mb-3 d-none">
                         <div id="notiText" class="fs px-3 text-white">Tên đăng nhập hoặc mật khẩu không hợp lệ</div>

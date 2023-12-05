@@ -23,6 +23,12 @@
                 </a>
             </li>
             <li class="sidebar-item">
+                <a href="index.php?page=admin&controller=customers&action=index" class="sidebar-link">
+                <i class="fa-solid fa-user-group" style="color: #ffffff;"></i>   
+                Quản lí khách hàng
+                </a>
+            </li>
+            <li class="sidebar-item">
                 <a href="index.php?page=admin&controller=comments&action=index" class="sidebar-link">
                 <i class="fa-regular fa-comments" style="color: #e8e8e8;"></i>  
                 Quản lí bình luận đánh giá thành viên

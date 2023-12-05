@@ -26,8 +26,7 @@ class Article
     public $content;
     public $author_id;
     public $contentTitle;
-
-
+    public $image;
 
     public function __construct($id, $type, $date, $title, $subtitle, $content, $author_id,  $contentTitle = "")
     {
@@ -101,8 +100,14 @@ class Article
     public static function getByTypeArticle($type)
     {
         //* query
-        $query = "SELECT * FROM Article WHERE type = '$type'";
-        if ($type == "all") $query = "SELECT * FROM Article";
+        $query = "
+            SELECT a.article_id article_id, a.type type, a.time_published time_published, a.title title, a.content content, a.author_id author_id, c.link link FROM Article a 
+            LEFT JOIN Content c
+            ON a.article_id = c.article_id
+        ";
+        // $query = "SELECT * FROM Article WHERE type = '$type';";
+        if ($type != "all") $query .= "WHERE type = '$type' ";
+        $query .= "GROUP BY a.article_id;";
         $request = DB::_Query($query);
         $result = [];
         foreach ($request->fetch_all(MYSQLI_ASSOC) as $temp) {
@@ -111,8 +116,8 @@ class Article
                 $temp["type"],
                 $temp["time_published"],
                 $temp["title"],
-                [],
                 $temp["content"],
+                $temp["link"],
                 $temp["author_id"],
             );
         }

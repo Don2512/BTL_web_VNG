@@ -46,10 +46,10 @@ class Comment{
         return $req;
     }
     
-    static function delete($article_id)
+    static function delete($article_id,$employee_id)
     {
         $db = DB::getInstance();
-        $req = $db->query("DELETE FROM comment WHERE article_id = '$article_id';");
+        $req = $db->query("DELETE FROM comment WHERE article_id = '$article_id' AND employee_id='$employee_id';");
         return $req;
     }
     

@@ -16,7 +16,7 @@
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#insertMemberModal">
                     Thêm thành viên
                 </button>
-                <table class="table table-hover">
+                <table id="member-table"class="table table-hover nowrap" style="width:100%">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
@@ -115,7 +115,14 @@
                             </div>
                             <div class="mb-3">
                                 <label for="branch" class="form-label">Chi nhánh</label>
-                                <input type="number" class="form-control" name="branch" id="branch" required>
+                                <!-- <input type="number" class="form-control" name="branch" id="branch" required> -->
+                                <select class="form-select" name="branch" id="branch" required>
+                                    <option value="1">Chi nhánh 1</option>
+                                    <option value="2">Chi nhánh 2</option>
+                                    <option value="3">Chi nhánh 3</option>
+                                    <option value="4">Chi nhánh 4</option>
+                                    <option value="5">Chi nhánh 5</option>
+                                </select>
                             </div>
                             <button type="reset" class="btn btn-secondary">Xoá tất cả</button>
                             <button type="submit" name="addMember" class="btn btn-success">Thêm</button>
@@ -128,7 +135,7 @@
         <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header bg-warning">
                         <h1 class="modal-title fs-5" id="editModalLabel">Chỉnh sửa thông tin thành viên</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -168,7 +175,14 @@
                             </div>
                             <div class="mb-3">
                                 <label for="branchEdit" class="form-label">Chi nhánh</label>
-                                <input type="number" class="form-control" name="branch" id="branchEdit" required>
+                                <!-- <input type="number" class="form-control" name="branch" id="branchEdit" required> -->
+                                <select class="form-select" name="branch" id="branchEdit" required>
+                                    <option value="1">Chi nhánh 1</option>
+                                    <option value="2">Chi nhánh 2</option>
+                                    <option value="3">Chi nhánh 3</option>
+                                    <option value="4">Chi nhánh 4</option>
+                                    <option value="5">Chi nhánh 5</option>
+                                </select>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -241,10 +255,15 @@
         $('#genderEdit').val(genderEdit);
         $('#branchEdit').val(branchEdit);
     });
-    $('#editModal').on('show.bs.modal', function () {
-        $('#branchEdit').attr({
-            "min": 1,
-            "max": 5
-        });
+</script>
+<script>
+    // Use DataTables to implement simple sort, search
+    $(document).ready(function() {
+        $('#member-table').DataTable( {
+                "scrollX": true
+            }
+        );
     });
 </script>
+
+
