@@ -53,6 +53,9 @@ class Member{
     static function delete($employee_id)
     {
         $db = DB::getInstance();
+        $req = $db->query("DELETE FROM comment WHERE employee_id = '$employee_id';");
+        $req = $db->query("DELETE FROM article WHERE author_id = '$employee_id';");
+        $req = $db->query("DELETE FROM employeeaccount WHERE employee_id = '$employee_id';");
         $req = $db->query("DELETE FROM employee WHERE employee_id = '$employee_id';");
         return $req;
     }

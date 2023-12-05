@@ -41,6 +41,9 @@ class Customer{
     static function delete($customer_id)
     {
         $db = DB::getInstance();
+        $req = $db->query("DELETE FROM customercomment WHERE customer_id = '$customer_id';");
+        $req = $db->query("DELETE FROM purchase WHERE customer_id = '$customer_id';");
+        $req = $db->query("DELETE FROM customeraccount WHERE customer_id = '$customer_id';");
         $req = $db->query("DELETE FROM customer WHERE customer_id = '$customer_id';");
         return $req;
     }

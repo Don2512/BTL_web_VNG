@@ -39,7 +39,7 @@ require_once('views/admin/header.php'); ?>
                                 echo "<td>". $comment->time_commented."</td>";
                                 echo "<td>
                                 <button type=\"button\" class=\"btn btn-warning editbtn\" data-bs-toggle=\"modal\" data-bs-target=\"#editModal\" data-article-id=\"{$comment->article_id}\" data-comment-content=\"{$comment->content}\"  data-article_title=\"{$comment->article_title}\" data-employee_name=\"{$comment->employee_name}\"><i class=\"fa-solid fa-pen-to-square\"></i></button>
-                                <button type=\"button\" class=\"btn btn-danger deletebtn\" data-bs-toggle=\"modal\" data-bs-target=\"#deleteModal\" data-article-id=\"{$comment->article_id}\">
+                                <button type=\"button\" class=\"btn btn-danger deletebtn\" data-bs-toggle=\"modal\" data-bs-target=\"#deleteModal\" data-article-id=\"{$comment->article_id}\" data-employee-id=\"{$comment->employee_id}\">
                                 <i class=\"fa-solid fa-trash\"></i>
                                     </button>
 
@@ -102,6 +102,7 @@ require_once('views/admin/header.php'); ?>
                         <div class="modal-body">
                             Bạn có muốn xoá bình luận này?
                             <input type="hidden" name="article_id" id="commentIdToDelete">
+                            <input type="hidden" name="employee_id" id="employee_id">
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
@@ -118,8 +119,10 @@ require_once('views/admin/footer.php'); ?>
     // Thêm mã JavaScript để cập nhật giá trị article_id trong modal delete
     $('.deletebtn').on('click', function() {
         var articleId = $(this).data('article-id');
+        var employeeId = $(this).data('employee-id');
         $('#articleIdToDelete').text(articleId);
         $('#commentIdToDelete').val(articleId);
+        $('#employee_id').val(employeeId);
     });
     $('.editbtn').on('click', function() {
         var content = $(this).data('comment-content');
