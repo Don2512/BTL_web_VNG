@@ -13,6 +13,7 @@ $controllers = array(
   'errors' => ['index'],
   'layouts' => ['index'], // Bổ sung thêm các hàm trong controllers
   'members' => ['index', 'add', 'edit', 'delete'],
+  'customers' => ['index', 'add', 'edit', 'delete'],
   'products' => ['index', 'add', 'edit', 'delete'],
   'articles' => ['index', 'add', 'edit', 'delete', 'getContent', 'getContentByTitle', 'addContent', 'editContent', 'deleteContent'],
   'comments' => ['index', 'hide', 'add', 'edit', 'delete'],

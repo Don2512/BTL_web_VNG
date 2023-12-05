@@ -16,7 +16,7 @@
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#insertMemberModal">
                     Thêm thành viên
                 </button>
-                <table class="table table-hover">
+                <table id="member-table"class="table table-hover nowrap" style="width:100%">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
@@ -248,3 +248,14 @@
         });
     });
 </script>
+<script>
+    // Use DataTables to implement simple sort, search
+    $(document).ready(function() {
+        $('#member-table').DataTable( {
+                "scrollX": true
+            }
+        );
+    });
+</script>
+
+

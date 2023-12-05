@@ -14,7 +14,7 @@ require_once('views/admin/header.php'); ?>
             </div>
             <div class="card-body">
                 
-                <table class="table table-hover">
+                <table id="comment-table" class="table table-hover nowrap" style="width:100%">
                     <thead>
                         <tr>
                             <th scope="col">Nhân viên</th>
@@ -91,9 +91,6 @@ require_once('views/admin/header.php'); ?>
                     <form action="index.php?page=admin&controller=comments&action=delete" method="post">
                         <div class="modal-body">
                             Bạn có muốn xoá bình luận này?
-                            <!-- <br>
-                            <span id="articleIdToDelete"></span> -->
-                            <!-- Thêm trường input ẩn để chứa comment_id -->
                             <input type="hidden" name="article_id" id="commentIdToDelete">
                         </div>
                         <div class="modal-footer">
@@ -121,5 +118,15 @@ require_once('views/admin/footer.php'); ?>
         // Cập nhật giá trị content và comment_id trong textarea và trường ẩn
         $('#contentToEditTextarea').val(content);
         $('#commentIdToEdit').val(commentId);
+    });
+</script>
+<script>
+    // Use DataTables to implement simple sort, search
+    $(document).ready(function() {
+        /* $('#fullpage').fullpage(); */
+        $('#comment-table').DataTable( {
+            "scrollX": true
+            }
+        );
     });
 </script>
