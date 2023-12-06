@@ -46,6 +46,12 @@
                     Quản lí sản phẩm
                 </a>
             </li>
+            <li class="sidebar-item">
+                <a href="index.php?page=admin&controller=revenue&action=index" class="sidebar-link">
+                    <i class="fa-solid fa-lines-leaning" style="color: #ffffff;"></i>
+                    Thống kê doanh thu
+                </a>
+            </li>
         </ul>
     </div>
 </aside>
