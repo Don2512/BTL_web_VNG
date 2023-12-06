@@ -4,14 +4,14 @@
 <div class="carousel-inner">
   <div class="carousel-item active position-relative">
     <img src="https://corp.vcdn.vn/upload/vng/source/Banner/BANNER-05.png" class="d-block w-100" alt="...">
-    <div class="position-absolute t-40 l-5 p-5 rounded-4" id="ctn">
-      <h5 class="text-white fs-lg-40px fs-40px" id="t0">NƠI TỐT NHẤT TẠI VIỆT NAM<br> ĐỂ MỌI NGƯỜI CÙNG NHAU LÀM VIỆC,<br> HỌC TẬP VÀ PHÁT TRIỂN</h5>
-      <div class="text-white fs-lg-20px fs-20px" id="t1">Khám phá cơ hội nghề nghiệp tại VNG</div>
+    <div class="position-absolute bg-white-75 c-black t-40 l-5 p-5 p-2 rounded-4" id="ctn">
+      <h5 class="fs-1 fs-6 mb-0" id="t0">NƠI TỐT NHẤT TẠI VIỆT NAM<br> ĐỂ MỌI NGƯỜI CÙNG NHAU LÀM VIỆC,<br> HỌC TẬP VÀ PHÁT TRIỂN</h5>
+      <div class="fs-2 fs-6" id="t1">Khám phá cơ hội nghề nghiệp tại VNG</div>
     </div>
     <div class="position-absolute t-60 l-40 p-5 rounded-4 row" id="ctn2">
       <div class="col-lg-8"></div>
       <div class="col-lg-4">
-        <a target="_blank" id="box" href="https://drive.google.com/file/d/1KjQMzQ1tqM8d2K9Udz_jZa5phFFdwTBu/view" style="line-height: 50px; width:350px; color:white;" class="px-3 mt-5 ml-5 border-c-orange rounded-5 hover-bg-orange  hover-c-white fw-bold text-decoration-none d-block">
+        <a target="_blank" id="box" href="https://drive.google.com/file/d/1KjQMzQ1tqM8d2K9Udz_jZa5phFFdwTBu/view" style="line-height: 50px; width:350px; color:white;" class="px-3 mt-4 ml-5 border-c-orange rounded-5 hover-bg-orange  hover-c-white fw-bold text-decoration-none d-block">
           <svg id="i-move" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
             <path d="M3 16 L29 16 M16 3 L16 29 M12 7 L16 3 20 7 M12 25 L16 29 20 25 M25 12 L29 16 25 20 M7 12 L3 16 7 20" />
           </svg>
@@ -29,7 +29,7 @@
   <div class="col-lg-1"></div>
 
   <div class="col-12 col-md-12 col-lg-10 ps-4">
-    <div class="row">
+    <div class="row" id="conNguoiVNG">
       <div class="col-12 col-lg-8">
         <h2 class="c-orange fs-30px mb-4 mt-4">Con người VNG</h2>
         <h3 class="mb-4 fw-bold">Starter</h3>
@@ -81,7 +81,7 @@
       </div>
     </section>
 
-    <div class="row">
+    <div class="row" id="cuocSongVNG">
       <div class="col-12 col-lg-8">
         <h2 class="c-orange fs-30px mb-4 mt-4">Cuộc sống tại VNG</h2>
         <h3 class="mb-4 fw-bold">Môi trường làm việc</h3>
@@ -139,7 +139,7 @@
 
 
     <div class="row">
-      <div class="col-12 col-lg-8">
+      <div class="col-12 col-lg-8" id="coHoiNgheNghiep">
         <h2 class="c-orange fs-30px mb-4 mt-4">Cơ hội nghề nghiệp</h2>
         <h3 class="mb-4 fw-bold">Phát triển đội ngũ</h3>
         <p>Phát triển cá nhân và nghề nghiệp của nhân viên luôn là ưu tiên của VNG. Chúng tôi khuyến khích các thành viên tìm kiếm cơ hội phát triển trong các dự án đầy thách thức đồng thời phân bổ nguồn lực cho các chương trình đào tạo chuyên môn và lãnh đạo. Từ các lớp học truyền thống đến các khóa học trực tuyến, Starter được cung cấp nhiều hình thức học tập khác nhau để củng cố kiến thức chuyên môn và mở rộng kỹ năng của họ.</p>
@@ -200,30 +200,20 @@
   function fixUIBaseOnWidth1() {
     fixUIBaseOnWidth();
     width = window.innerWidth;
-    var t0 = $("#t0")
-    var t1 = $("#t1")
     var ctn = $("#ctn")
     var ctn2 = $("#ctn2")
     var box = $("#box")
     if (width < 1200) {
-      t0.removeClass("fs-40px")
-      t0.addClass("fs-5")
-      t1.removeClass("fs-20px")
-      t1.addClass("fs-6")
       ctn.removeClass("t-40 p-5")
-      ctn.addClass("t-10 p-1")
+      ctn.addClass("t-0 p-1")
       ctn2.removeClass("t-60 l-40")
-      ctn2.addClass("t-20 l-5")
+      ctn2.addClass("t-20 l-10")
       box.width(230) //350
     } else {
-      t0.addClass("fs-40px")
-      t0.removeClass("fs-5")
-      t1.addClass("fs-20px")
-      t1.removeClass("fs-6")
       ctn.addClass("t-40 p-5")
-      ctn.removeClass("t-10 p-1")
+      ctn.removeClass("t-0 p-1")
       ctn2.addClass("t-60 l-40")
-      ctn2.removeClass("t-20 l-5")
+      ctn2.removeClass("t-20 l-10")
       box.width(350) //350
     }
   }

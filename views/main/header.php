@@ -99,27 +99,27 @@ $page = basename($directory_path);
                                             <div <?php if (isset($_SESSION['role']) && $_SESSION['role'] == "customer") echo 'onclick=account()' ?> id="accCtn" class="col-auto px-1 py-1 dotUnder position-relative <?php if ($page == "login") echo 'active' ?>">
                                                 <a class="text-decoration-none c-black px-2 hover-c-black pb-1" <?php if (!(isset($_SESSION['role']) && $_SESSION['role'] == "customer")) echo 'href="index.php?page=main&controller=login&action=signin"'; ?>>
                                                     <?php
-                                                    if (isset($_SESSION['role']) && $_SESSION['role'] == "customer") echo "Tài khoản";
+                                                    if (isset($_SESSION['role']) && $_SESSION['role'] == "customer") echo "Tài khoản <i class='fs-6 bi bi-caret-down-fill'></i>";
                                                     else echo "Đăng nhập";
                                                     ?>
                                                 </a>
                                                 <div class='d-none position-absolute top-100 border-c-orange px-2 bg-white border-2' style="width:150px;" id="acc">
                                                     <div class="row">
-                                                        <div class="col-12">
+                                                        <div class="col-12 py-2">
                                                             <a class="text-decoration-none" href="index.php?page=main&controller=information&action=index">
                                                                 <div class="hover-c-orange c-black">
                                                                     Thông tin cá nhân
                                                                 </div>
                                                             </a>
                                                         </div>
-                                                        <div class="col-12">
+                                                        <div class="col-12 py-2">
                                                             <a class="text-decoration-none" href="index.php?page=main&controller=order&action=myOrder">
                                                                 <div class="hover-c-orange c-black">
                                                                     Giỏ hàng
                                                                 </div>
                                                             </a>
                                                         </div>
-                                                        <div class="col-12">
+                                                        <div class="col-12 py-2">
                                                             <a class="text-decoration-none" href="index.php?page=main&controller=login&action=signin">
                                                                 <div class="hover-c-orange c-black">
                                                                     Đăng xuất

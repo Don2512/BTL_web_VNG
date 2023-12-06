@@ -1,4 +1,4 @@
-<div class="container mwidth-1200 my-5">
+<div class="container mwidth-1200 my-5" id="tinTuc">
     <h4 class="c-orange fs-30px mb-4">Tin tức</h4>
     <div class="container">
         <div class="row">

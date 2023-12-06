@@ -6,13 +6,13 @@ require_once("views/main/header.php") ?>
         <div class="carousel-item active position-relative">
             <img src="https://corp.vcdn.vn/upload/vng/source/Banner/BANNER-01.png" class="d-block w-100" alt="...">
 
-            <div class="position-absolute bg-white-50 t-20 l-20 p-5 rounded-4" id="ctn">
-                <h5 class="text-black fs-46px" id="text_0">VNG CORPORATION</h5>
+            <div class="position-absolute bg-white-75 top-20 left-20 top-10 left-10 p-5 rounded-4" id="ctn">
+                <h5 class="text-black fs-1 fs-6" id="text_0">VNG CORPORATION</h5>
                 <div class="row">
                     <div class="col-auto">
-                        <p class="text-black fs-30px d-inline" id="text_1">Technology champion of Vietnam</p>
+                        <p class="text-black fs-3 fs-6 d-inline" id="text_1">Technology champion of Vietnam</p>
                     </div>
-                    <div class="col-auto"><a href="?page=main&controller=about&action=index" class="text-decoration-none" target="_blank"><i class="bi bi-arrow-right-circle-fill c-orange fs-46px"></i></a></div>
+                    <div class="col-auto"><a href="?page=main&controller=about&action=index" class="text-decoration-none" target="_blank"><i class="bi bi-arrow-right-circle-fill c-orange fs-1 fs-5"></i></a></div>
                 </div>
             </div>
         </div>
@@ -76,19 +76,11 @@ require_once("views/main/header.php") ?>
         var text_1 = $("#text_1")
         var ctn = $("#ctn")
         if (width < 1200) {
-            text_0.removeClass("fs-46px")
-            text_0.addClass("fs-4")
-            text_1.removeClass("fs-30px")
-            text_1.addClass("fs-6")
             ctn.removeClass("t-20 l-20 p-5")
-            ctn.addClass("t-10 l-10 p-1")
+            ctn.addClass("t-10 l-10 p-3")
         } else {
-            text_0.removeClass("fs-4")
-            text_0.addClass("fs-46px")
-            text_1.removeClass("fs-6")
-            text_1.addClass("fs-30px")
             ctn.addClass("t-20 l-20 p-5")
-            ctn.removeClass("t-10 l-10 p-1")
+            ctn.removeClass("t-10 l-10 p-3")
         }
     }
 </script>

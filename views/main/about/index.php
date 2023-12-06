@@ -9,9 +9,9 @@ require_once("views/main/header.php") ?>
         <div class="carousel-item active position-relative">
             <img src="https://corp.vcdn.vn/upload/vng/source/Banner/ABOUT%20BANNER%20220209-02.png" class="d-block w-100" alt="...">
 
-            <div class="position-absolute t-20 l-20 p-5 rounded-4" id="ctn">
-                <div class="c-orange fs-2" id="text_0">Sứ mệnh</div>
-                <div class="fs-1 fw-bold text-white" id="text_1">Kiến tạo công nghệ<br>và phát triển con người<br>Từ Việt Nam vươn tầm thế giới</div>
+            <div class="position-absolute bg-white-75 t-20 l-20 p-5 p-3 rounded-4" id="ctn">
+                <div class="c-orange fs-2 fs-6 " id="text_0">Sứ mệnh</div>
+                <div class="fs-1 c-black fs-6 fw-bold" id="text_1">Kiến tạo công nghệ<br>và phát triển con người<br>Từ Việt Nam vươn tầm thế giới</div>
             </div>
         </div>
     </div>
@@ -24,7 +24,7 @@ require_once("views/main/header.php") ?>
         <span class="visually-hidden">Next</span>
     </button>
 </div>
-<div class="container mwidth-1200 mt-5">
+<div class="container mwidth-1200 mt-5" id="giaTriCotLoi">
     <h4 class="c-orange mwidth-1200 fs-30px mb-4">Giá trị cốt lõi</h4>
     <h3 class="fs-36px">Con người và văn hóa là tài sản quan trọng của VNG</h3>
     <div class="fs-16px">Được định hướng bởi 03 giá trị cốt lõi, chúng tôi nỗ lực vì sự phát triển của cả công ty và cộng đồng.</div>
@@ -32,17 +32,17 @@ require_once("views/main/header.php") ?>
         <div class="row">
             <div class="col c-orange pb-50px hover-bg-orange hover-c-white active px-0" style="padding-left:0" onclick=toggleActive(0) id="btn_0">
                 <div class="container border-c-orange text-center py-5 h-100 hover-pb-50px">
-                    <div class="fs-4 fw-bold">ĐÓN NHẬN THÁCH THỨC</div>
+                    <div class="fs-4 fw-bold fs-6">ĐÓN NHẬN THÁCH THỨC</div>
                 </div>
             </div>
             <div class="col mx-1 c-orange pb-50px hover-bg-orange hover-c-white px-0" onclick=toggleActive(1) id="btn_1">
                 <div class="container border-c-orange text-center py-5 h-100">
-                    <div class="fs-4 fw-bold valign">PHÁT TRIỂN ĐỐI TÁC</div>
+                    <div class="fs-4 fw-bold valign fs-6">PHÁT TRIỂN ĐỐI TÁC</div>
                 </div>
             </div>
             <div class="col c-orange pb-50px hover-bg-orange hover-c-white px-0" style="padding-right:0" onclick=toggleActive(2) id="btn_2">
                 <div class="container border-c-orange text-center py-5 h-100">
-                    <div class="fs-4 fw-bold valign">GIỮ GÌN CHÍNH TRỰC</div>
+                    <div class="fs-4 fw-bold valign fs-6">GIỮ GÌN CHÍNH TRỰC</div>
                 </div>
             </div>
         </div>
@@ -52,7 +52,7 @@ require_once("views/main/header.php") ?>
         </div>
     </div>
 </div>
-<div class="container mwidth-1200 my-5">
+<div class="container mwidth-1200 my-5" id="cotMocChinh">
     <h4 class="c-orange fs-30px mb-4">Cột mốc chính</h4>
     <div class="container mt-3">
         <div class="row">
@@ -111,7 +111,7 @@ require_once("views/main/header.php") ?>
         </div>
     </div>
 </div>
-<div class="container mwidth-1200 my-5">
+<div class="container mwidth-1200 my-5" id="banLanhDaoCapCao">
     <h4 class="c-orange fs-30px mb-4">Ban lãnh đạo cấp cao</h4>
     <div class="row">
         <div class="col-lg-4 col-sm-12 mt-4">
@@ -202,25 +202,14 @@ require_once("views/main/header.php") ?>
     function fixUIBaseOnWidth1() {
         fixUIBaseOnWidth();
         width = window.innerWidth;
-        var text_0 = $("#text_0")
-        var text_1 = $("#text_1")
         var ctn = $("#ctn")
-        var text_2 = $(".fs-4.fw-bold")
         if (width < 1200) {
-            text_0.removeClass("fs-2")
-            text_0.addClass("fs-5")
-            text_1.removeClass("fs-1")
-            text_1.addClass("fs-4")
             ctn.removeClass("t-20 l-20 p-5")
-            ctn.addClass("t-10 l-10 p-1")
+            ctn.addClass("t-10 l-10 p-3")
             text_2.addClass("fs-6")
         } else {
-            text_0.removeClass("fs-5")
-            text_0.addClass("fs-2")
-            text_1.removeClass("fs-4")
-            text_1.addClass("fs-1")
             ctn.addClass("t-20 l-20 p-5")
-            ctn.removeClass("t-10 l-10 p-1")
+            ctn.removeClass("t-10 l-10 p-3")
         }
     }
 </script>

@@ -38,7 +38,7 @@ $mainPage = true;
 require_once("views/main/blog/news.php")
 ?>
 
-<div class="container mwidth-1200 my-5">
+<div class="container mwidth-1200 my-5" id="thuVien">
     <h4 class="c-orange fs-30px">Thư viện hình ảnh</h4>
     <div class="container">
         <div class="row">

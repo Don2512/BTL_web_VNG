@@ -20,6 +20,7 @@
 /* padding */
 .pb-50px { padding-bottom: 50px;}
 /* top */
+.t-0 { top: 0%; }
 .t-10 { top: 10%; }
 .t-20 { top: 20%; }
 .t-30 { top: 30%; }
@@ -29,6 +30,7 @@
 .t-70 { top: 70%; }
 .t-80 { top: 80%; }
 /* left */
+.l-0 { left: 0%; }
 .l-10 { left: 10%; }
 .l-20 { left: 20%; }
 .l-30 { left: 30%; }

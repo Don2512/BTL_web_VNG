@@ -8,8 +8,8 @@ require_once("views/main/header.php") ?>
     <div class="carousel-inner">
         <div class="carousel-item active position-relative">
             <img src="https://corp.vcdn.vn/products/vng/skin-2021/dist/main/images/header-slide/header6.jpg" class="d-block w-100" alt="...">
-            <div class="position-absolute text-white t-60 l-0 p-5 rounded-4" id="ctn">
-                <div class="fs-100px fw-bold" id="t0">TRÁCH NHIỆM CỘNG ĐỒNG</div>
+            <div class="position-absolute bg-white-75 text-white t-60 l-20 p-5 p-2 rounded-4" id="ctn">
+                <div class=" c-black fw-bold fs-1 fs-1" id="t0">TRÁCH NHIỆM CỘNG ĐỒNG</div>
             </div>
         </div>
     </div>
@@ -35,18 +35,12 @@ require_once("views/main/header.php") ?>
         var t0 = $("#t0")
         var ctn = $("#ctn")
         if (width < 1200) {
-            t0.removeClass("fs-100px")
-            t0.addClass("fs-5")
-
-            ctn.removeClass("t-60 p-5")
-            ctn.addClass("t-10 p-1")
+            ctn.removeClass("t-60 l-20 p-5")
+            ctn.addClass("t-10")
 
         } else {
-            t0.addClass("fs-100px")
-            t0.removeClass("fs-5")
-
-            ctn.addClass("t-60 p-5")
-            ctn.removeClass("t-10 p-1")
+            ctn.addClass("t-60 l-20 p-5")
+            ctn.removeClass("t-10")
 
         }
     }

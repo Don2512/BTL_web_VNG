@@ -10,8 +10,8 @@ require_once("views/main/header.php") ?>
         <div class="carousel-inner">
             <div class="carousel-item active position-relative">
                 <img src="https://corp.vcdn.vn/products/upload/vng/source/Products/BANNER-PRODUCT-3.png" class="d-block w-100" alt="...">
-                <div class="position-absolute text-white t-60 l-0 p-5 rounded-4" id="ctn">
-                    <div class="fs-100px fw-bold" id="text_0">SẢN PHẨM</div>
+                <div class="position-absolute c-black bg-white-75 t-60 l-10 p-5 p-3 rounded-4" id="ctn">
+                    <div class="fs-1 fs-2 fw-bold" id="text_0">SẢN PHẨM</div>
                 </div>
             </div>
         </div>
@@ -75,17 +75,12 @@ require_once("views/main/header.php") ?>
     function fixUIBaseOnWidth1() {
         fixUIBaseOnWidth();
         width = window.innerWidth;
-        var text_0 = $("#text_0")
         var ctn = $("#ctn")
         if (width < 1200) {
-            text_0.removeClass("fs-100px")
-            text_0.addClass("fs-1")
             ctn.removeClass("t-60 p-5")
-            ctn.addClass("t-10 p-2")
+            ctn.addClass("t-30 p-3")
         } else {
-            text_0.removeClass("fs-1")
-            text_0.addClass("fs-100px")
-            ctn.removeClass("t-10 p-2")
+            ctn.removeClass("t-30 p-3")
             ctn.addClass("t-60 p-5")
         }
     }
