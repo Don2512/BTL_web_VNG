@@ -27,7 +27,8 @@
 <script>
     var numOfNews = <?php if (isset($numOfNews)) echo $numOfNews;
                     else echo 3; ?>;
-    var typeNow = "all";
+    var typeNow = <?php if (isset($_GET['newsType'])) echo '"' . $_GET['newsType'] . '"';
+                    else echo "'all'"; ?>;
 
     function getMoreNews() {
         numOfNews += 3;

@@ -11,7 +11,7 @@
                 <ol class="breadcrumb mt-5 fs-12px">
                     <li class="breadcrumb-item"><a href="http://localhost/index.php" class="c-orange">Trang chủ</a></li>
                     <li class="breadcrumb-item"><a href="http://localhost/index.php?page=main&controller=blog&action=index" class="c-orange">Tin tức</a></li>
-                    <li class="breadcrumb-item"><a href="http://localhost/index.php?page=main&controller=blog&action=index" class="c-orange"><?php echo $article->type; ?></a></li>
+                    <li class="breadcrumb-item"><a href="http://localhost/index.php?page=main&controller=blog&action=index&newsType=<?php echo $article->type; ?>" class="c-orange"><?php echo $article->type; ?></a></li>
                     <li class="breadcrumb-item active" aria-current="page"><?php echo $article->title; ?></li>
                 </ol>
             </nav>
@@ -52,27 +52,27 @@
 
                 </div>
             <?php } ?>
-            <?php if (isset($_SESSION['role']) && $_SESSION['role'] == "customer"){?>
-            <div class="border-c-gray border-3">
-                <form id="commentForm" method="post" action="">
-                    <input type="hidden" name="article_id" value="<?php echo $_GET["article_id"] ?>">
-                    <input type="hidden" name="customer_id" value="<?php echo isset($_SESSION["customer_id"]) ? $_SESSION["customer_id"] : "" ?>">
-                    <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label p-2 fw-bold mx-3 rounded-0 c-gray" onclick=test()>Bình luận</label>
-                        <!-- <textarea class="form-control" name="content" rows="3"></textarea> -->
-                        <div class="container w-100 px-3">
-                            <div class="textareaElement w-100 px-3 py-2" contenteditable id="contentArea"></div>
+            <?php if (isset($_SESSION['role']) && $_SESSION['role'] == "customer") { ?>
+                <div class="border-c-gray border-3">
+                    <form id="commentForm" method="post" action="">
+                        <input type="hidden" name="article_id" value="<?php echo $_GET["article_id"] ?>">
+                        <input type="hidden" name="customer_id" value="<?php echo isset($_SESSION["customer_id"]) ? $_SESSION["customer_id"] : "" ?>">
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label p-2 fw-bold mx-3 rounded-0 c-gray" onclick=test()>Bình luận</label>
+                            <!-- <textarea class="form-control" name="content" rows="3"></textarea> -->
+                            <div class="container w-100 px-3">
+                                <div class="textareaElement w-100 px-3 py-2" contenteditable id="contentArea"></div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col"></div>
+                            <div class="col-auto"><button type="submit" class="mb-3 me-3 border-c-gray bg-white-100 c-gray hover-bg-gray hover-c-white fw-bold border-2">Gửi bình luận</button></div>
                         </div>
 
-                    </div>
-                    <div class="row">
-                        <div class="col"></div>
-                        <div class="col-auto"><button type="submit" class="mb-3 me-3 border-c-gray bg-white-100 c-gray hover-bg-gray hover-c-white fw-bold border-2">Gửi bình luận</button></div>
-                    </div>
+                    </form>
 
-                </form>
-
-            </div>
+                </div>
             <?php } ?>
         </div>
         <div class="col-lg-4" style="margin-top: 12% ;">
