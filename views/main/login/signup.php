@@ -81,7 +81,7 @@ require_once("views/main/header.php") ?>
 
             $.ajax({
                 type: 'POST',
-                url: 'http://localhost/index.php?page=main&controller=login&action=signup_action',
+                url: 'index.php?page=main&controller=login&action=signup_action',
                 data: formData,
                 success: function(response) {
                     // Xử lý phản hồi từ server ở đây (nếu cần)

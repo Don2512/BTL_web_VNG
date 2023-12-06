@@ -32,21 +32,21 @@ require_once("views/main/header.php") ?>
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 mt-4">
-                    <a class="text-decoration-none while c-black hover-c-white" href="http://localhost/index.php?page=main&controller=product&action=game">
+                    <a class="text-decoration-none while c-black hover-c-white" href="index.php?page=main&controller=product&action=game">
                         <div class="container text-center fs-1 fw-bold py-5 border-c-orange rounded-5 hover-bg-orange h-100 hover-c-white c-black">
                             <div class="valign">Trò chơi trực tuyến</div>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-6 mt-4">
-                    <a class="text-decoration-none while c-black hover-c-white" href="http://localhost/index.php?page=main&controller=product&action=connection">
+                    <a class="text-decoration-none while c-black hover-c-white" href="index.php?page=main&controller=product&action=connection">
                         <div class="container text-center fs-1 fw-bold py-5 border-c-orange rounded-5 hover-bg-orange h-100">
                             <div class="valign">Nền tảng kết nối</div>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-6 mt-4">
-                    <a class="text-decoration-none while c-black hover-c-white" href="http://localhost/index.php?page=main&controller=product&action=bill">
+                    <a class="text-decoration-none while c-black hover-c-white" href="index.php?page=main&controller=product&action=bill">
 
                         <div class="container text-center fs-1 fw-bold py-5 border-c-orange rounded-5 hover-bg-orange h-100">
                             <div class="valign">Thanh toán và Tài chính</div>
@@ -54,7 +54,7 @@ require_once("views/main/header.php") ?>
                     </a>
                 </div>
                 <div class="col-lg-6 mt-4">
-                    <a class="text-decoration-none while c-black hover-c-white" href="http://localhost/index.php?page=main&controller=product&action=digital">
+                    <a class="text-decoration-none while c-black hover-c-white" href="index.php?page=main&controller=product&action=digital">
                         <div class="container text-center fs-1 fw-bold py-5 border-c-orange rounded-5 hover-bg-orange h-100">
                             <div class="valign">Chuyển đổi số</div>
                         </div>

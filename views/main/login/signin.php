@@ -53,7 +53,7 @@ require_once("views/main/header.php") ?>
         // Gọi controller khi trang được tải
         $.ajax({
             type: 'POST', // hoặc 'POST' tùy thuộc vào phương thức của controller
-            url: 'http://localhost/index.php?page=main&controller=login&action=signout_action',
+            url: 'index.php?page=main&controller=login&action=signout_action',
             success: function(response) {
                 console.log(response);
                 // Xử lý phản hồi từ server nếu cần
@@ -74,7 +74,7 @@ require_once("views/main/header.php") ?>
 
             $.ajax({
                 type: 'POST',
-                url: 'http://localhost/index.php?page=main&controller=login&action=signin_action',
+                url: 'index.php?page=main&controller=login&action=signin_action',
                 data: formData,
                 success: function(response) {
                     // Xử lý phản hồi từ server ở đây (nếu cần)

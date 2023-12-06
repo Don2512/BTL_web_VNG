@@ -9,9 +9,9 @@
 
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb mt-5 fs-12px">
-                    <li class="breadcrumb-item"><a href="http://localhost/index.php" class="c-orange">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a href="http://localhost/index.php?page=main&controller=blog&action=index" class="c-orange">Tin tức</a></li>
-                    <li class="breadcrumb-item"><a href="http://localhost/index.php?page=main&controller=blog&action=index&newsType=<?php echo $article->type; ?>" class="c-orange"><?php echo $article->type; ?></a></li>
+                    <li class="breadcrumb-item"><a href="index.php" class="c-orange">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="index.php?page=main&controller=blog&action=index" class="c-orange">Tin tức</a></li>
+                    <li class="breadcrumb-item"><a href="index.php?page=main&controller=blog&action=index&newsType=<?php echo $article->type; ?>" class="c-orange"><?php echo $article->type; ?></a></li>
                     <li class="breadcrumb-item active" aria-current="page"><?php echo $article->title; ?></li>
                 </ol>
             </nav>
@@ -118,7 +118,7 @@
             var formData = $(this).serialize();
             $.ajax({
                 type: 'POST',
-                url: 'http://localhost/index.php?page=main&controller=society&action=addComment',
+                url: 'index.php?page=main&controller=society&action=addComment',
                 data: formData,
                 success: function(response) {
                     // Xử lý phản hồi từ server ở đây (nếu cần)
@@ -137,7 +137,7 @@
     function deleteComment(customerId, articleId, timeCommented) {
         console.log(customerId, articleId, timeCommented);
         // Xác nhận việc xóa
-        fetch('http://localhost/index.php?page=main&controller=society&action=deleteComment', {
+        fetch('index.php?page=main&controller=society&action=deleteComment', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

@@ -12,8 +12,8 @@ require_once("views/main/header.php") ?>
 
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb mt-5 fs-12px">
-                <li class="breadcrumb-item"><a href="http://localhost/index.php" class="c-orange">Trang chủ</a></li>
-                <li class="breadcrumb-item"><a href="http://localhost/index.php?page=main&controller=product&action=index" class="c-orange">Sản phẩm</a></li>
+                <li class="breadcrumb-item"><a href="index.php" class="c-orange">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="index.php?page=main&controller=product&action=index" class="c-orange">Sản phẩm</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Chuyển đổi số</li>
             </ol>
         </nav>

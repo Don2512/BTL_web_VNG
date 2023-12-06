@@ -48,7 +48,7 @@
         }
         // Gửi AJAX request khi nút được nhấn
         $.ajax({
-            url: 'http://localhost/index.php?page=main&controller=society&action=getByType',
+            url: 'index.php?page=main&controller=society&action=getByType',
             method: 'GET',
             data: {
                 type: type
