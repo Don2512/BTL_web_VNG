@@ -37,23 +37,25 @@ if (isset($_POST["edit"])) {
 <?php
 require_once("views/main/header.php") ?>
 <div>
-    <div class="row">
+    <div class="row w-100">
         <div class="col-md-1"></div>
         <div class="col-lg-7 col-md-9 col-12 ps-4">
             <h1 class="c-orange fs-30px fw-bold mt-4 mb-4">Chỉnh sửa thông tin cá nhân</h1>
             <div class="row">
                 <form action="index.php?page=main&controller=information&action=index" method="post">
                     <input type="hidden" class="form-control" name="customer_id" id="customer_idEdit" value="<?php echo $customer_id ?>" required>
-                    <div class="col-lg-10 mb-3">
-                        <label for="nameEdit" class="form-label"></label>Họ và tên</label>
-                        <input type="text" class="form-control" name="name" id="nameEdit" value="<?php echo $name ?>" required>
-                    </div>
-                    <div class="col-lg-2 mb-3">
-                        <label for="genderEdit" class="form-label">Giới tính</label>
-                        <select class="form-select" name="gender" id="genderEdit" required>
-                            <option value="Nam" <?php echo ($gender == 'Nam') ? 'selected' : ''; ?>>Nam</option>
-                            <option value="Nữ" <?php echo ($gender == 'Nữ') ? 'selected' : ''; ?>>Nữ</option>
-                        </select>
+                    <div class="row mb-3">
+                        <div class="col-lg-10">
+                            <label for="nameEdit" class="form-label"></label>Họ và tên</label>
+                            <input type="text" class="form-control mt-2" name="name" id="nameEdit" value="<?php echo $name ?>" required>
+                        </div>
+                        <div class="col-lg-2">
+                            <label for="genderEdit" class="form-label">Giới tính</label>
+                            <select class="form-select" name="gender" id="genderEdit" required>
+                                <option value="Nam" <?php echo ($gender == 'Nam') ? 'selected' : ''; ?>>Nam</option>
+                                <option value="Nữ" <?php echo ($gender == 'Nữ') ? 'selected' : ''; ?>>Nữ</option>
+                            </select>
+                        </div>
                     </div>
                     <div>
                         <label for="nameEdit" class="form-label">Tuổi</label>
