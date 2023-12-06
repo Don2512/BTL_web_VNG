@@ -6,6 +6,7 @@ class Account
     // sign in check
     public static function checkSignInCustomerAccount($username, $password)
     {
+        $password = md5($password);
         $query = "
             SELECT * FROM CustomerAccount
             WHERE username = '$username' and password = '$password';
@@ -18,6 +19,7 @@ class Account
     }
     public static function checkSignInEmployeeAccount($username, $password)
     {
+        $password = md5($password);
         $query = "
             SELECT * FROM EmployeeAccount
             WHERE username = '$username' and password = '$password';
@@ -46,6 +48,7 @@ class Account
     // add account
     public static function addCustomer($name, $age, $email, $gender)
     {
+        
         $query = "
             INSERT INTO Customer
             (customer_name,age,email,gender)
@@ -56,6 +59,7 @@ class Account
     }
     public static function addCustomerAccount($id, $username, $password)
     {
+        $password = md5($password);
         $query = "
             INSERT INTO CustomerAccount
             (customer_id,username,password)
@@ -66,6 +70,7 @@ class Account
     }
     public static function getCustomerIdByEmail($email)
     {
+
         $query = "
             SELECT customer_id FROM Customer
             WHERE email = '$email';

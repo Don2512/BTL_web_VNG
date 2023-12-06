@@ -113,6 +113,13 @@ $page = basename($directory_path);
                                                             </a>
                                                         </div>
                                                         <div class="col-12">
+                                                            <a class="text-decoration-none" href="index.php?page=main&controller=information&action=purchaseHistory">
+                                                                <div class="hover-c-orange c-black">
+                                                                    Lịch sử mua hàng
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-12">
                                                             <a class="text-decoration-none" href="index.php?page=main&controller=order&action=myOrder">
                                                                 <div class="hover-c-orange c-black">
                                                                     Giỏ hàng

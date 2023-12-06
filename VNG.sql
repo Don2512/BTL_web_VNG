@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS Article (
     time_published DATETIME,
     author_id INT,
     content TEXT,
-    FOREIGN KEY (author_id) REFERENCES Employee(employee_id)
+    FOREIGN KEY (author_id) REFERENCES Employee(employee_id) ON DELETE CASCADE
 );
 
 -- Tạo bảng Content
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS Comment (
     content TEXT,
     time_commented DATETIME,
     PRIMARY KEY(employee_id, article_id, time_commented),
-    FOREIGN KEY (employee_id) REFERENCES Employee(employee_id),
+    FOREIGN KEY (employee_id) REFERENCES Employee(employee_id) ON DELETE CASCADE,
     FOREIGN KEY (article_id) REFERENCES Article(article_id) ON DELETE CASCADE
 );
 
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS Review (
     rating INT,
     time_reviewed DATETIME,
     PRIMARY KEY (customer_id, article_id),
-    FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
+    FOREIGN KEY (customer_id) REFERENCES Customer(customer_id) ON DELETE CASCADE,
     FOREIGN KEY (article_id) REFERENCES Article(article_id) ON DELETE CASCADE
 );
 
@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS CustomerComment (
     content TEXT,
     time_commented DATETIME,
     PRIMARY KEY (customer_id, article_id, time_commented),
-    FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
+    FOREIGN KEY (customer_id) REFERENCES Customer(customer_id) ON DELETE CASCADE,
     FOREIGN KEY (article_id) REFERENCES Article(article_id) ON DELETE CASCADE
 );
 
@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS Purchase (
     number INT,
     purchase_date DATETIME,
     PRIMARY KEY (customer_id, product_id, purchase_date),
-    FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
+    FOREIGN KEY (customer_id) REFERENCES Customer(customer_id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES Product(product_id)
 );
 
@@ -113,18 +113,18 @@ CREATE TABLE IF NOT EXISTS Purchase (
 CREATE TABLE IF NOT EXISTS CustomerAccount (
 	customer_id INT,
     username varchar(20),
-    password varchar(20),
+    password varchar(255),
     PRIMARY KEY (username),
-    FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
+    FOREIGN KEY (customer_id) REFERENCES Customer(customer_id) ON DELETE CASCADE
 );
 
 -- Tạo bảng EmployeeAccount
 CREATE TABLE IF NOT EXISTS EmployeeAccount (
 	employee_id INT,
     username varchar(20),
-    password varchar(20),
+    password varchar(255),
     PRIMARY KEY (username),
-    FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
+    FOREIGN KEY (employee_id) REFERENCES Employee(employee_id) ON DELETE CASCADE
 );
 -- Thêm dữ liệu cho bảng Branch
 INSERT INTO Branch (branch_name, location, employee_count) VALUES
@@ -136,11 +136,21 @@ INSERT INTO Branch (branch_name, location, employee_count) VALUES
 
 -- Thêm dữ liệu cho bảng Employee
 INSERT INTO Employee (employee_name, age, position, phone_number, description, department, gender, branch_id) VALUES
-('Nhân viên 1', 25, 'Chức vụ 1', '123456789', 'Mô tả 1', 'Bộ phận 1', 'Nam', 1),
-('Nhân viên 2', 30, 'Chức vụ 2', '987654321', 'Mô tả 2', 'Bộ phận 2', 'Nữ', 2),
-('Nhân viên 3', 28, 'Chức vụ 3', '456789123', 'Mô tả 3', 'Bộ phận 3', 'Nam', 1),
+('Đào Duy Long', 25, 'Chức vụ 1', '123456789', 'Mô tả 1', 'Bộ phận 1', 'Nam', 1),
+('Nguyễn Đức Đạt', 30, 'Chức vụ 2', '987654321', 'Mô tả 2', 'Bộ phận 2', 'Nam', 2),
+('Bâng', 28, 'Chức vụ 3', '456789123', 'Mô tả 3', 'Bộ phận 3', 'Nam', 1),
+('Vân', 35, 'Chức vụ 4', '789123456', 'Mô tả 4', 'Bộ phận 4', 'Nữ', 3),
+('Nhân viên 1', 35, 'Chức vụ 4', '789123456', 'Mô tả 4', 'Bộ phận 4', 'Nữ', 3),
+('Nhân viên 2', 35, 'Chức vụ 4', '789123456', 'Mô tả 4', 'Bộ phận 4', 'Nữ', 3),
+('Nhân viên 3', 35, 'Chức vụ 4', '789123456', 'Mô tả 4', 'Bộ phận 4', 'Nữ', 3),
 ('Nhân viên 4', 35, 'Chức vụ 4', '789123456', 'Mô tả 4', 'Bộ phận 4', 'Nữ', 3),
-('Nhân viên 5', 32, 'Chức vụ 5', '321654987', 'Mô tả 5', 'Bộ phận 5', 'Nam', 2);
+('Nhân viên 5', 35, 'Chức vụ 4', '789123456', 'Mô tả 4', 'Bộ phận 4', 'Nữ', 3),
+('Nhân viên 6', 35, 'Chức vụ 4', '789123456', 'Mô tả 4', 'Bộ phận 4', 'Nữ', 3),
+('Nhân viên 7', 32, 'Chức vụ 5', '321654987', 'Mô tả 5', 'Bộ phận 5', 'Nam', 2),
+('Nhân viên 8', 35, 'Chức vụ 4', '789123456', 'Mô tả 4', 'Bộ phận 4', 'Nữ', 3),
+('Nhân viên 9', 35, 'Chức vụ 4', '789123456', 'Mô tả 4', 'Bộ phận 4', 'Nữ', 3),
+('Nhân viên 10', 35, 'Chức vụ 4', '789123456', 'Mô tả 4', 'Bộ phận 4', 'Nữ', 3),
+('Nhân viên 11', 35, 'Chức vụ 4', '789123456', 'Mô tả 4', 'Bộ phận 4', 'Nữ', 3);
 
 -- Thêm dữ liệu cho bảng Article
 INSERT INTO Article (type, title, time_published, author_id, content) VALUES
@@ -148,7 +158,15 @@ INSERT INTO Article (type, title, time_published, author_id, content) VALUES
 ('Doanh nghiệp', 'VNG là công ty gì? Thông tin về VNG có thể bạn chưa biết', NOW(), 2, 'VNG (VNG Corporation) là công ty cổ phần công nghệ hàng đầu và cũng là kỳ lân công nghệ đầu tiên của Việt Nam, được thành lập từ năm 2004. VNG phát triển với sứ mệnh “Kiến tạo công nghệ và Phát triển con người. Từ Việt Nam vươn tầm thế giới.”. Các sản phẩm phong phú của VNG đã tạo ra những giá trị tích cực trong trải nghiệm và tương tác của người dùng tại Việt Nam cũng như trên toàn thế giới. Công ty cổ phần VNG hiện có gần 4000 nhân viên đang làm việc tại 10 thành phố trên toàn cầu.'),
 ('Con Người', 'UpRace 2022: Cùng nhau chạy 500 vòng quanh Trái đất vì những điều tử tế', NOW(), 3, 'VNG (VNG Corporation) là công ty cổ phần công nghệ hàng đầu và cũng là kỳ lân công nghệ đầu tiên của Việt Nam, được thành lập từ năm 2004. VNG phát triển với sứ mệnh “Kiến tạo công nghệ và Phát triển con người. Từ Việt Nam vươn tầm thế giới.”. Các sản phẩm phong phú của VNG đã tạo ra những giá trị tích cực trong trải nghiệm và tương tác của người dùng tại Việt Nam cũng như trên toàn thế giới. Công ty cổ phần VNG hiện có gần 4000 nhân viên đang làm việc tại 10 thành phố trên toàn cầu.'),
 ('Doanh nghiệp', 'VNGGames xuất sắc nhận 3 giải thưởng tại MMA SMARTIES Awards Vietnam 2023', NOW(), 4, 'VNG (VNG Corporation) là công ty cổ phần công nghệ hàng đầu và cũng là kỳ lân công nghệ đầu tiên của Việt Nam, được thành lập từ năm 2004. VNG phát triển với sứ mệnh “Kiến tạo công nghệ và Phát triển con người. Từ Việt Nam vươn tầm thế giới.”. Các sản phẩm phong phú của VNG đã tạo ra những giá trị tích cực trong trải nghiệm và tương tác của người dùng tại Việt Nam cũng như trên toàn thế giới. Công ty cổ phần VNG hiện có gần 4000 nhân viên đang làm việc tại 10 thành phố trên toàn cầu.'),
-('Loại 5', 'Tiêu đề 5', NOW(), 5, "");
+('Công nghệ', 'Công nghệ', NOW(), 5, ""),
+('Sản phẩm', 'Sản phẩm', NOW(), 5, ""),
+('Công nghệ', 'Công nghệ', NOW(), 5, ""),
+('Sản phẩm', 'Sản phẩm', NOW(), 5, ""),
+('Công nghệ', 'Công nghệ', NOW(), 5, ""),
+('Sản phẩm', 'Sản phẩm', NOW(), 5, ""),
+('Công nghệ', 'Công nghệ', NOW(), 5, ""),
+('Sản phẩm', 'Sản phẩm', NOW(), 5, ""),
+('Sản phẩm', 'Sản phẩm', NOW(), 5, "");
 
 -- Thêm dữ liệu cho bảng Content
 INSERT INTO Content (article_id, title, content, link) VALUES
@@ -156,19 +174,33 @@ INSERT INTO Content (article_id, title, content, link) VALUES
 (1, 'VNG hoạt động trong lĩnh vực gì?', 'Khởi đầu với tựa game Võ Lâm Truyền Kỳ, VNG được biết đến trong vai trò nhà phát hành và phát triển nhiều thể loại game phổ biến tại Việt Nam cũng như các nước Đông Nam Á. Tính đến tháng 06/2023, VNGGames đã có hơn 170 tựa game trên hơn 40 thị trường. Ngoài ra, VNG còn phát triển hơn 60+ tựa game thông qua nền tảng ZingPlay.', 'https://corp.vcdn.vn/products/upload/vng/source/News/VNG%20daily%20news/kahoot%206.png'),
 (1, 'Nền Tảng Kết Nối', 'VNG mở rộng danh mục sản phẩm của mình sang những dịch vụ kỹ thuật số khác bao gồm ứng dụng nhắn tin số 1 Việt Nam - Zalo. Đến cuối năm 2022, Zalo đã ghi nhận 75 triệu người dùng thường xuyên và trở thành ứng dụng thiết yếu hàng đầu đối với người Việt Nam (theo dữ liệu của Bộ Thông tin và Truyền thông).', 'https://corp.vcdn.vn/products/upload/vng/source/News/cong-ty-vng-la-gi-3.png'),
 (1, 'Thanh Toán Điện Tử', 'Là một trong bốn mảng kinh doanh của VNG, ví điện tử ZaloPay cung cấp dịch vụ thanh toán di động được ra mắt vào năm 2017. ZaloPay đã có những bước đi tiên phong trong thị trường ví điện tử với QR đa năng, tài khoản chứng khoán và là đại diện duy nhất lọt Top 200 công ty fintech toàn cầu được công bố bởi CNBC. ', 'https://corp.vcdn.vn/products/upload/vng/source/News/cong-ty-vng-la-gi-4.png'),
+(2, 'VNG là gì?', 'VNG (VNG Corporation) là công ty cổ phần công nghệ hàng đầu và cũng là kỳ lân công nghệ đầu tiên của Việt Nam, được thành lập từ năm 2004. VNG phát triển với sứ mệnh “Kiến tạo công nghệ và Phát triển con người. Từ Việt Nam vươn tầm thế giới.”. Các sản phẩm phong phú của VNG đã tạo ra những giá trị tích cực trong trải nghiệm và tương tác của người dùng tại Việt Nam cũng như trên toàn thế giới. Công ty cổ phần VNG hiện có gần 4000 nhân viên đang làm việc tại 10 thành phố trên toàn cầu.', 'https://corp.vcdn.vn/products/upload/vng/source/News/cong-ty-vng-la-gi-1.jpg'),
+(2, 'VNG hoạt động trong lĩnh vực gì?', 'Khởi đầu với tựa game Võ Lâm Truyền Kỳ, VNG được biết đến trong vai trò nhà phát hành và phát triển nhiều thể loại game phổ biến tại Việt Nam cũng như các nước Đông Nam Á. Tính đến tháng 06/2023, VNGGames đã có hơn 170 tựa game trên hơn 40 thị trường. Ngoài ra, VNG còn phát triển hơn 60+ tựa game thông qua nền tảng ZingPlay.', 'https://corp.vcdn.vn/products/upload/vng/source/News/VNG%20daily%20news/kahoot%206.png'),
+(2, 'Nền Tảng Kết Nối', 'VNG mở rộng danh mục sản phẩm của mình sang những dịch vụ kỹ thuật số khác bao gồm ứng dụng nhắn tin số 1 Việt Nam - Zalo. Đến cuối năm 2022, Zalo đã ghi nhận 75 triệu người dùng thường xuyên và trở thành ứng dụng thiết yếu hàng đầu đối với người Việt Nam (theo dữ liệu của Bộ Thông tin và Truyền thông).', 'https://corp.vcdn.vn/products/upload/vng/source/News/cong-ty-vng-la-gi-3.png'),
+(2, 'Thanh Toán Điện Tử', 'Là một trong bốn mảng kinh doanh của VNG, ví điện tử ZaloPay cung cấp dịch vụ thanh toán di động được ra mắt vào năm 2017. ZaloPay đã có những bước đi tiên phong trong thị trường ví điện tử với QR đa năng, tài khoản chứng khoán và là đại diện duy nhất lọt Top 200 công ty fintech toàn cầu được công bố bởi CNBC. ', 'https://corp.vcdn.vn/products/upload/vng/source/News/cong-ty-vng-la-gi-4.png'),
 
-(2, 'Tiêu đề 2', 'Nội dung 2', 'https://example.com/link2'),
-(3, 'Tiêu đề 3', 'Nội dung 3', 'https://example.com/link3'),
-(4, 'Tiêu đề 4', 'Nội dung 4', 'https://example.com/link4'),
-(5, 'Tiêu đề 5', 'Nội dung 5', 'https://example.com/link5');
+(2, 'Tiêu đề 2', 'Nội dung 2', 'https://corp.vcdn.vn/products/upload/vng/source/News/cong-ty-vng-la-gi-1.jpg'),
+(3, 'Tiêu đề 3', 'Nội dung 3', 'https://corp.vcdn.vn/products/upload/vng/source/News/cong-ty-vng-la-gi-1.jpg'),
+(4, 'Tiêu đề 4', 'Nội dung 4', 'https://corp.vcdn.vn/products/upload/vng/source/News/cong-ty-vng-la-gi-1.jpg'),
+(5, 'Tiêu đề 5', 'Nội dung 5', 'https://corp.vcdn.vn/products/upload/vng/source/News/cong-ty-vng-la-gi-1.jpg');
 
 -- Thêm dữ liệu cho bảng Customer
 INSERT INTO Customer (customer_name, age, email, gender) VALUES
-('Đào Duy Long', 30, 'kh1@example.com', 'Nam'),
-('Khách hàng 2', 25, 'kh2@example.com', 'Nữ'),
-('Khách hàng 3', 28, 'kh3@example.com', 'Nam'),
-('Khách hàng 4', 35, 'kh4@example.com', 'Nữ'),
-('Khách hàng 5', 32, 'kh5@example.com', 'Nam');
+('Đào Duy Long', 19, 'kh1@example.com', 'Nam'),
+('Nguyễn Đức Đạt', 20, 'kh2@example.com', 'Nam'),
+('Vân', 21, 'kh3@example.com', 'Nữ'),
+('Bân', 20, 'kh4@example.com','Nam' ),
+('Khách hàng 1', 32, 'kh5@example.com', 'Nam'),
+('Khách hàng 2', 32, 'kh5@example.com', 'Nam'),
+('Khách hàng 3', 32, 'kh5@example.com', 'Nam'),
+('Khách hàng 4', 32, 'kh5@example.com', 'Nam'),
+('Khách hàng 5', 32, 'kh5@example.com', 'Nam'),
+('Khách hàng 6', 32, 'kh5@example.com', 'Nam'),
+('Khách hàng 7', 32, 'kh5@example.com', 'Nam'),
+('Khách hàng 8', 32, 'kh5@example.com', 'Nam'),
+('Khách hàng 9', 32, 'kh5@example.com', 'Nam'),
+('Khách hàng 10', 32, 'kh5@example.com', 'Nam'),
+('Khách hàng 11', 32, 'kh5@example.com', 'Nam');
 
 -- Thêm dữ liệu cho bảng Product
 INSERT INTO Product (category, date_added, price, name, image) VALUES
@@ -224,7 +256,6 @@ INSERT INTO Purchase (customer_id, product_id, purchase_date, number) VALUES
 (1, 3, '2023-11-28 10:00:00', 5), 
 (1, 4, '2023-11-27 18:30:00', 5), 
 (1, 1, '2023-11-30 12:20:00', 5), 
-(1, 2, '2023-12-06 16:00:00', 5), 
 (1, 3, '2023-12-04 10:30:00', 5), 
 (1, 4, '2023-12-05 19:00:00', 5),
 (1, 6, '2023-12-04 12:00:00', 5),
@@ -235,14 +266,14 @@ INSERT INTO Purchase (customer_id, product_id, purchase_date, number) VALUES
 
 -- Thêm 4 employee_account cơ bản
 INSERT INTO EmployeeAccount (employee_id, username, password) VALUES
-(1, 'long','1'),
-(2, 'dat','1'),
-(3, 'bang','1'),
-(4, 'van','1');
+(1, 'long','c4ca4238a0b923820dcc509a6f75849b'),
+(2, 'dat','c4ca4238a0b923820dcc509a6f75849b'),
+(3, 'bang','c4ca4238a0b923820dcc509a6f75849b'),
+(4, 'van','c4ca4238a0b923820dcc509a6f75849b');
 
 -- Thêm 4 customer_account cơ bản
 INSERT INTO CustomerAccount (customer_id, username, password) VALUES
-(1, 'long','1'),
-(2, 'dat','1'),
-(3, 'bang','1'),
-(4, 'van','1');
+(1, 'long','c4ca4238a0b923820dcc509a6f75849b'),
+(2, 'dat','c4ca4238a0b923820dcc509a6f75849b'),
+(3, 'bang','c4ca4238a0b923820dcc509a6f75849b'),
+(4, 'van','c4ca4238a0b923820dcc509a6f75849b');
