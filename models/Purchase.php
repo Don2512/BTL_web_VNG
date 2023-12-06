@@ -104,4 +104,23 @@ class Purchase{
         return $result;
     }
 
+    public static function getRevenue()
+    {
+        //* query
+        $query = "
+            CALL CalculateMonthlyRevenue();        
+        ";
+        $request = DB::_Query($query);
+    
+        //* get
+        $result = array();
+        foreach ($request->fetch_all(MYSQLI_ASSOC) as $temp) {
+            $result[] = array(
+                "y" => $temp["total_revenue"],
+                "label" => "tháng ". $temp["purchase_month"],
+            );
+        }
+        return $result;
+    }
+
 }

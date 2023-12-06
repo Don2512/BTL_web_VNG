@@ -246,6 +246,17 @@ INSERT INTO CustomerComment (customer_id, article_id, content, time_commented) V
 
 -- Thêm dữ liệu cho bảng Purchase
 INSERT INTO Purchase (customer_id, product_id, purchase_date, number) VALUES
+(1, 1, '2023-10-30 12:00:00', 25),
+(1, 2, '2023-9-29 15:30:00', 5),
+(1, 3, '2023-8-28 09:45:00', 15),
+(1, 4, '2023-7-27 18:20:00', 5),
+(1, 5, '2023-6-26 10:00:00', 25),
+(1, 1, '2023-5-30 12:10:00', 55), 
+(1, 2, '2023-4-29 15:40:00', 25), 
+(1, 5, '2023-3-26 10:00:00', 50),
+(1, 1, '2023-2-30 12:10:00', 5), 
+(1, 2, '2023-1-29 15:40:00', 57), 
+
 (1, 1, '2023-11-30 12:00:00', 5),
 (1, 2, '2023-11-29 15:30:00', 5),
 (1, 3, '2023-11-28 09:45:00', 5),
@@ -256,6 +267,8 @@ INSERT INTO Purchase (customer_id, product_id, purchase_date, number) VALUES
 (1, 3, '2023-11-28 10:00:00', 5), 
 (1, 4, '2023-11-27 18:30:00', 5), 
 (1, 1, '2023-11-30 12:20:00', 5), 
+(2, 3, '2023-12-04 10:30:00', 5), 
+(2, 4, '2023-12-05 19:00:00', 5),
 (1, 3, '2023-12-04 10:30:00', 5), 
 (1, 4, '2023-12-05 19:00:00', 5),
 (1, 6, '2023-12-04 12:00:00', 5),
@@ -277,3 +290,46 @@ INSERT INTO CustomerAccount (customer_id, username, password) VALUES
 (2, 'dat','c4ca4238a0b923820dcc509a6f75849b'),
 (3, 'bang','c4ca4238a0b923820dcc509a6f75849b'),
 (4, 'van','c4ca4238a0b923820dcc509a6f75849b');
+
+DELIMITER //
+CREATE PROCEDURE CalculateMonthlyRevenue()
+BEGIN
+    -- Tạo bảng tạm thời chứa các giá trị tháng từ 1 đến 12
+    CREATE TEMPORARY TABLE IF NOT EXISTS Months (month_value INT);
+
+    INSERT INTO Months (month_value) VALUES (1), (2), (3), (4), (5), (6), (7), (8), (9), (10), (11), (12);
+
+    -- Tạo bảng tạm thời để lưu trữ kết quả
+    CREATE TEMPORARY TABLE IF NOT EXISTS MonthlyRevenue (
+        purchase_year INT,
+        purchase_month INT,
+        total_revenue DECIMAL(10, 2)
+    );
+
+    -- Truy vấn để tính tổng doanh thu cho từng tháng và lưu vào bảng tạm thời
+    INSERT INTO MonthlyRevenue (purchase_year, purchase_month, total_revenue)
+    SELECT
+        YEAR(CURDATE()) AS purchase_year,
+        m.month_value AS purchase_month,
+        COALESCE(SUM(pr.price * p.number), 0) AS total_revenue
+    FROM
+        Months m
+    LEFT JOIN
+        Purchase p ON m.month_value = MONTH(p.purchase_date)
+    LEFT JOIN
+        Product pr ON p.product_id = pr.product_id
+    WHERE
+        YEAR(p.purchase_date) = YEAR(CURDATE()) OR p.purchase_date IS NULL
+    GROUP BY
+        m.month_value
+    ORDER BY
+        m.month_value;
+
+    -- Hiển thị kết quả
+    SELECT * FROM MonthlyRevenue;
+
+    -- Xóa bảng tạm thời sau khi sử dụng
+    DROP TEMPORARY TABLE IF EXISTS Months;
+    DROP TEMPORARY TABLE IF EXISTS MonthlyRevenue;
+END //
+DELIMITER ;

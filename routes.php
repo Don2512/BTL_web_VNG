@@ -21,7 +21,7 @@ $controllers = array(
   'user' => ['index', 'add', 'editInfo', 'editPass', 'delete'],
   'company' => ['index', 'add', 'edit', 'delete'],
   'login' => ['index', 'check', 'logout'],
-
+  'revenue' => ['index'],
   //Main controller
   'about' => ['index'],
   'blog' => ['index'],
