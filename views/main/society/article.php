@@ -52,7 +52,7 @@
 
                 </div>
             <?php } ?>
-            <?php if (isset($_SESSION['role']) && $_SESSION['role'] == "customer") echo '
+            <?php if (isset($_SESSION['role']) && $_SESSION['role'] == "customer"){?>
             <div class="border-c-gray border-3">
                 <form id="commentForm" method="post" action="">
                     <input type="hidden" name="article_id" value="<?php echo $_GET["article_id"] ?>">
@@ -73,7 +73,7 @@
                 </form>
 
             </div>
-            '; ?>
+            <?php } ?>
         </div>
         <div class="col-lg-4" style="margin-top: 12% ;">
             <div>

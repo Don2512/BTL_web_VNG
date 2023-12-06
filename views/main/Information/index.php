@@ -22,7 +22,7 @@ if (isset($_POST["edit"])) {
         $check = false;
     }
 
-    if ($age < 0 || $age > 120) {
+    if ($age < 12 || $age > 120) {
         $array[] = "Tuổi không hợp lệ.";
         $check = false;
     }
@@ -90,7 +90,7 @@ require_once("views/main/header.php") ?>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                        <?php if ($check) { ?> <button type="submit" class="btn btn-success" data-bs-dismiss="modal" onclick="makePayment();">Cập nhật</button> <?php } ?>
+                        <?php if ($check) { ?> <button type="submit" class="btn btn-success" data-bs-dismiss="modal" onclick="update();">Cập nhật</button> <?php } ?>
                     </div>
                 </div>
             </div>
@@ -125,13 +125,7 @@ require_once("views/main/header.php") ?>
         }) <?php } ?>
 
 
-        // $customer_id = $customer->customer_id;
-        // $name = $customer->customer_name;
-        // $gender = $customer->gender;
-        // $age = $customer->age;
-        // $email = $customer->email;
-
-        function makePayment() {
+        function update() {
             event.preventDefault();
 
             var customer_id = '<?php echo $customer_id; ?>';
