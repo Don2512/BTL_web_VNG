@@ -182,7 +182,15 @@ INSERT INTO Content (article_id, title, content, link) VALUES
 (2, 'Tiêu đề 2', 'Nội dung 2', 'https://corp.vcdn.vn/products/upload/vng/source/News/cong-ty-vng-la-gi-1.jpg'),
 (3, 'Tiêu đề 3', 'Nội dung 3', 'https://corp.vcdn.vn/products/upload/vng/source/News/cong-ty-vng-la-gi-1.jpg'),
 (4, 'Tiêu đề 4', 'Nội dung 4', 'https://corp.vcdn.vn/products/upload/vng/source/News/cong-ty-vng-la-gi-1.jpg'),
-(5, 'Tiêu đề 5', 'Nội dung 5', 'https://corp.vcdn.vn/products/upload/vng/source/News/cong-ty-vng-la-gi-1.jpg');
+(5, 'Tiêu đề 5', 'Nội dung 5', 'https://corp.vcdn.vn/products/upload/vng/source/News/cong-ty-vng-la-gi-1.jpg'),
+(6, 'Tiêu đề 6', 'Nội dung 6', 'https://corp.vcdn.vn/products/upload/vng/source/News/cong-ty-vng-la-gi-1.jpg'),
+(7, 'Tiêu đề 7', 'Nội dung 7', 'https://corp.vcdn.vn/products/upload/vng/source/News/cong-ty-vng-la-gi-1.jpg'),
+(8, 'Tiêu đề 8', 'Nội dung 8', 'https://corp.vcdn.vn/products/upload/vng/source/News/cong-ty-vng-la-gi-1.jpg'),
+(9, 'Tiêu đề 9', 'Nội dung 9', 'https://corp.vcdn.vn/products/upload/vng/source/News/cong-ty-vng-la-gi-1.jpg'),
+(10, 'Tiêu đề 10', 'Nội dung 10', 'https://corp.vcdn.vn/products/upload/vng/source/News/cong-ty-vng-la-gi-1.jpg'),
+(11, 'Tiêu đề 11', 'Nội dung 11', 'https://corp.vcdn.vn/products/upload/vng/source/News/cong-ty-vng-la-gi-1.jpg'),
+(12, 'Tiêu đề 12', 'Nội dung 12', 'https://corp.vcdn.vn/products/upload/vng/source/News/cong-ty-vng-la-gi-1.jpg'),
+(13, 'Tiêu đề 13', 'Nội dung 13', 'https://corp.vcdn.vn/products/upload/vng/source/News/cong-ty-vng-la-gi-1.jpg');
 
 -- Thêm dữ liệu cho bảng Customer
 INSERT INTO Customer (customer_name, age, email, gender) VALUES
